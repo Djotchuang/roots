@@ -134,4 +134,4 @@
 
 			redirect('posts');
 		}
-	}
+	}?>
