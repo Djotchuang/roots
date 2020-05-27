@@ -1,4 +1,4 @@
-<h2><?= $title; ?></h2>
+<h2 class="title"><?= $title; ?></h2>
 
 <?php echo validation_errors(); ?>
 
@@ -13,10 +13,10 @@
     <textarea id="editor1" class="form-control" name="body" placeholder="Add Body"><?php echo $post['body']; ?></textarea>
   </div>
   <div class="form-group">
-  <label>Category</label>
-  <select name="category_id" class="form-control">
-    <?php foreach($categories as $category): ?>
-      <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+  <label>country</label>
+  <select name="country_id" class="form-control">
+    <?php foreach($countries as $country): ?>
+      <option value="<?php echo $country['id']; ?>"><?php echo $country['name']; ?></option>
     <?php endforeach; ?>
   </select>
   </div>
