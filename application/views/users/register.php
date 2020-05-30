@@ -1,21 +1,21 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('users/register'); ?>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4" id="form-center">
-			<h1 class="text-center"><?= $title; ?></h1>
-			<div class="form-group">
-				<label>Name</label>
-				<input type="text" class="form-control" name="name" placeholder="Name">
-			</div>
-			<div class="form-group">
-				<label>Email</label>
-				<input type="email" class="form-control" name="email" placeholder="Email">
-			</div>
-			<div class="form-group">
-			<label for="country">Country</label>
-			<select id="country" name="country" class="form-control">
-		     	<option value=""></option>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" id="form-center">
+        <h1 class="text-center"><?= $title; ?></h1>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country" name="country" class="form-control">
+                <option value=""></option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -260,80 +260,24 @@
                 <option value="Yemen">Yemen</option>
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
-			</select>
-			</div>
-			<div id='form-group' class='form-group'>
-			  <label for="tribe">Tribe</label>
-			<select id="tribe" name="tribe" class="form-control">
-		     	<option value=""></option>
-                <option value="Bayangi tribe">Bayangi tribe</option>
-                <option value="Bakossi tribe">Bakossi tribe</option>
-                <option value="Bakweri tribe">Bakweri tribe</option>
-                <option value="Bameta tribe">Bameta tribe</option>
-				<option value="Batibo tribe">Batibo tribe</option>
-                <option value="Bamileke tribe">Bamileke tribe</option>
-                <option value="Bassa tribe">Bassa tribe</option>
-                <option value="Bamoun tribe">Bamoun tribe</option>
-                <option value="Bulu tribe">Bulu tribe</option>
-                <option value="Ewondo tribe">Ewondo tribe</option>
-                <option value="Douala tribe">Douala tribe</option>
-                <option value="Oroko tribe">Oroko tribe</option>
-                <option value="Yabassi tribe">Yabassi tribe</option>
-                <option value="Beti tribe">Beti tribe</option>
-                <option value="Bameta tribe">Bameta tribe</option>
-				<option value="Batibo tribe">Batibo tribe</option>
-				<option value="Bamileke tribe">Bamileke tribe</option>
-                <option value="Fulani tribe">Fulani tribe</option>
-                <option value="Igbo tribe">Igbo tribe</option>
-                <option value="Yoruba tribe">Yoruba tribe</option>
-                <option value="Ibibio tribe">Ibibio tribe</option>
-                <option value="Ijaw tribe">Ijaw tribe</option>
-				<option value="Hausa tribe">Hausa tribe</option>
-				<option value="Bantu tribe">Bantu tribe</option>
-                <option value="Abhors tribe">Abhors tribe</option>
-                <option value="Afridis tribe">Afridis tribe</option>
-                <option value="Akuntsu (Akunt'su or Akunsu) tribe">Akuntsu (Akunt'su or Akunsu) tribe</option>
-                <option value="Batak tribe">Batak tribe</option>
-				<option value="Bantus tribe">Bantus tribe</option>
-				<option value="Berbers tribe">Berbers tribe</option>
-                <option value="Boers tribe">Boers tribe</option>
-                <option value="Bindibu tribe">Bindibu tribe</option>
-                <option value="Cossacks tribe">Cossacks tribe</option>
-                <option value="Eskimos tribe">Eskimos tribe</option>
-				<option value="Flemings tribe">Flemings tribe</option>
-				<option value="Gaucho tribe">Gaucho tribe</option>
-                <option value="Hamits tribe">Hamits tribe</option>
-                <option value="Jarawas tribe">Jarawas tribe</option>
-                <option value="Korowai tribe">Korowai tribe</option>
-                <option value="Kyrgyz (Kirghiz) tribe">Kyrgyz (Kirghiz) tribe</option>
-				<option value="Kikuyu tribe	">Kikuyu tribe	</option>
-				<option value="Kurds (Kurdish) tribe">Kurds (Kurdish) tribe</option>
-                <option value="Magyars tribe">Magyars tribe</option>
-                <option value="Maoris tribe">Maoris tribe</option>
-                <option value="Masai tribe">Masai tribe</option>
-                <option value="Negroes tribe">Negroes tribe</option>
-				<option value="Red Indians tribe">Red Indians tribe</option>
-				<option value="Papuans tribe">Papuans tribe</option>
-                <option value="Pygmies tribe">Pygmies tribe</option>
-                <option value="Sentinelese tribe">Sentinelese tribe</option>
-                <option value="Veddas tribe	">Veddas tribe</option>
-                <option value="Zulus tribe">Zulus tribe</option>
-				<option value="Zo'é tribe">Zo'é tribe</option>
-			</select>
-	       </div>
-			<div class="form-group">
-				<label>Username</label>
-				<input type="text" class="form-control" name="username" placeholder="Username">
-			</div>
-			<div class="form-group">
-				<label>Password*</label>
-				<input type="password" class="form-control" name="password" placeholder="Password">
-			</div>
-			<div class="form-group">
-				<label>Confirm Password</label>
-				<input type="password" class="form-control" name="password2" placeholder="Confirm Password">
-			</div>
-			<button type="submit" class="btn btn-primary btn-block">Submit</button>
-		</div>
-	</div>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </div>
+</div>
 <?php echo form_close(); ?>
+<div class="text-center small" style="color: #67428b;">Already have an account?
+    <a href="login">Login</a>
+</div>
