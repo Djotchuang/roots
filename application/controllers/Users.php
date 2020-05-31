@@ -268,20 +268,4 @@ class Users extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
-
-    // Get users with the same country
-    public function nearby()
-    {
-        // Check login
-        if (!$this->session->userdata('logged_in')) {
-            redirect('users/login');
-        }
-        $user_id = $this->session->user_data('user_id');
-        $user_data = $this->user_model->get_profile_data('user_id');
-        $data['nearby_users'] = $this->user_model->get_nearby($user_data['country']);
-
-        $this->load->view('templates/header');
-        $this->load->view('posts/index', $data);
-        $this->load->view('templates/footer');
-    }
 }

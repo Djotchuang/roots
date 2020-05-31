@@ -59,7 +59,7 @@
 <script>
 	$(document).ready(function() {
 
-
+		load_nearby();
 
 		checkAvatar();
 		$image_crop = $('#image_demo').croppie({
@@ -171,35 +171,6 @@
 			}
 		});
 	});
-
-
-	function load_nearby() {
-		var avatar = $("#").attr('name');
-		$.ajax({
-			url: '<?= base_url(); ?>' + "users/nearby",
-			method: 'post',
-			data: {
-				username: username
-			},
-			dataType: 'json',
-			success: function(response) {
-				var len = response.length;
-				$('#suname,#sname,#semail').text('');
-				if (len > 0) {
-					// Read values
-					var uname = response[0].username;
-					var name = response[0].name;
-					var email = response[0].email;
-
-					$('#suname').text(uname);
-					$('#sname').text(name);
-					$('#semail').text(email);
-
-				}
-
-			}
-		});
-	}
 </script>
 </body>
 

@@ -22,21 +22,16 @@
 		</div>
 		<div class="col-lg-3 col-md-12">
 			<!-- latest posts -->
-			<aside class="sidebar" id="nearby">
+			<aside class="sidebar">
 				<section class="latest-post">
-					<a href="#" class="text-md text-dark">People Nearby</a>
-					<?php foreach ($nearby_users as $nearby_user) : ?>
-						<div class="pull-left image">
-							<img src="<?php echo $nearby_user['avatar']; ?>" id="nearby_avatar" class="img-circle avatar" alt="user profile image">
-						</div>
-						<div class="title h5" id="post-name">
-							<a href="<?= base_url(); ?>users/fetch_user/<?= $nearby_user['id']; ?>">
-								<b><?php echo $nearby_user['username']; ?></b>
-							</a>
-						</div>
-					<?php endforeach; ?>
+					<h4>People Nearby</h4>
+					<div class="pull-left image">
+						<img src="<?php echo $post['avatar']; ?>" id="post-image" class="img-circle avatar" alt="user profile image">
+					</div>
+					<div class="title h5" id="post-name">
+						<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>"><b><?php echo $post['username']; ?></b></a>
+					</div>
 				</section>
-				<!-- end latest posts -->
 			</aside>
 		</div>
 	</div>

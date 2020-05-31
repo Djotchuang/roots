@@ -16,7 +16,7 @@
 <body>
   <nav class="navbar navbar-expand-lg" id="nav-bar">
     <div class="container">
-      <a class="navbar-brand" id="logo" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="LOGO">
+      <a class="navbar-brand" id="logo" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo">
       </a>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav mr-auto">
