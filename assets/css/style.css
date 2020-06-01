@@ -1,419 +1,414 @@
+/* Global Styles */
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html,
 body {
-	margin: 0;
-	font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	font-size: 1.3rem !important;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #212529;
-	text-align: left;
-	background-color: #fff;
+  margin: 0;
+  padding: 0;
 }
 
-.post-date {
-	background: rgb(8, 8, 8);
-	padding: 4px;
-	margin: 3px 0;
-	color: #f4f4f4;
-	display: block;
+body {
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-size: 1.2rem !important;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #f9f9f9;
 }
 
-.post-thumb {
-	width: 100%;
+/* Header Styles*/
+.navbar {
+  background-color: #212529;
 }
 
-.pagination-links {
-	margin: 30px 0;
+.navdiv {
+  display: inherit;
 }
 
-.pagination-links strong {
-	padding: 8px 13px;
-	margin: 5px;
-	background: #f4f4f4;
-	border: 1px #ccc solid;
-}
-
-a.pagination-link {
-	padding: 8px 13px;
-	margin: 5px;
-	background: #f4f4f4;
-	border: 1px #ccc solid;
-}
-
-.cat-delete {
-	display: inline;
-}
-
-.title {
-	margin-top: 40px !important;
-}
-
-.post-title {
-	margin-top: 20px !important;
-	margin-bottom: 15px;
-}
-
-#row {
-	margin-bottom: 50px !important;
-}
-
-
-
-#form-center {
-	margin-left: 30%;
-	margin-top: 30px;
-}
-
-
-.nav-link {
-	font-size: 16px !important;
-	margin-right: 10px !important;
-}
-
-ion-icon {
-	font-size: 26px;
-}
-
-.hero {
-	display: table;
-	position: relative !important;
-	background-image: url("../images/cover.png") !important;
-	background-size: cover !important;
-	padding: 150px 0;
-	color: #fff;
-	width: 100% !important;
-	height: 100vh;
-}
-
-.hero:after {
-	content: '';
-	z-index: 0;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.65);
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-}
-
-.hero .container {
-	position: relative;
-	z-index: 1;
-	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
-	width: 100%;
-}
-
-.hero-brand {
-	display: inline-block;
-	margin-bottom: 35px;
-
-}
-
-.hero-brand:hover {
-	opacity: .75;
-}
-
-.tagline {
-	font-family: "Raleway", Helvetica, Arial, sans-serif;
-	font-size: 26px;
-	margin: 45px 0 75px 0;
-	color: #fff;
-	margin: 35px 0;
-}
-
-#btn {
-	background-color: #199EB8;
-	font-family: "Roboto", Helvetica, Arial, sans-serif;
-	font-weight: 800;
-	color: #fff;
-	padding: 15px 45px;
-	border-radius: 50px;
-}
-
-.btn:hover {
-	background-color: rgb(0, 18, 31);
-	color: #fff;
-	border: 1px solid gainsboro;
-}
-
-.btn:focus {
-	color: #fff;
-}
-
-.hero-logo {
-	height: 100px;
-	width: 200px;
-	position: center;
-}
-
-.hero-caption {
-	text-align: center;
-	text-transform: uppercase;
-	font-family: "Roboto", Helvetica, Arial, sans-serif;
-}
-
-#dropdown-menu {
-	position: absolute;
-	display: block;
-	transform: translate3d(0px, 28px, 0px);
-	top: 0px;
-	left: 0px;
-	will-change: transform;
-	z-index: 1;
-}
-
-#profile-container {
-	margin-top: 30;
-}
-
-.tab-pane {
-	margin-top: 30px !important;
-}
-
-#nav-bar {
-	background-color: rgb(7, 7, 7);
+.nav1 {
+  margin-right: 3rem;
 }
 
 .nav-link {
-	color: white;
+  display: inline-flex;
+}
+
+.nav-link ion-icon {
+  margin-top: 1rem;
+  margin-right: 4px;
+  font-size: 1.8rem;
+}
+
+.nav-link p {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  color: #f9f9f9;
 }
 
 .nav-link:hover {
-	color: #18BC9C;
-	border-bottom: 2px solid #18BC9C;
-	transition: 0.7s;
-
+  color: #18bc9c;
+  border-bottom: 2px solid #18bc9c;
+  transition: 0.7s;
 }
 
 .nav-link:active {
-	color: #18BC9C;
-	border-bottom: 2px solid #18BC9C;
-}
-
-#nav-link {
-	color: #18BC9C !important;
-}
-
-#nav-link:active {
-	color: rgb(0, 0, 0) !important;
-}
-
-#nav-link:hover {
-	color: rgb(14, 15, 15) !important;
-	border-top: 3px solid rgb(15, 15, 15);
-	border-left: none !important;
-	border-right: none !important;
-	border-bottom: none !important;
-}
-
-#profile-icon:hover {
-	border: none !important;
-}
-
-#title {
-	margin-top: 40px;
-}
-
-.btn {
-	border: 1px solid black;
-}
-
-#post-image {
-	border: 1px solid rgb(243, 243, 243);
-	border-radius: 50%;
-	height: 50;
-	width: 50px;
-	margin-bottom: 0.3em !important;
-	margin-top: 1em;
-}
-
-#post-image-two {
-	border: 1px solid rgb(243, 243, 243);
-	border-radius: 50%;
-	height: 30px;
-	width: 30px;
-	margin-bottom: -1.6em !important;
-	margin-top: 0.8em;
-}
-
-#post-name {
-	margin-top: -2.5em !important;
-	margin-left: 4em !important;
-}
-
-.custom-file {
-	margin-top: 10px !important;
-}
-
-.btn-success {
-	width: 120px !important;
-	height: 30px !important;
-	color: #fff;
-	background-color: #18BC9C;
-	border: 1 px solid#18BC9C !important;
-}
-
-.well {
-	margin-left: 2.5em;
-}
-
-#post-card {
-	width: 30rem;
-	height: 25rem;
-}
-
-#post-card-lg {
-	width: 25em;
-	height: 20em;
-	margin-bottom: 1.8em;
-}
-
-#btn-delete {
-	margin-left: 4em;
-	margin-top: -2.4em;
-	border: none !important;
-}
-
-#comment-body {
-	border: none !important;
-}
-
-#comment-body:hover {
-	border-bottom: 1px solid rgb(3, 80, 48) !important;
-}
-
-#comment-body {
-	border-bottom: 1px solid rgb(17, 17, 17) !important;
-	color: rgb(26, 25, 25);
-	font-size: 1em;
+  color: #18bc9c;
+  border-bottom: 2px solid #18bc9c;
 }
 
 #search-form {
-	margin-right: 3em !important;
+  margin-right: 3rem !important;
 }
 
-#input-form {
-	width: 18em !important;
+/* Page Styles */
+
+/* Home */
+.hero {
+  display: table;
+  position: relative !important;
+  background-image: url("../images/cover.png") !important;
+  background-size: cover !important;
+  padding-top: 10%;
+  padding-bottom: 5%;
+  color: #f9f9f9;
+  width: 100% !important;
+  margin-top: -25px;
 }
 
-ion-icon {
-	font-size: 30px;
-	color: #00ffb7 !important;
-	font-weight: bold !important;
+.hero::after {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
-#post-title {
-	margin-bottom: 1.2em;
-	background-color: rgb(240, 238, 238) !important;
-	padding: 0.1rem;
+.hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
 }
 
-.nav-link {
-	font-weight: bold !important;
+.hero-brand {
+  display: inline-block;
+  margin-bottom: 35px;
 }
 
-#Container {
-	margin-top: 1.4em;
-	margin-left: 22.5em;
+.hero-brand:hover {
+  opacity: 0.75;
 }
 
-#search-title {
-	margin-bottom: 1.5em;
-	font-size: .9rem;
-	font-weight: bold;
-	border-bottom: 1px solid rgb(219, 224, 224);
+.hero-logo {
+  height: 100px;
+  width: 200px;
+  position: center;
+}
+
+.hero-caption {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+}
+
+.tagline {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  margin: 45px 0 75px 0;
+  color: #fff;
+  margin: 35px 0;
+}
+
+#home_btn {
+  background-color: #199eb8;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  color: #fff;
+  padding: 15px 45px;
+  border-radius: 50px;
+}
+
+#home_btn:hover {
+  background-color: rgb(0, 18, 31);
+  color: #fff;
+  border: 1px solid gainsboro;
+}
+
+#profile-container {
+  margin-top: 30;
+}
+
+.tab-pane {
+  margin-top: 30px !important;
+}
+
+#profile-icon:hover {
+  border: none !important;
+}
+
+#title {
+  margin-top: 40px;
+}
+
+#post-image {
+  border: 1px solid rgb(243, 243, 243);
+  border-radius: 50%;
+  height: 50;
+  width: 50px;
+  margin-bottom: 0.3em !important;
+  margin-top: 1em;
 }
 
 #post-image-two {
-	border: 3px solid rgb(255, 255, 255) !important;
+  border: 1px solid rgb(243, 243, 243);
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-bottom: -1.6em !important;
+  margin-top: 0.8em;
+}
+
+#post-name {
+  margin-top: -2.5em !important;
+  margin-left: 4em !important;
+}
+
+.custom-file {
+  margin-top: 10px !important;
+}
+
+.btn-success {
+  width: 120px !important;
+  height: 30px !important;
+  color: #fff;
+  background-color: #18bc9c;
+  border: 1 px solid#18BC9C !important;
+}
+
+.well {
+  margin-left: 2.5em;
+}
+
+#post-card {
+  width: 30rem;
+  height: 25rem;
+}
+
+#post-card-lg {
+  width: 25em;
+  height: 20em;
+  margin-bottom: 1.8em;
+}
+
+#btn-delete {
+  margin-left: 4em;
+  margin-top: -2.4em;
+  border: none !important;
+}
+
+#comment-body {
+  border: none !important;
+}
+
+#comment-body:hover {
+  border-bottom: 1px solid rgb(3, 80, 48) !important;
+}
+
+#comment-body {
+  border-bottom: 1px solid rgb(17, 17, 17) !important;
+  color: rgb(26, 25, 25);
+  font-size: 1em;
+}
+
+#input-form {
+  width: 18em !important;
+}
+
+ion-icon {
+  font-size: 30px;
+  color: #00ffb7 !important;
+  font-weight: bold !important;
+}
+
+#post-title {
+  margin-bottom: 1.2em;
+  background-color: rgb(240, 238, 238) !important;
+  padding: 0.1rem;
+}
+
+.nav-link {
+  font-weight: bold !important;
+}
+
+#Container {
+  margin-top: 1.4em;
+  margin-left: 22.5em;
+}
+
+#search-title {
+  margin-bottom: 1.5em;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(219, 224, 224);
+}
+
+#post-image-two {
+  border: 3px solid rgb(255, 255, 255) !important;
 }
 
 #post-img {
-	height: 4.5rem;
-	border: 3px solid rgb(255, 255, 255) !important;
-	margin-left: -4.7rem;
-	margin-bottom: -4.3rem;;
-	border-radius: 50%;
-
+  height: 4.5rem;
+  border: 3px solid rgb(255, 255, 255) !important;
+  margin-left: -4.7rem;
+  margin-bottom: -4.3rem;
+  border-radius: 50%;
 }
 
 .card-title {
-	font-size: 2.0rem;
-	margin-left: 2.5em;
-	margin-bottom: -.2em;
-	text-decoration: none;
-	color: white;
+  font-size: 2rem;
+  margin-left: 2.5em;
+  margin-bottom: -0.2em;
+  text-decoration: none;
+  color: white;
 }
 
 .card-title:hover {
-	color: rgb(221, 221, 221);
-	text-decoration: none !important;
+  color: rgb(221, 221, 221);
+  text-decoration: none !important;
 }
 
 .card-header {
-	padding-top: 2em;
-	padding-bottom: 3em;
-	border-bottom: 1px solid gainsboro;
+  padding-top: 2em;
+  padding-bottom: 3em;
+  border-bottom: 1px solid gainsboro;
 }
 
 #card {
-	background-color: rgb(3, 87, 38);
+  background-color: rgb(3, 87, 38);
 }
 
 #chat_modal {
-	margin-left: 36.0rem !important;
-	margin-top: 6.0rem !important;
+  margin-left: 36rem !important;
+  margin-top: 6rem !important;
 }
 
 .pb-5,
 .py-5 {
-	padding-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .pl-4,
 .px-4 {
-	padding-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 .pr-4,
 .px-4 {
-	padding-right: .3rem !important;
+  padding-right: 0.3rem !important;
 }
 
 .notification_circle {
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background-color: #FF0000;
-	text-align: center;
-	color: #fff;
-	padding: 3px 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  text-align: center;
+  color: #fff;
+  padding: 3px 6px;
 }
-
 
 .online {
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background-color: #5cb85c;
-	text-align: center;
-	color: #fff;
-	padding: 3px 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #5cb85c;
+  text-align: center;
+  color: #fff;
+  padding: 3px 6px;
 }
 
-
 .offline {
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	background-color: #ccc;
-	text-align: center;
-	color: #fff;
-	padding: 3px 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ccc;
+  text-align: center;
+  color: #fff;
+  padding: 3px 6px;
 }
 
 .line {
-	border-bottom: 1px solid rgb(221, 219, 219);
-	margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgb(221, 219, 219);
+  margin-bottom: 2.5rem;
+}
+
+/* Page Styles */
+
+/* Login form, registration and reset password forms */
+.login_form,
+.registration_form,
+.reset_password,
+.change_password {
+  background-color: #fff;
+  margin: 5% 15%;
+  padding: 5%;
+}
+
+/* Media Queries*/
+
+/* Header */
+@media (max-width: 1198px) {
+  .nav2 .nav-link ion-icon {
+    margin-top: auto;
+  }
+
+  .navdiv {
+    margin: 0 auto;
+  }
+
+  .nav1 .nav-item,
+  .nav2 .nav-item {
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navdiv {
+    display: block;
+  }
+
+  .nav1 li,
+  .nav2 li {
+    display: inline-flex;
+  }
+}
+
+/* Home */
+
+@media (max-width: 576px) {
+  .hero-caption {
+    font-size: 2.5rem;
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+}
+
+@media (max-width: 768px) {
 }

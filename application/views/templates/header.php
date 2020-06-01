@@ -14,54 +14,83 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg" id="nav-bar">
-    <div class="container">
-      <a class="navbar-brand" id="logo" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo">
-      </a>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>"><span>
-                <ion-icon style="font-size:1.5rem !important; margin-right:.2em !important; margin-bottom:-.18em !important" name="home-outline"></ion-icon>
-              </span>Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>posts"><span>
-                <ion-icon style="font-size:1.5rem !important; margin-right:.2em !important; margin-bottom:-.18em !important" name="duplicate-outline">
-              </span>Newsfeed</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>countries"><span>
-                <ion-icon style="font-size:1.5rem !important; margin-right:.2em !important; margin-bottom:-.18em !important" name="earth-outline">
-              </span>Countries</a></li>
-        </ul>
-        <ul class="nav navbar-nav nav-pills navbar-right">
-          <?php if (!$this->session->userdata('logged_in')) : ?>
-            <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>users/login">Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>users/register">Register</a></li>
-          <?php endif; ?>
-          <?php if ($this->session->userdata('logged_in')) : ?>
-            <form action="<?= base_url(); ?>users/fetch" method="post" id="search-form" class="form-inline my-2 my-lg-0">
-              <input id="input-form" name="search" class="form-control mr-md-2 text-black" type="text" placeholder="Search People">
-              <button id="search-submit" class="btn btn-secondary my-2 my-sm-0" type="submit" disabled>Search</button>
-            </form>
-            <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>posts/create">
-                <ion-icon name="create-outline"></ion-icon>
-              </a></li>
-            <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>countries/create">
-                <ion-icon name="notifications-outline"></ion-icon>
-              </a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="profile-icon" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
-                <ion-icon name="person-circle-outline"></ion-icon>
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="<?= base_url() ?>users/profile">Profile</a>
-                <a class="dropdown-item" href="#">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?php echo base_url(); ?>users/logout">Logout</a>
-              </div>
-            </li>
-          <?php endif; ?>
-        </ul>
+  <header>
+    <nav class="navbar navbar-expand-xl navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" id="logo" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo">
+        </a>
+        <button id="nav-toggle-button" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <div class="navdiv nav1">
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url(); ?>">
+                  <ion-icon name="home-outline"></ion-icon>
+                  <p>Home</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url(); ?>posts">
+                  <ion-icon name="duplicate-outline"></ion-icon>
+                  <p>Newsfeed</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url(); ?>countries">
+                  <ion-icon name="earth-outline"></ion-icon>
+                  <p>Countries</p>
+                </a>
+              </li>
+            </div>
+            <div class="navdiv nav2">
+              <?php if (!$this->session->userdata('logged_in')) : ?>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo base_url(); ?>users/login">
+                    <p>Login</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo base_url(); ?>users/register">
+                    <p>Register</p>
+                  </a>
+                </li>
+              <?php endif; ?>
+              <?php if ($this->session->userdata('logged_in')) : ?>
+                <form action="<?= base_url(); ?>users/fetch" method="post" id="search-form" class="form-inline my-2 my-lg-0">
+                  <input id="input-form" name="search" class="form-control mr-2 text-black" type="text" placeholder="Search People">
+                  <button id="search-submit" class="btn btn-secondary my-2 my-sm-0" type="submit" disabled>Search</button>
+                </form>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo base_url(); ?>posts/create">
+                    <ion-icon name="create-outline"></ion-icon>
+                  </a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>countries/create">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="profile-icon" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?= base_url() ?>users/profile">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?php echo base_url(); ?>users/logout">Logout</a>
+                  </div>
+                </li>
+              <?php endif; ?>
+            </div>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
+
+
 
   <div class="container">
     <!-- Flash messages -->
