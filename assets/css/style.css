@@ -12,7 +12,7 @@ body {
 }
 
 body {
-  font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: "poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   font-size: 1.2rem !important;
@@ -23,9 +23,44 @@ body {
   background-color: #f9f9f9;
 }
 
+a {
+  text-decoration: none !important;
+}
+
+.separator {
+  color: #f2f2f2;
+}
+
+.submit-btn {
+  width: 150px !important;
+}
+
+.btn-success {
+  width: 120px !important;
+  height: 30px !important;
+  color: #fff;
+  background-color: #18bc9c;
+  border: 1px solid#18BC9C !important;
+}
+
+.page-title {
+  background-color: #f5f5f5;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 2rem;
+  width: 100vw;
+}
+
+.page-title h2 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
 /* Header Styles*/
 .navbar {
   background-color: #212529;
+  margin-bottom: -25px;
 }
 
 .navdiv {
@@ -44,6 +79,7 @@ body {
   margin-top: 1rem;
   margin-right: 4px;
   font-size: 1.8rem;
+  color: #18bc9c;
 }
 
 .nav-link:hover {
@@ -83,7 +119,6 @@ body {
   padding-bottom: 5%;
   color: #f9f9f9;
   width: 100% !important;
-  margin-top: -25px;
 }
 
 .hero::after {
@@ -150,177 +185,181 @@ body {
   border: 1px solid gainsboro;
 }
 
-#profile-container {
-  margin-top: 30;
+/* Login form, registration and reset password forms */
+.login_form,
+.registration_form,
+.reset_password,
+.change_password {
+  background-color: #fff;
+  margin: 5% 15%;
+  padding: 5%;
+}
+
+/* Posts */
+
+.post {
+  padding-right: 2rem;
+  border-right: 1px solid #f2f2f2;
+}
+
+.nearby-sidebar {
+  padding-left: 2rem;
+}
+
+.post-content {
+  padding-left: 1rem;
+}
+
+.post-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.post-content h5 {
+  color: #18bc9c;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.post-content h4 {
+  color: #212529;
+  margin-bottom: 2rem;
+}
+
+.post-content h4:hover {
+  color: #18bc9c;
+}
+
+.post-content p {
+  font-size: 1rem;
+}
+
+.post-content .meta-data {
+  color: #8b8b8b;
+  width: 100%;
+}
+
+.post-content .meta-data p {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.post-content .post-avatar {
+  border-radius: 50%;
+  width: 20px;
+}
+
+.nearby-meta-data .nearby-avatar {
+  border-radius: 50%;
+  width: 50px;
+}
+
+.nearby-meta-data a {
+  font-size: 1.5rem;
+}
+
+/* Single Post View */
+.view-content .post-thumbnail {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+.view-content h4 {
+  color: #212529;
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+
+.view-content p {
+  font-size: 1rem;
+}
+
+.view-content .meta-data {
+  color: #8b8b8b;
+  width: 100%;
+  display: inline-flex;
+}
+
+.view-content .meta-data span,
+.comment-info {
+  margin-right: 1rem;
+  display: inline-flex;
+}
+
+.view-content .meta-data a {
+  color: #8b8b8b !important;
+}
+
+.view-content .post-avatar {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.view-content .meta-data p {
+  font-size: 1rem;
+  margin-left: 5px;
+  margin-top: 5px;
+  text-transform: capitalize;
+}
+
+.view-content .meta-data ion-icon {
+  margin-top: 8px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.edit {
+  height: max-content;
+  margin-right: 1rem;
+}
+
+.comment-heading {
+  margin: 2rem auto;
+}
+
+.comment-details {
+  margin: 1rem auto;
+}
+
+.comment-info .comment-avatar {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-right: 1.8rem;
+}
+
+.comment-info span {
+  margin-top: 10px;
+}
+
+.comment-info span p {
+  margin-top: 16px;
+}
+
+/* Profile */
+
+.nav-tabs {
+  margin-top: 2.5rem;
 }
 
 .tab-pane {
-  margin-top: 30px !important;
+  margin-top: 2.5rem !important;
 }
 
-#profile-icon:hover {
-  border: none !important;
-}
-
-#title {
-  margin-top: 40px;
-}
-
-#post-image {
-  border: 1px solid rgb(243, 243, 243);
-  border-radius: 50%;
-  height: 50;
-  width: 50px;
-  margin-bottom: 0.3em !important;
-  margin-top: 1em;
-}
-
-#post-image-two {
-  border: 1px solid rgb(243, 243, 243);
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  margin-bottom: -1.6em !important;
-  margin-top: 0.8em;
-}
-
-#post-name {
-  margin-top: -2.5em !important;
-  margin-left: 4em !important;
-}
-
-.custom-file {
-  margin-top: 10px !important;
-}
-
-.btn-success {
-  width: 120px !important;
-  height: 30px !important;
-  color: #fff;
-  background-color: #18bc9c;
-  border: 1 px solid#18BC9C !important;
-}
-
-.well {
-  margin-left: 2.5em;
-}
-
-#post-card {
-  width: 30rem;
-  height: 25rem;
-}
-
-#post-card-lg {
-  width: 25em;
-  height: 20em;
-  margin-bottom: 1.8em;
-}
-
-#btn-delete {
-  margin-left: 4em;
-  margin-top: -2.4em;
-  border: none !important;
-}
-
-#comment-body {
-  border: none !important;
-}
-
-#comment-body:hover {
-  border-bottom: 1px solid rgb(3, 80, 48) !important;
-}
-
-#comment-body {
-  border-bottom: 1px solid rgb(17, 17, 17) !important;
-  color: rgb(26, 25, 25);
-  font-size: 1em;
-}
-
-#input-form {
-  width: 18em !important;
-}
-
-ion-icon {
-  font-size: 30px;
-  color: #00ffb7 !important;
-  font-weight: bold !important;
-}
-
-#post-title {
-  margin-bottom: 1.2em;
-  background-color: rgb(240, 238, 238) !important;
-  padding: 0.1rem;
-}
-
-.nav-link {
-  font-weight: bold !important;
-}
-
-#Container {
-  margin-top: 1.4em;
-  margin-left: 22.5em;
-}
-
-#search-title {
-  margin-bottom: 1.5em;
-  font-size: 0.9rem;
-  font-weight: bold;
-  border-bottom: 1px solid rgb(219, 224, 224);
-}
-
-#post-image-two {
-  border: 3px solid rgb(255, 255, 255) !important;
-}
-
-#post-img {
-  height: 4.5rem;
-  border: 3px solid rgb(255, 255, 255) !important;
-  margin-left: -4.7rem;
-  margin-bottom: -4.3rem;
-  border-radius: 50%;
-}
-
-.card-title {
-  font-size: 2rem;
-  margin-left: 2.5em;
-  margin-bottom: -0.2em;
-  text-decoration: none;
-  color: white;
-}
-
-.card-title:hover {
-  color: rgb(221, 221, 221);
-  text-decoration: none !important;
-}
-
-.card-header {
-  padding-top: 2em;
-  padding-bottom: 3em;
-  border-bottom: 1px solid gainsboro;
-}
-
-#card {
-  background-color: rgb(3, 87, 38);
+.tab-pane .profile-heading,
+.tab-pane h5 {
+  margin-bottom: 1.5rem;
 }
 
 #chat_modal {
   margin-left: 36rem !important;
   margin-top: 6rem !important;
-}
-
-.pb-5,
-.py-5 {
-  padding-bottom: 0 !important;
-}
-
-.pl-4,
-.px-4 {
-  padding-left: 0 !important;
-}
-
-.pr-4,
-.px-4 {
-  padding-right: 0.3rem !important;
 }
 
 .notification_circle {
@@ -356,18 +395,6 @@ ion-icon {
 .line {
   border-bottom: 1px solid rgb(221, 219, 219);
   margin-bottom: 2.5rem;
-}
-
-/* Page Styles */
-
-/* Login form, registration and reset password forms */
-.login_form,
-.registration_form,
-.reset_password,
-.change_password {
-  background-color: #fff;
-  margin: 5% 15%;
-  padding: 5%;
 }
 
 /* Media Queries*/

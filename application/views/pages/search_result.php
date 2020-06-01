@@ -1,5 +1,9 @@
 <div class="flex-wrapper">
-  <h2 id="search-title"><?= $title; ?></h2>
+  <div class="page-title">
+    <div class="container">
+      <h2><?= $title; ?></h2>
+    </div>
+  </div>
   <?php foreach ($search as $row) : ?>
     <img id="post-img" src="<?php echo $row['avatar']; ?>" alt="" class="profile-path primary-details img-circle avatar" data-control-key="primary_details">
     <h3 class="large-semibold name"><span dir="ltr"><?= $row['username']; ?></span></h3>

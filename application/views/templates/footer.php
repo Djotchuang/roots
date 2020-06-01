@@ -58,8 +58,10 @@
 <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 <script>
 	$(document).ready(function() {
-
-		load_nearby();
+		// Set flashdata to disappear after 3 seconds
+		setTimeout(function() {
+			$(".flash-data").remove();
+		}, 3000); // 3 secs
 
 		checkAvatar();
 		$image_crop = $('#image_demo').croppie({

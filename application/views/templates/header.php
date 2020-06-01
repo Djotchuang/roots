@@ -63,16 +63,16 @@
                   <button id="search-submit" class="btn btn-secondary my-2 my-sm-0" type="submit" disabled>Search</button>
                 </form>
                 <li class="nav-item">
-                  <a class="nav-link" href="<?php echo base_url(); ?>posts/create">
+                  <a class="nav-link" title="Create Post" href="<?php echo base_url(); ?>posts/create">
                     <ion-icon name="create-outline"></ion-icon>
                   </a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>countries/create">
+                <li class="nav-item"><a class="nav-link" title="Add a Country" href="<?php echo base_url(); ?>countries/create">
                     <ion-icon name="notifications-outline"></ion-icon>
                   </a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="profile-icon" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" title="Account" id="profile-icon" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
                     <ion-icon name="person-circle-outline"></ion-icon>
                   </a>
                   <div class="dropdown-menu">
@@ -94,7 +94,7 @@
 
   <div class="container">
     <!-- Flash messages -->
-    <div class="flash-data" style="margin-top: 1.5rem;">
+    <div class="flash-data" style="margin-top: 25px">
       <?php if ($this->session->flashdata('user_registered')) : ?>
         <?php echo '<p class="alert alert-success">' . $this->session->flashdata('user_registered') . '</p>'; ?>
       <?php endif; ?>
@@ -140,6 +140,6 @@
       <?php endif; ?>
 
       <?php if ($this->session->flashdata('avatar_error')) : ?>
-        <?php echo '<p class="alert alert-success">' . $this->session->flashdata('avatar_error') . '</p>'; ?>
+        <?php echo '<p class="alert alert-danger">' . $this->session->flashdata('avatar_error') . '</p>'; ?>
       <?php endif; ?>
     </div>
