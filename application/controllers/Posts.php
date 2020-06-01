@@ -74,7 +74,7 @@ class Posts extends CI_Controller
                 $data = array('upload_data' => $this->upload->data());
                 $post_image = $_FILES['userfile']['name'];
                 $config['image_library'] = 'gd2';
-                $config['source_image'] = '../images/posts/'.$post_image;
+                $config['source_image'] = '../images/posts/' . $post_image;
                 $config['create_thumb'] = true;
                 $config['maintain_ratio'] = true;
                 $config['width'] = 300;
@@ -121,7 +121,6 @@ class Posts extends CI_Controller
         // Check user
         if ($this->session->userdata('user_id') != $this->post_model->get_posts($slug)['user_id']) {
             redirect('posts');
-
         }
 
         $data['countries'] = $this->post_model->get_countries();
