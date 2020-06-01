@@ -46,12 +46,6 @@ body {
   font-size: 1.8rem;
 }
 
-.nav-link p {
-  margin-top: 1.2rem;
-  font-size: 1.2rem;
-  color: #f9f9f9;
-}
-
 .nav-link:hover {
   color: #18bc9c;
   border-bottom: 2px solid #18bc9c;
@@ -61,6 +55,16 @@ body {
 .nav-link:active {
   color: #18bc9c;
   border-bottom: 2px solid #18bc9c;
+}
+
+.nav-link p {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  color: #f9f9f9;
+}
+
+.nav-link p:hover {
+  color: #3cd4b6;
 }
 
 #search-form {
