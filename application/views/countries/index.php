@@ -3,7 +3,7 @@
 		<h2><?= $title; ?></h2>
 	</div>
 </div>
-<ul class="list-group">
+<ul class="list-group country-index">
 	<?php foreach ($countries as $country) : ?>
 		<li class="list-group-item"><a href="<?php echo site_url('/countries/posts/' . $country['id']); ?>"><?php echo $country['cname']; ?></a>
 

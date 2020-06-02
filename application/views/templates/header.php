@@ -17,7 +17,7 @@
   <header>
     <nav class="navbar navbar-expand-xl navbar-dark">
       <div class="container">
-        <a class="navbar-brand" id="logo" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo">
+        <a class="navbar-brand" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo">
         </a>
         <button id="nav-toggle-button" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,6 +44,12 @@
                 </a>
               </li>
             </div>
+            <?php if ($this->session->userdata('logged_in')) : ?>
+              <form action="<?= base_url(); ?>users/fetch" method="post" id="search-form" class="form-inline my-2 my-lg-0">
+                <input id="input-form" name="search" class="form-control mr-2 text-black" type="text" placeholder="Search People">
+                <button class="btn btn-secondary btn-sm " type="submit">Search</button>
+              </form>
+            <?php endif; ?>
             <div class="navdiv nav2">
               <?php if (!$this->session->userdata('logged_in')) : ?>
                 <li class="nav-item">
@@ -58,10 +64,6 @@
                 </li>
               <?php endif; ?>
               <?php if ($this->session->userdata('logged_in')) : ?>
-                <form action="<?= base_url(); ?>users/fetch" method="post" id="search-form" class="form-inline my-2 my-lg-0">
-                  <input id="input-form" name="search" class="form-control mr-2 text-black" type="text" placeholder="Search People">
-                  <button id="search-submit" class="btn btn-secondary my-2 my-sm-0" type="submit" disabled>Search</button>
-                </form>
                 <li class="nav-item">
                   <a class="nav-link" title="Create Post" href="<?php echo base_url(); ?>posts/create">
                     <ion-icon name="create-outline"></ion-icon>

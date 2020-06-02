@@ -45,7 +45,7 @@
 			<hr class="separator">
 		<?php endif; ?>
 		<div class="comment-heading">
-			<h5>COMMENTS</h5>
+			<h5><strong>COMMENTS</strong></h5>
 		</div>
 		<?php if ($comments) : ?>
 			<?php foreach ($comments as $comment) : ?>
@@ -65,12 +65,12 @@
 		<?php endif; ?>
 		<?php if ($this->session->userdata('logged_in')) : ?>
 			<div class="comment-heading">
-				<h5>Leave a Reply</h5>
+				<h5><strong> Add a Comment </strong></h5>
 			</div>
 			<?php echo validation_errors(); ?>
 			<?php echo form_open('comments/create/' . $post['pid']); ?>
 			<div class="form-group">
-				<textarea id="comment-body" name="body" class="form-control" rows="4" placeholder="Write your comment here"></textarea>
+				<textarea name="body" class="md-textarea form-control comment-body" rows="1" placeholder="Write your comment here"></textarea>
 			</div>
 			<input type="hidden" name="slug" value="<?php echo $post['slug']; ?>">
 			<button class="btn btn-primary submit-btn float-right" type="submit">Post Comment</button>

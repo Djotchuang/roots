@@ -59,9 +59,9 @@
 <script>
 	$(document).ready(function() {
 		// Set flashdata to disappear after 3 seconds
-		setTimeout(function() {
-			$(".flash-data").remove();
-		}, 3000); // 3 secs
+		// setTimeout(function() {
+		// 	$(".flash-data").remove();
+		// }, 3000); // 3 secs
 
 		checkAvatar();
 		$image_crop = $('#image_demo').croppie({

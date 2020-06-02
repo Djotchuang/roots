@@ -119,7 +119,7 @@ class Posts extends CI_Controller
         $data['post'] = $this->post_model->get_posts($slug);
 
         // Check user
-        if ($this->session->userdata('user_id') != $this->post_model->get_posts($slug)['user_id']) {
+        if ($this->session->userdata('user_id') != $this->post_model->get_posts($slug)['id']) {
             redirect('posts');
         }
 
