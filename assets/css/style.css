@@ -52,6 +52,14 @@ a {
   width: 100vw;
 }
 
+.page-title a {
+  color: #212529;
+}
+
+.page-title a:hover {
+  color: #18bc9c;
+}
+
 .page-title h2 {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -141,6 +149,21 @@ a {
   color: #f9f9f9;
 }
 
+.flash-data {
+  margin: 28px;
+  font-size: 1rem;
+}
+
+.flash-data .alert {
+  padding: 0.5rem 1rem !important;
+}
+
+.flash-data button {
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem !important;
+}
+
 /* Page Styles */
 
 /* Home */
@@ -193,11 +216,14 @@ a {
   text-transform: capitalize;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 2rem;
+  font-weight: 500;
 }
 
 .tagline {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
   margin: 25px 0;
   color: #fff;
 }
@@ -286,9 +312,11 @@ a {
 .post-content h4 {
   color: #212529;
   margin-bottom: 2rem;
+  font-size: 1.2rem;
 }
 
-.post-content h4:hover {
+.post-content h4:hover,
+.post-data h6:hover {
   color: #18bc9c;
 }
 
@@ -311,6 +339,48 @@ a {
   width: 20px;
 }
 
+.sidebar section {
+  margin-bottom: 2rem;
+}
+
+.search-bar input {
+  height: 2rem;
+  width: 100% !important;
+  font-size: 0.8rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.search-bar button {
+  position: absolute;
+  width: 1rem;
+  padding: 1rem;
+  background-color: #ccc;
+  color: #212529;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  right: 8px;
+  height: 18px;
+  outline: none;
+}
+
+.search-bar ion-icon {
+  font-size: 1.2rem;
+  position: absolute;
+  right: 5;
+  top: 8;
+}
+
+.sidebar h5 {
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
 .nearby-meta-data .nearby-avatar {
   border-radius: 50%;
   width: 30px;
@@ -320,10 +390,40 @@ a {
   font-size: 1rem;
 }
 
+.latest-post .post-info {
+  display: inline-flex;
+  margin: 0.5rem auto;
+}
+
+.latest-post .post-thumbnail {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 0;
+}
+
+.latest-post .post-data h6 {
+  color: #212529;
+  font-size: 0.85rem;
+  line-height: 1.2rem;
+  margin-left: 1rem;
+}
+
+.latest-post .post-data h6:hover {
+  color: #18bc9c;
+}
+
+.latest-post .post-data p {
+  color: #8b8b8b;
+  font-size: 0.8rem;
+  margin-bottom: -0.5rem;
+}
+
 /* Single Post View */
 .view-content .post-thumbnail {
-  width: 100%;
-  height: 30rem;
+  width: 41rem;
+  height: 41rem;
   object-fit: fill;
 }
 
@@ -359,7 +459,7 @@ a {
 }
 
 .view-content .meta-data p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-left: 5px;
   text-transform: capitalize;
 }
@@ -378,8 +478,13 @@ a {
   margin-right: 1rem;
 }
 
+/* #comment-div {
+  display: none;
+} */
+
 .comment-heading {
   margin: 1.5rem auto;
+  cursor: pointer;
 }
 
 .comment-details {
@@ -452,6 +557,26 @@ a {
 
 #edit label {
   font-size: 1rem;
+}
+
+.search-info {
+  display: inline-flex;
+  margin-bottom: -0.5rem;
+}
+
+.search-info img {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.search-info span {
+  line-height: 0.8rem;
+}
+
+.search-info span .location {
+  font-size: 0.8rem;
 }
 
 #chat_modal {
@@ -531,6 +656,44 @@ a {
   #search-form button {
     border-radius: 1px;
   }
+
+  .latest-post .post-thumbnail {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+/* Login, Registration, Change Password and Reset Password */
+@media (max-width: 992px) {
+  .login_form,
+  .registration_form,
+  .reset_password,
+  .change_password {
+    background-color: #fff;
+    margin: 20% 14%;
+    padding: 5%;
+  }
+
+  .latest-post .post-thumbnail {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login_form,
+  .registration_form,
+  .reset_password,
+  .change_password {
+    background-color: #fff;
+    margin: 20% 15%;
+    padding: 5%;
+  }
+
+  .view-content .post-thumbnail {
+    width: 30rem;
+    height: 30rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -555,27 +718,18 @@ a {
   .tagline {
     font-size: 1.2rem;
   }
-}
 
-/* Login, Registration, Change Password and Reset Password */
-@media (max-width: 992px) {
-  .login_form,
-  .registration_form,
-  .reset_password,
-  .change_password {
-    background-color: #fff;
-    margin: 20% 14%;
-    padding: 5%;
+  .view-content .post-thumbnail {
+    width: 25rem;
+    height: 25rem;
   }
-}
 
-@media (max-width: 768px) {
-  .login_form,
-  .registration_form,
-  .reset_password,
-  .change_password {
-    background-color: #fff;
-    margin: 20% 15%;
-    padding: 5%;
+  .view-content .meta-data p,
+  .view-content .meta-data ion-icon {
+    font-size: 0.8rem;
+  }
+
+  .view-content .meta-data ion-icon {
+    margin-top: 4px;
   }
 }

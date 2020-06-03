@@ -8,7 +8,7 @@
 		<?php foreach ($posts as $post) : ?>
 			<div class="row">
 				<div class="col-md-5 col-sm-12">
-					<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
+					<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
 						<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 					</a>
 				</div>
@@ -43,16 +43,47 @@
 
 	<!-- People Nearby -->
 	<div class="col-lg-3 col-md-12 nearby-sidebar">
-		<aside class="sidebar">
-			<section class="latest-post">
-				<h4>People Nearby</h4>
-				<div class="nearby-meta-data">
-					<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar" alt="user profile image">
-					<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-						<?php echo ucfirst($post['username']); ?>
-					</a>
-				</div>
-			</section>
-		</aside>
+		<div class="sticky-top">
+			<br>
+			<aside class="sidebar">
+				<section class="search-bar">
+					<form action="<?= base_url(); ?>users/fetch" method="post" class="form-inline">
+						<input id="input-form" name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search">
+						<button class="search-button" id="search-bar-btn" type="submit">
+							<ion-icon name="search-outline"></ion-icon>
+						</button>
+					</form>
+				</section>
+				<section class="people-nearby">
+					<h5>People Nearby</h5>
+					<div class="nearby-meta-data">
+						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar" alt="user profile image">
+						<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
+							<?php echo ucfirst($post['username']); ?>
+						</a>
+					</div>
+					<hr class="separator">
+				</section> <br>
+				<section class="latest-post">
+					<h5>Recent Posts</h5>
+					<div class="post-data">
+						<div class="post-info">
+							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
+							<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
+								<h6 class="post-title"><?php echo ucfirst($post['title']); ?></h6>
+							</a>
+						</div>
+						<div class="meta-data d-flex justify-content-between">
+							<p class="ml-auto">
+								<?php echo date("M d, Y", strtotime($post['created_at'])) . '&nbsp;'; ?>
+							</p>
+							<p>/ 0 Comments</p>
+						</div>
+					</div>
+					<hr class="separator">
+				</section>
+			</aside>
+		</div>
+
 	</div>
 </div>

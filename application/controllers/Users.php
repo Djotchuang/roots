@@ -26,9 +26,9 @@ class Users extends CI_Controller
             $this->user_model->register($enc_password);
 
             // Set message
-            $this->session->set_flashdata('user_registered', 'You are now registered and can log in');
+            $this->session->set_flashdata('user_registered', 'You are now registered and can sign in');
 
-            redirect('posts');
+            redirect('users/login');
         }
     }
 
@@ -70,7 +70,7 @@ class Users extends CI_Controller
                 redirect('posts');
             } else {
                 // Set message
-                $this->session->set_flashdata('login_failed', 'Login is invalid');
+                $this->session->set_flashdata('login_failed', 'Login details are invalid');
 
                 redirect('users/login');
             }
@@ -203,6 +203,7 @@ class Users extends CI_Controller
             redirect('users/profile');
         }
     }
+
     public function fetch()
     {
         $val = $this->input->post('search');
@@ -212,6 +213,7 @@ class Users extends CI_Controller
         $this->load->view('pages/search_result', $data);
         $this->load->view('templates/footer');
     }
+
     public function fetch_user($id)
     {
         $data['profiles'] = $this->user_model->get_profile_data($id);
@@ -219,6 +221,7 @@ class Users extends CI_Controller
         $this->load->view('users/profile', $data);
         $this->load->view('templates/footer');
     }
+
     public function upload()
     {
         $image = $_POST['image'];
