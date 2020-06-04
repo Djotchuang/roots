@@ -51,7 +51,7 @@
 			<?php foreach ($comments as $comment) : ?>
 				<div class="comment-details">
 					<div class="comment-info">
-						<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar" alt="user profile image">
+						<img id='user-avatar' src="<?php echo $comment['avatar']; ?>" class="comment-avatar" alt="user profile image">
 						<span>
 							<h5><?php echo ucfirst($comment['username']); ?> &nbsp;</h5>
 							<p><?php echo $comment['body']; ?></p>
@@ -83,12 +83,8 @@
 	<div class="col-lg-3 col-md-12 nearby-sidebar">
 		<aside class="sidebar">
 			<section class="latest-post">
-				<h4>People Nearby</h4>
-				<div class="nearby-meta-data">
-					<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar" alt="user profile image">
-					<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-						<?php echo ucfirst($post['username']); ?>
-					</a>
+				<h4 id="people_nearby_text">People Nearby</h4>
+				<div id="people_nearby" class="nearby-meta-data">
 				</div>
 			</section>
 		</aside>

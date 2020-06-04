@@ -46,11 +46,8 @@
 		<aside class="sidebar">
 			<section class="latest-post">
 				<h4>People Nearby</h4>
-				<div class="nearby-meta-data">
-					<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar" alt="user profile image">
-					<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-						<?php echo ucfirst($post['username']); ?>
-					</a>
+				<div id="people_nearby" class="nearby-meta-data">
+					
 				</div>
 			</section>
 		</aside>

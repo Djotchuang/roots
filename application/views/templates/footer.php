@@ -55,13 +55,14 @@
 <script>
 	CKEDITOR.replace('editor1');
 </script>
-<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
 	$(document).ready(function() {
 		// Set flashdata to disappear after 3 seconds
 		setTimeout(function() {
 			$(".flash-data").remove();
-		}, 3000); // 3 secs
+		}, 5000); // 3 secs
 
 		checkAvatar();
 		$image_crop = $('#image_demo').croppie({
@@ -100,11 +101,9 @@
 					data: {
 						"image": response
 					},
-
 					error: function() {
 						alert('Error Uploading Image. This may be due to a fault in your internet connection. Please try again later. Thanks');
 					},
-
 					success: function(data) {
 						$('#insertimageModal').modal('hide');
 						$('#insert_image').empty();
@@ -172,8 +171,21 @@
 				alert('Chat is empty, Please Type Something in Chat box.');
 			}
 		});
+     
+		$('#people_nearby_text').on('click', function peopleNearby(){
+			 var url = '<?=base_url()?>/users/people_nearby';
+				 $.ajax({
+                   url: url,
+				   type: 'GET',
+				   dataType: 'json',
+				   success: function(response) {
+					var html= response.avatar;
+				    html+= response.username;
+					   $('#people_nearby').append(html);
+				   }
+				 });
+		});
 	});
 </script>
 </body>
 
-</html>
