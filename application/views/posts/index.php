@@ -7,7 +7,7 @@
 	<div class="col-lg-9 col-md-12 post">
 		<?php foreach ($posts as $post) : ?>
 			<div class="row">
-				<div class="col-md-5 col-sm-12">
+				<div class="col-md-5">
 					<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
 						<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 					</a>
@@ -26,7 +26,7 @@
 					</div>
 					<div class="meta-data">
 						<small>Posted by
-							<img src="<?php echo $post['avatar']; ?>" class="post-avatar" alt="user profile image">
+							<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
 							<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
 								<?php echo ucfirst($post['username']); ?>
 							</a>
@@ -57,7 +57,7 @@
 				<section class="people-nearby">
 					<h5>People Nearby</h5>
 					<div class="nearby-meta-data">
-						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar" alt="user profile image">
+						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
 						<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
 							<?php echo ucfirst($post['username']); ?>
 						</a>

@@ -192,8 +192,8 @@
                     <?php endif; ?>
                 </div>
         </div>
-        <div class="col-lg-4 pull-lg-8 text-xs-center">
-            <img id="user-avatar" src="<?= $profile['avatar']; ?>" id="avatar" class="m-x-auto img-fluid img-thumbnail" alt="avatar">
+        <div class="col-lg-4 pull-lg-8 text-xs-center profile">
+            <img src="<?= $profile['avatar']; ?>" class="m-x-auto img-fluid img-thumbnail avatar avatar-image" alt="avatar">
             <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
                 <?= form_open_multipart('users/upload') ?>
                 <label class="upload-file">

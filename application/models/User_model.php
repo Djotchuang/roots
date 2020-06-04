@@ -103,7 +103,8 @@ class User_model extends CI_Model
 		$this->db->where('id', $id);
 		$this->db->update('users', $data);
 	}
-	function fetch_data($val)
+
+	public function fetch_data($val)
 	{
 		if ($this->db->get('users')) {
 			$this->db->like('username', $val);
@@ -114,11 +115,11 @@ class User_model extends CI_Model
 		}
 	}
 
-	public function get_nearby($country)
-	{
-		$data = array('users.country' => $country);
-		$query = $this->db->get_where('users', $data);
+	// public function get_nearby($country)
+	// {
+	// 	$data = array('users.country' => $country);
+	// 	$query = $this->db->get_where('users', $data);
 
-		return $query->row_array();
-	}
+	// 	return $query->row_array();
+	// }
 }

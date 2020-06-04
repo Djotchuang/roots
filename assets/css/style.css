@@ -532,11 +532,12 @@ a {
   margin-bottom: 1.5rem;
 }
 
-#user-avatar {
+.avatar {
   margin: 1.5rem auto;
 }
 
-.upload-file input {
+.upload-file input,
+.profile .avatar {
   width: 16.5rem;
 }
 

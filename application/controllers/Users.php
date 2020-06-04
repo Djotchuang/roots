@@ -5,7 +5,6 @@ class Users extends CI_Controller
     public function register()
     {
         $data['title'] = 'Sign Up';
-        $data['tribe'] = $this->input->post('tribe');
         $data['country'] = $this->input->post('country');
 
         $this->form_validation->set_rules('name', 'Name', 'required');

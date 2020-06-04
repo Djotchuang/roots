@@ -142,24 +142,20 @@
 	});
 
 	function checkAvatar() {
-		var avatar_one = $('#user-avatar').attr('src');
-		var avatar_two = $('#post-image-two').attr('src');
-		var avatar_three = $('#post-image').attr('src');
-		var attrib = $('#user-avatar');
-		var attrib_two = $('#post-image-two');
-		var attrib_three = $('#post-image');
-		if (avatar_one == '') {
-			attrib.attr('src', '<?= base_url() ?>/assets/images/posts/noimage.jpg')
+		var avatar_image = $('.avatar-image').attr('src');
+		// var avatar_two = $('#avatar2').attr('src');
+		// var avatar_three = $('#avatar3').attr('src');
+		// var attrib = $('#avatar1');
+		// var attrib_two = $('#avatar2');
+		var attrib = $('.avatar-image');
+
+		if (avatar_image == '') {
+			attrib.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
 		}
 
-		if (avatar_two == '') {
-			attrib_two.attr('src', '<?= base_url() ?>/assets/images/posts/noimage.jpg')
-		}
 
-		if (avatar_three == '') {
-			attrib_three.attr('src', '<?= base_url() ?>/assets/images/posts/noimage.jpg')
-		}
 	}
+
 	$('#input-form').on('click', function() {
 		$('#search-submit').attr('disabled', false);
 	});

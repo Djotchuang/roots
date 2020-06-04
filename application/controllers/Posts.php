@@ -69,12 +69,17 @@ class Posts extends CI_Controller
 
             if (!$this->upload->do_upload()) {
                 $errors = array('error' => $this->upload->display_errors());
-                $post_image = 'noimage.jpg';
+                $this->session->set_flashdata('upload_error', 'Failed to upload. This may be an internet error or your file size and/or dimensions');
+                redirect('posts/create');
             } else {
+
                 $data = array('upload_data' => $this->upload->data());
-                $post_image = $_FILES['userfile']['name'];
+                $string = $_FILES['userfile']['name'];
+                $trimmed = trim($string);
+                $post_image = str_replace(' ', '_', $trimmed);
+
                 $config['image_library'] = 'gd2';
-                $config['source_image'] = '../images/posts/' . $post_image;
+                $config['source_image'] = '../images/post/' . $post_image;
                 $config['create_thumb'] = true;
                 $config['maintain_ratio'] = true;
                 $config['width'] = 300;

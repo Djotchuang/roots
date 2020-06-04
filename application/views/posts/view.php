@@ -14,7 +14,7 @@
 		<div class="meta-data">
 			<a href="<?= base_url(); ?>users/fetch_user/<?= $post['pid']; ?>">
 				<span>
-					<img src="<?php echo $post['avatar']; ?>" class="post-avatar" alt="user profile image">
+					<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
 					<p><?php echo ucfirst($post['username']); ?> </p>
 				</span>
 			</a>
@@ -42,7 +42,7 @@
 			</div>
 			<hr class="separator">
 		<?php endif; ?>
-		<div class="comment-heading">
+		<div id="comments" class="comment-heading">
 			<h5><strong>COMMENTS <ion-icon name="chevron-down-outline"></ion-icon></strong></h5>
 		</div>
 		<?php if ($comments) : ?>
@@ -50,7 +50,7 @@
 				<?php foreach ($comments as $comment) : ?>
 					<div class="comment-details">
 						<div class="comment-info">
-							<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar" alt="user profile image">
+							<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar avatar-image" alt="user profile image">
 							<span>
 								<h5><?php echo ucfirst($comment['username']); ?> &nbsp;</h5>
 								<p><?php echo $comment['body']; ?></p>
@@ -95,7 +95,7 @@
 				<section class="people-nearby">
 					<h5>People Nearby</h5>
 					<div class="nearby-meta-data">
-						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar" alt="user profile image">
+						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
 						<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
 							<?php echo ucfirst($post['username']); ?>
 						</a>
@@ -113,7 +113,7 @@
 						</div>
 						<div class="meta-data d-flex justify-content-between">
 							<p class="ml-auto">
-								<?php echo date("M d, Y ", strtotime($post['created_at'])) . '&nbsp;'; ?>
+								<?php echo date("M d, Y", strtotime($post['created_at'])) . '&nbsp;'; ?>
 							</p>
 							<p>/ 0 Comments</p>
 						</div>
@@ -122,6 +122,5 @@
 				</section>
 			</aside>
 		</div>
-
 	</div>
 </div>
