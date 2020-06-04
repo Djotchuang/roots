@@ -2,6 +2,12 @@
     <div class="row my-2">
         <div class="col-lg-8 push-lg-4">
             <?php foreach ($profiles as $profile) : ?>
+                <br>
+                <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
+                    <h3 class="profile-heading"><strong>My Profile</strong></h3>
+                <?php else : ?>
+                    <h5 class="profile-heading"><strong><?= ucfirst($profile['username']); ?>'s Profile</strong></h5>
+                <?php endif; ?>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a href="" data-target="#profile" data-toggle="tab" class="nav-link active" id="nav-link">Profile</a>
@@ -17,7 +23,6 @@
                 </ul>
                 <div class="tab-content p-b-3">
                     <div class="tab-pane active" id="profile">
-                        <h3 class="profile-heading"><strong>Your Profile</strong></h3>
                         <div class="row">
                             <div class="col-md-12">
                                 <h5>About</h5>
@@ -28,8 +33,8 @@
                                 <p>
                                     <?= $profile['hobbies']; ?>
                                 </p>
-                                <h4 class="m-t-2"><span class="fa fa-clock-o ion-clock pull-xs-right"></span> Recent Activity</h4>
                                 <table class="table table-hover table-striped">
+                                    <h5>Recent Activity</h5>
                                     <tbody>
                                         <tr>
                                             <td>
@@ -66,7 +71,7 @@
                     </div>
                     <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
                         <div class="tab-pane" id="messages">
-                            <h4 class="m-y-2">Recent Messages &amp; Notifications</h4>
+                            <h5>Recent Messages &amp; Notifications</h5>
                             <!-- <div class="alert alert-info alert-dismissable">
                                 <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
                             </div> -->
@@ -96,7 +101,6 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="edit">
-                            <?= '<p class="alert alert-danger">' . validation_errors() . '</p>'; ?>
                             <h4 class="m-y-2">Edit Profile</h4>
                             <?= form_open('users/update'); ?>
                             <div class="form-group row">
@@ -179,7 +183,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-9">
-                                    <input type="reset" class="btn btn-secondary" value="Cancel">
+                                    <input type="reset" class="btn btn-danger" value="Cancel">
                                     <input type="submit" class="btn btn-primary" value="Save Changes">
                                 </div>
                             </div>
@@ -188,16 +192,19 @@
                     <?php endif; ?>
                 </div>
         </div>
-        <div class="col-lg-4 pull-lg-8 text-xs-center">
-            <img id="user-avatar" src="<?= $profile['avatar']; ?>" id="avatar" class="m-x-auto img-fluid img-thumbnail" alt="avatar">
+        <div class="col-lg-4 pull-lg-8 text-xs-center profile">
+            <img src="<?= $profile['avatar']; ?>" class="m-x-auto img-fluid img-thumbnail avatar avatar-image" alt="avatar">
             <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
                 <?= form_open_multipart('users/upload') ?>
-                <label class="custom-file">
-                    <input type="file" name="userfile" size="20" id="insert_image" class=" form-group btn btn-primary">
+                <label class="upload-file">
+                    <input type="file" name="userfile" size="20" id="insert_image" class="form-group btn btn-primary">
                 </label>
                 </form>
-                <?else : ?>
-                <button name="<?= $profile['username']; ?>" id="msg_btn" style="margin-top: .8em; font-size: .9em" class="btn btn-primary">Send <span style="font-weight:bold; font-size: 1.2em;"><?= $profile['username']; ?></span> a Message <ion-icon style="font-size:1.2em !important; margin-bottom:-.2em !important" name="mail-outline"></ion-icon> </button>
+            <?php else : ?>
+                <button name="<?= $profile['username']; ?>" id="msg_btn" class="btn btn-primary">Send
+                    <span><?= $profile['username']; ?></span> a Message
+                    <ion-icon name="mail-outline"></ion-icon>
+                </button>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>

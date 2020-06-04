@@ -45,11 +45,19 @@ a {
 
 .page-title {
   background-color: #f5f5f5;
-  padding-top: 4rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin-left: calc(50% - 50vw);
   margin-bottom: 2rem;
   width: 100vw;
+}
+
+.page-title a {
+  color: #212529;
+}
+
+.page-title a:hover {
+  color: #18bc9c;
 }
 
 .page-title h2 {
@@ -58,9 +66,31 @@ a {
 }
 
 /* Header Styles*/
+
 .navbar {
+  height: 3rem;
   background-color: #212529;
   margin-bottom: -25px;
+}
+
+.navbar-brand img {
+  height: 2rem;
+}
+
+.navbar-toggler {
+  padding: 2px 6px;
+  border: none;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  outline: none;
+  border: none;
+}
+
+.navbar-toggler-icon {
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .navdiv {
@@ -68,7 +98,7 @@ a {
 }
 
 .nav1 {
-  margin-right: 3rem;
+  margin-right: 4rem;
 }
 
 .nav-link {
@@ -76,26 +106,21 @@ a {
 }
 
 .nav-link ion-icon {
-  margin-top: 1rem;
+  margin-top: 1.3rem;
   margin-right: 4px;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   color: #18bc9c;
 }
 
-.nav-link:hover {
-  color: #18bc9c;
-  border-bottom: 2px solid #18bc9c;
-  transition: 0.7s;
-}
-
-.nav-link:active {
-  color: #18bc9c;
-  border-bottom: 2px solid #18bc9c;
+.nav-link ion-icon:hover,
+.nav-link ion-icon:active,
+.nav-link ion-icon:focus {
+  color: #f9f9f9;
 }
 
 .nav-link p {
   margin-top: 1.2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #f9f9f9;
 }
 
@@ -104,7 +129,39 @@ a {
 }
 
 #search-form {
-  margin-right: 3rem !important;
+  margin-right: 4rem;
+}
+
+#search-form input {
+  height: 1.5rem;
+  margin-top: 2px;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  border: 1px solid #fff;
+}
+
+#search-form button {
+  height: 1.5rem;
+  margin-top: 2px;
+  padding: 2px 6px;
+  border-radius: 0;
+  color: #f9f9f9;
+}
+
+.flash-data {
+  margin: 28px;
+  font-size: 1rem;
+}
+
+.flash-data .alert {
+  padding: 0.5rem 1rem !important;
+}
+
+.flash-data button {
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem !important;
 }
 
 /* Page Styles */
@@ -115,8 +172,6 @@ a {
   position: relative !important;
   background-image: url("../images/cover.png") !important;
   background-size: cover !important;
-  padding-top: 10%;
-  padding-bottom: 5%;
   color: #f9f9f9;
   width: 100% !important;
   height: 100vh;
@@ -144,7 +199,7 @@ a {
 
 .hero-brand {
   display: inline-block;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 
 .hero-brand:hover {
@@ -152,31 +207,33 @@ a {
 }
 
 .hero-logo {
-  height: 100px;
-  width: 200px;
+  width: 100px;
   position: center;
 }
 
 .hero-caption {
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .tagline {
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 1.5rem;
-  margin: 45px 0 75px 0;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 25px 0;
   color: #fff;
-  margin: 35px 0;
 }
 
 #home_btn {
   background-color: #199eb8;
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   color: #fff;
-  padding: 15px 45px;
+  padding: 10px 35px;
   border-radius: 50px;
 }
 
@@ -192,7 +249,35 @@ a {
 .reset_password,
 .change_password {
   background-color: #fff;
-  margin: 5% 15%;
+  margin: 10% 25%;
+  padding: 5%;
+}
+
+.login_form h2,
+.registration_form h2,
+.reset_password h2,
+.change_password h2 {
+  font-size: 1.5rem;
+}
+
+.login_form label,
+.registration_form label,
+.reset_password label,
+.change_password label {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Country */
+
+.country-index {
+  font-size: 1rem;
+  width: 80%;
+}
+
+.create-country {
+  background-color: #fff;
+  margin: 5% 25%;
   padding: 5%;
 }
 
@@ -212,10 +297,11 @@ a {
 }
 
 .post-thumbnail {
-    width: 100%;
-    height: 20rem;
-    object-fit: cover;
-    /* position: relative; */
+  width: 100%;
+  height: 17rem;
+  object-fit: cover;
+  margin-bottom: 2rem;
+
 }
 
 .post-content h5 {
@@ -227,9 +313,11 @@ a {
 .post-content h4 {
   color: #212529;
   margin-bottom: 2rem;
+  font-size: 1.2rem;
 }
 
-.post-content h4:hover {
+.post-content h4:hover,
+.post-data h6:hover {
   color: #18bc9c;
 }
 
@@ -252,26 +340,97 @@ a {
   width: 20px;
 }
 
+.sidebar section {
+  margin-bottom: 2rem;
+}
+
+.search-bar input {
+  height: 2rem;
+  width: 100% !important;
+  font-size: 0.8rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.search-bar button {
+  position: absolute;
+  width: 1rem;
+  padding: 1rem;
+  background-color: #ccc;
+  color: #212529;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  right: 8px;
+  height: 18px;
+  outline: none;
+}
+
+.search-bar ion-icon {
+  font-size: 1.2rem;
+  position: absolute;
+  right: 5;
+  top: 8;
+}
+
+.sidebar h5 {
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
 .nearby-meta-data .nearby-avatar {
   border-radius: 50%;
-  width: 50px;
+  width: 30px;
 }
 
 .nearby-meta-data a {
-  font-size: 1.5rem;
+  font-size: 1rem;
+}
+
+.latest-post .post-info {
+  display: inline-flex;
+  margin: 0.5rem auto;
+}
+
+.latest-post .post-thumbnail {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 0;
+}
+
+.latest-post .post-data h6 {
+  color: #212529;
+  font-size: 0.85rem;
+  line-height: 1.2rem;
+  margin-left: 1rem;
+}
+
+.latest-post .post-data h6:hover {
+  color: #18bc9c;
+}
+
+.latest-post .post-data p {
+  color: #8b8b8b;
+  font-size: 0.8rem;
+  margin-bottom: -0.5rem;
 }
 
 /* Single Post View */
 .view-content .post-thumbnail {
-  width: 100%;
-  height: auto;
+  width: 41rem;
+  height: 41rem;
   object-fit: fill;
 }
 
 .view-content h4 {
   color: #212529;
-  margin: 2rem 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .view-content p {
@@ -296,23 +455,23 @@ a {
 
 .view-content .post-avatar {
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .view-content .meta-data p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-left: 5px;
-  margin-top: 5px;
   text-transform: capitalize;
 }
 
 .view-content .meta-data ion-icon {
-  margin-top: 8px;
+  margin-top: 3px;
 }
 
 .buttons {
   display: flex;
+  margin-bottom: -24px;
 }
 
 .edit {
@@ -320,42 +479,106 @@ a {
   margin-right: 1rem;
 }
 
+/* #comment-div {
+  display: none;
+} */
+
 .comment-heading {
-  margin: 2rem auto;
+  margin: 1.5rem auto;
+  cursor: pointer;
 }
 
 .comment-details {
-  margin: 1rem auto;
+  margin-bottom: -24px;
 }
 
 .comment-info .comment-avatar {
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  margin-right: 1.8rem;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
 }
 
-.comment-info span {
-  margin-top: 10px;
+.comment-info span h5 {
+  font-size: 1rem;
 }
 
 .comment-info span p {
-  margin-top: 16px;
+  font-size: 0.9rem;
+}
+
+.comment-body {
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment-body:focus {
+  border: none;
+  outline: 0px !important;
+  border-bottom: 1px solid #ccc;
 }
 
 /* Profile */
 
 .nav-tabs {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .tab-pane {
-  margin-top: 2.5rem !important;
+  margin-top: 1.5rem !important;
 }
 
 .tab-pane .profile-heading,
 .tab-pane h5 {
   margin-bottom: 1.5rem;
+}
+
+.avatar {
+  margin: 1.5rem auto;
+}
+
+.upload-file input,
+.profile .avatar {
+  width: 16.5rem;
+}
+
+#msg_btn {
+  margin-top: -1rem;
+  width: 16.5rem;
+}
+
+#msg_btn span {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#msg_btn ion-icon {
+  font-size: 1.2em !important;
+  margin-bottom: -0.2em !important;
+}
+
+#edit label {
+  font-size: 1rem;
+}
+
+.search-info {
+  display: inline-flex;
+  margin-bottom: -0.5rem;
+}
+
+.search-info img {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.search-info span {
+  line-height: 0.8rem;
+}
+
+.search-info span .location {
+  font-size: 0.8rem;
 }
 
 #chat_modal {
@@ -401,7 +624,16 @@ a {
 /* Media Queries*/
 
 /* Header */
+
 @media (max-width: 1198px) {
+  .navbar {
+    height: auto;
+  }
+
+  .navbar .container {
+    margin-top: 0 !important;
+  }
+
   .nav2 .nav-link ion-icon {
     margin-top: auto;
   }
@@ -414,6 +646,56 @@ a {
   .nav2 .nav-item {
     margin-right: 1rem;
   }
+
+  #search-form {
+    margin: 0 auto;
+  }
+
+  #search-form input {
+    border-radius: 1px;
+  }
+
+  #search-form button {
+    border-radius: 1px;
+  }
+
+  .latest-post .post-thumbnail {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+/* Login, Registration, Change Password and Reset Password */
+@media (max-width: 992px) {
+  .login_form,
+  .registration_form,
+  .reset_password,
+  .change_password {
+    background-color: #fff;
+    margin: 20% 14%;
+    padding: 5%;
+  }
+
+  .latest-post .post-thumbnail {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .login_form,
+  .registration_form,
+  .reset_password,
+  .change_password {
+    background-color: #fff;
+    margin: 20% 15%;
+    padding: 5%;
+  }
+
+  .view-content .post-thumbnail {
+    width: 30rem;
+    height: 30rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -425,11 +707,12 @@ a {
   .nav2 li {
     display: inline-flex;
   }
-}
 
-/* Home */
+  #search-form input {
+    width: 70% !important;
+  }
 
-@media (max-width: 576px) {
+  /* Home */
   .hero-caption {
     font-size: 2.5rem;
   }
@@ -437,10 +720,18 @@ a {
   .tagline {
     font-size: 1.2rem;
   }
-}
 
-@media (max-width: 992px) {
-}
+  .view-content .post-thumbnail {
+    width: 25rem;
+    height: 25rem;
+  }
 
-@media (max-width: 768px) {
+  .view-content .meta-data p,
+  .view-content .meta-data ion-icon {
+    font-size: 0.8rem;
+  }
+
+  .view-content .meta-data ion-icon {
+    margin-top: 4px;
+  }
 }

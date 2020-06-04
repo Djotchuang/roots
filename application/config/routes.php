@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = 'pages/view';
 $route['posts/index'] = 'posts/index';
@@ -13,7 +13,7 @@ $route['users/avatar'] = 'users/avatar';
 $route['messages/send_message'] = 'messages/send_message';
 $route['posts'] = 'posts/index';
 $route['countries'] = 'countries/index';
-$route['countries/create'] = 'countries/create';
+$route['countries/create/(:any)'] = 'countries/create/$1';
 $route['countries/posts/(:any)'] = 'countries/posts/$1';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
