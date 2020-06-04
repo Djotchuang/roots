@@ -85,4 +85,13 @@ class Post_model extends CI_Model
 		$query = $this->db->get_where('posts', array('country_id' => $country_id));
 		return $query->result_array();
 	}
+	public function get_activities($slug = FALSE, $id){
+		if ($slug === FALSE) {
+			$this->db->order_by('posts.pid', 'DESC');
+			$this->db->join('users', 'users.id = posts.user_id');
+			$query = $this->db->get('posts');
+			return $query->result_array();
+		}
+
+	}
 }

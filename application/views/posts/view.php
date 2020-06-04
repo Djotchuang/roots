@@ -56,6 +56,7 @@
 								<p><?php echo $comment['body']; ?></p>
 							</span>
 						</div>
+
 					</div>
 					<hr class="separator">
 				<?php endforeach; ?>
@@ -122,5 +123,6 @@
 				</section>
 			</aside>
 		</div>
+
 	</div>
 </div>

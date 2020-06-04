@@ -55,7 +55,8 @@
 <script>
 	CKEDITOR.replace('editor1');
 </script>
-<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -64,6 +65,7 @@
 
 		$(".search-input").keypress(function() {
 			$(".search-button").attr('disabled', false);
+
 		});
 
 		// Hide comment and show when comment-heading is clicked
@@ -139,6 +141,20 @@
 				}
 			});
 		});
+     
+		$('#people_nearby_text').on('click', function peopleNearby(){
+			 var url = '<?=base_url()?>/users/people_nearby';
+				 $.ajax({
+                   url: url,
+				   type: 'GET',
+				   dataType: 'json',
+				   success: function(response) {
+					var html= response.avatar;
+				    html+= response.username;
+					   $('#people_nearby').append(html);
+				   }
+				 });
+		});
 	});
 
 	function checkAvatar() {
@@ -198,4 +214,3 @@
 </script>
 </body>
 
-</html>
