@@ -65,6 +65,7 @@
 
 		$(".search-input").keypress(function() {
 			$(".search-button").attr('disabled', false);
+
 		});
 
 		// Hide comment and show when comment-heading is clicked
@@ -118,6 +119,26 @@
 				$(this).data('iteration', iteration)
 			});
 		});
+<<<<<<< HEAD
+||||||| merged common ancestors
+	});
+=======
+     
+		$('#people_nearby_text').on('click', function peopleNearby(){
+			 var url = '<?=base_url()?>/users/people_nearby';
+				 $.ajax({
+                   url: url,
+				   type: 'GET',
+				   dataType: 'json',
+				   success: function(response) {
+					var html= response.avatar;
+				    html+= response.username;
+					   $('#people_nearby').append(html);
+				   }
+				 });
+		});
+	});
+>>>>>>> c694a145287a5016be119e2c39f428cb160a5878
 
 		// Handles likes
 		function likes() {
@@ -270,4 +291,3 @@
 </script>
 </body>
 
-</html>

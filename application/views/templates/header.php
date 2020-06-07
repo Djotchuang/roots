@@ -221,4 +221,7 @@
           </button>
         </div>
       <?php endif; ?>
+      <?php if ($this->session->flashdata('reset_error')) : ?>
+        <?php echo '<p class="alert alert-danger">' . $this->session->flashdata('reset_error') . '</p>'; ?>
+      <?php endif; ?>
     </div>

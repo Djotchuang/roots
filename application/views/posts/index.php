@@ -185,5 +185,12 @@
 				</section>
 			</aside>
 		</div>
+<<<<<<< HEAD
+||||||| merged common ancestors
+
+=======
+
+
+>>>>>>> c694a145287a5016be119e2c39f428cb160a5878
 	</div>
 </div>

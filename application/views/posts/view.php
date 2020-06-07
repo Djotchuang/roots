@@ -43,6 +43,7 @@
 			<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 			<h4 class="post-title"><?php echo ucfirst($post['title']); ?></h4>
 			<hr class="separator">
+<<<<<<< HEAD
 			<div class="meta-data">
 				<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
 					<span>
@@ -66,6 +67,60 @@
 						<p>Sports/Football</p>
 					</span>
 				</a>
+||||||| merged common ancestors
+		<?php endif; ?>
+		<div id="comments" class="comment-heading">
+			<h5><strong>COMMENTS <ion-icon name="chevron-down-outline"></ion-icon></strong></h5>
+		</div>
+		<?php if ($comments) : ?>
+			<div id="comment-div">
+				<?php foreach ($comments as $comment) : ?>
+					<div class="comment-details">
+						<div class="comment-info">
+							<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar avatar-image" alt="user profile image">
+							<span>
+								<h5><?php echo ucfirst($comment['username']); ?> &nbsp;</h5>
+								<p><?php echo $comment['body']; ?></p>
+							</span>
+						</div>
+					</div>
+					<hr class="separator">
+				<?php endforeach; ?>
+			</div>
+		<?php else : ?>
+			<p>There are no comments</p>
+		<?php endif; ?>
+		<?php if ($this->session->userdata('logged_in')) : ?>
+			<div class="comment-heading">
+				<h6><strong> Add a Comment </strong></h6>
+=======
+		<?php endif; ?>
+		<div id="comments" class="comment-heading">
+			<h5><strong>COMMENTS <ion-icon name="chevron-down-outline"></ion-icon></strong></h5>
+		</div>
+		<?php if ($comments) : ?>
+			<div id="comment-div">
+				<?php foreach ($comments as $comment) : ?>
+					<div class="comment-details">
+						<div class="comment-info">
+							<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar avatar-image" alt="user profile image">
+							<span>
+								<h5><?php echo ucfirst($comment['username']); ?> &nbsp;</h5>
+								<p><?php echo $comment['body']; ?></p>
+							</span>
+						</div>
+
+					</div>
+					<hr class="separator">
+				<?php endforeach; ?>
+			</div>
+		<?php else : ?>
+			<p>There are no comments</p>
+		<?php endif; ?>
+		<?php if ($this->session->userdata('logged_in')) : ?>
+			<div class="comment-heading">
+				<h6><strong> Add a Comment </strong></h6>
+>>>>>>> c694a145287a5016be119e2c39f428cb160a5878
 			</div>
 			<p><?php echo ucfirst($post['body']); ?></p>
 			<hr class="separator">
@@ -159,5 +214,6 @@
 				</section>
 			</aside>
 		</div>
+
 	</div>
 </div>
