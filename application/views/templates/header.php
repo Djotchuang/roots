@@ -17,7 +17,7 @@
   <header>
     <nav class="navbar navbar-expand-xl navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="logo">
+        <a class="navbar-brand" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo-roots.png" alt="logo">
         </a>
         <button id="nav-toggle-button" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -35,6 +35,12 @@
                 <a class="nav-link" href="<?php echo base_url(); ?>posts">
                   <ion-icon name="duplicate-outline"></ion-icon>
                   <p>Newsfeed</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url(); ?>posts/categories">
+                  <ion-icon name="list-outline"></ion-icon>
+                  <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -69,7 +75,8 @@
                     <ion-icon name="create-outline"></ion-icon>
                   </a>
                 </li>
-                <li class="nav-item"><a class="nav-link" title="Add a Country" href="<?php echo base_url(); ?>countries/create">
+                <li class="nav-item">
+                  <a class="nav-link" title="Add a Country" href="<?php echo base_url(); ?>countries/create">
                     <ion-icon name="notifications-outline"></ion-icon>
                   </a>
                 </li>

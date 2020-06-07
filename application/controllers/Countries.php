@@ -43,6 +43,7 @@ class Countries extends CI_Controller
 
 		$data['posts'] = $this->post_model->get_posts_by_country($id);
 
+		$this->load->helper('timeelapsed_helper');
 		$this->load->view('templates/header');
 		$this->load->view('posts/index', $data);
 		$this->load->view('templates/footer');

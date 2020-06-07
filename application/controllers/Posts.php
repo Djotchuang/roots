@@ -17,6 +17,7 @@ class Posts extends CI_Controller
 
         $data['posts'] = $this->post_model->get_posts(false, $config['per_page'], $offset);
 
+        $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');
         $this->load->view('posts/index', $data);
         $this->load->view('templates/footer');
@@ -34,6 +35,7 @@ class Posts extends CI_Controller
 
         $data['title'] = $data['post']['title'];
 
+        $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');
         $this->load->view('posts/view', $data);
         $this->load->view('templates/footer');
@@ -94,7 +96,7 @@ class Posts extends CI_Controller
 
             // Set message
             $this->session->set_flashdata('post_created', 'Your post has been created');
-
+            $this->load->helper('timeelapsed_helper');
             redirect('posts');
         }
     }
@@ -110,7 +112,7 @@ class Posts extends CI_Controller
 
         // Set message
         $this->session->set_flashdata('post_deleted', 'Your post has been deleted');
-
+        $this->load->helper('timeelapsed_helper');
         redirect('posts');
     }
 
@@ -125,6 +127,7 @@ class Posts extends CI_Controller
 
         // Check user
         if ($this->session->userdata('user_id') != $this->post_model->get_posts($slug)['id']) {
+            $this->load->helper('timeelapsed_helper');
             redirect('posts');
         }
 
@@ -152,7 +155,18 @@ class Posts extends CI_Controller
 
         // Set message
         $this->session->set_flashdata('post_updated', 'Your post has been updated');
-
+        $this->load->helper('timeelapsed_helper');
         redirect('posts');
     }
+
+    // public function categories()
+    // {
+    //     $data['title'] = 'Categories';
+
+    //     $data['categories'] = $this->country_model->get_countries();
+
+    //     $this->load->view('templates/header');
+    //     $this->load->view('posts/categories', $data);
+    //     $this->load->view('templates/footer');
+    // }
 }

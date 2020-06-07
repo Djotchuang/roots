@@ -15,7 +15,7 @@ body {
   font-family: "poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
-  font-size: 1.2rem !important;
+  font-size: 1.1rem !important;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -106,7 +106,7 @@ a {
 }
 
 .nav-link ion-icon {
-  margin-top: 1.3rem;
+  margin-top: 1.35rem;
   margin-right: 4px;
   font-size: 1.2rem;
   color: #18bc9c;
@@ -147,6 +147,10 @@ a {
   padding: 2px 6px;
   border-radius: 0;
   color: #f9f9f9;
+}
+
+.show {
+  z-index: 2000;
 }
 
 .flash-data {
@@ -229,7 +233,7 @@ a {
 }
 
 #home_btn {
-  background-color: #199eb8;
+  background-color: rgb(7, 110, 90);
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-weight: 700;
   color: #fff;
@@ -283,13 +287,54 @@ a {
 
 /* Posts */
 
-.post {
-  padding-right: 2rem;
-  border-right: 1px solid #f2f2f2;
+/* .sidebar1 {
+  background-color: #fdfdfd;
+} */
+
+.post-div1 {
+  margin-right: 2%;
+  /* background-color: #fdfdfd; */
+  border-radius: 5px;
 }
 
-.nearby-sidebar {
-  padding-left: 2rem;
+.post-div2 {
+  margin-right: 2%;
+  background-color: #fdfdfd;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.post-div3 {
+  margin-right: 0;
+  background-color: #fdfdfd;
+  padding: 0 2rem 1rem 2rem;
+  border-radius: 5px;
+}
+
+.post-div1 a {
+  margin: -1rem auto;
+}
+
+.post-div1 .avatar-image {
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+}
+
+.post-div1 p {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  margin-top: 0.95rem;
+  color: rgb(7, 110, 90);
+}
+
+.post-div1 p.first-child {
+  margin-top: 0.7rem;
+}
+
+.post-div1 .image {
+  margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .post-content {
@@ -303,21 +348,34 @@ a {
   margin-bottom: 2rem;
 }
 
-.post-content h5 {
-  color: #18bc9c;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
 .post-content h4 {
   color: #212529;
   margin-bottom: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
 }
 
 .post-content h4:hover,
 .post-data h6:hover {
   color: #18bc9c;
+}
+
+.post-btn {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background-color: #18bc9c;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 50px;
+}
+
+.post-btn:hover {
+  background-color: transparent;
+  color: rgb(7, 110, 90);
+  border: 1px solid gainsboro;
+  font-weight: 700;
 }
 
 .post-content p {
@@ -329,6 +387,21 @@ a {
   width: 100%;
 }
 
+.post-content .meta-data div {
+  display: inline-flex;
+  margin-bottom: 1rem;
+}
+
+.post-content .meta-data * {
+  cursor: pointer;
+  color: #8b8b8b;
+}
+
+.post-content .meta-data a:hover,
+.post-content .meta-data div:hover * {
+  color: #212529;
+}
+
 .post-content .meta-data p {
   font-size: 0.8rem;
   margin-left: 0.5rem;
@@ -337,6 +410,16 @@ a {
 .post-content .post-avatar {
   border-radius: 50%;
   width: 20px;
+}
+
+.index-comment-details {
+  height: 10em;
+  overflow-y: scroll;
+}
+
+.index-comment-details::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 .sidebar section {
@@ -363,9 +446,14 @@ a {
   border: 1px solid #ccc;
   border-left: none; /* Prevent double borders */
   cursor: pointer;
-  right: 8px;
+  right: 40px;
   height: 18px;
   outline: none;
+}
+
+.search-bar button:hover {
+  background-color: rgb(7, 110, 90);
+  color: #f9f9f9;
 }
 
 .search-bar ion-icon {
@@ -376,18 +464,25 @@ a {
 }
 
 .sidebar h5 {
+  font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
 
+.nearby-meta-data {
+  margin-bottom: 1.5rem;
+}
+
 .nearby-meta-data .nearby-avatar {
   border-radius: 50%;
   width: 30px;
+  margin-right: 0.5rem;
 }
 
 .nearby-meta-data a {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  color: #212529;
 }
 
 .latest-post .post-info {
@@ -421,9 +516,14 @@ a {
 }
 
 /* Single Post View */
+/* .view-content {
+  width: 100%;
+  height: auto;
+} */
+
 .view-content .post-thumbnail {
-  width: 41rem;
-  height: 41rem;
+  width: 100%;
+  height: auto;
   object-fit: fill;
 }
 
@@ -444,7 +544,7 @@ a {
 
 .view-content .meta-data span,
 .comment-info {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   display: inline-flex;
 }
 
@@ -461,11 +561,15 @@ a {
 .view-content .meta-data p {
   font-size: 0.9rem;
   margin-left: 5px;
-  text-transform: capitalize;
+}
+
+.view-content .meta-data a span:hover *,
+.nearby-meta-data a:hover {
+  color: #18bc9c;
 }
 
 .view-content .meta-data ion-icon {
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .buttons {
@@ -478,18 +582,14 @@ a {
   margin-right: 1rem;
 }
 
-/* #comment-div {
-  display: none;
-} */
-
 .comment-heading {
   margin: 1.5rem auto;
   cursor: pointer;
 }
 
-.comment-details {
+/* .comment-details {
   margin-bottom: -24px;
-}
+} */
 
 .comment-info .comment-avatar {
   border-radius: 50%;
@@ -515,6 +615,16 @@ a {
   border: none;
   outline: 0px !important;
   border-bottom: 1px solid #ccc;
+}
+
+.index-comment-details .comment-body {
+  border: none;
+}
+
+.index-comment-details .btn-sm {
+  font-size: 0.8rem;
+  padding: 0 0.5rem;
+  margin-top: 0.3rem;
 }
 
 /* Profile */
@@ -662,6 +772,10 @@ a {
     width: 7rem;
     height: 7rem;
   }
+
+  .search-bar button {
+    right: 32px;
+  }
 }
 
 /* Login, Registration, Change Password and Reset Password */
@@ -679,6 +793,11 @@ a {
     width: 7rem;
     height: 7rem;
   }
+
+  .post-div1,
+  .post-div3 {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -689,11 +808,6 @@ a {
     background-color: #fff;
     margin: 20% 15%;
     padding: 5%;
-  }
-
-  .view-content .post-thumbnail {
-    width: 30rem;
-    height: 30rem;
   }
 }
 
@@ -720,17 +834,8 @@ a {
     font-size: 1.2rem;
   }
 
-  .view-content .post-thumbnail {
-    width: 25rem;
-    height: 25rem;
-  }
-
   .view-content .meta-data p,
   .view-content .meta-data ion-icon {
     font-size: 0.8rem;
-  }
-
-  .view-content .meta-data ion-icon {
-    margin-top: 4px;
   }
 }
