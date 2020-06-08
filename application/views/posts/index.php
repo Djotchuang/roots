@@ -115,10 +115,9 @@
 								</span>
 							</div>
 							<?php if ($this->session->userdata('logged_in')) : ?>
-								<div class="form-group">
-									<textarea name="body" class="md-textarea form-control comment-body" rows="1" placeholder="add a comment"></textarea>
-									<button class="btn btn-sm btn-primary float-right" type="submit">post</button>
-
+								<div class="form-group index-comment2">
+									<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="comment"></textarea>
+									<button class="btn float-right" type="submit">post</button>
 								</div>
 							<?php endif; ?>
 						</div>
@@ -185,12 +184,5 @@
 				</section>
 			</aside>
 		</div>
-<<<<<<< HEAD
-||||||| merged common ancestors
-
-=======
-
-
->>>>>>> c694a145287a5016be119e2c39f428cb160a5878
 	</div>
 </div>

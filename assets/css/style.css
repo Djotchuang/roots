@@ -27,6 +27,10 @@ a {
   text-decoration: none !important;
 }
 
+textarea {
+  resize: none;
+}
+
 .separator {
   color: #f2f2f2;
 }
@@ -346,7 +350,6 @@ a {
   height: 17rem;
   object-fit: cover;
   margin-bottom: 2rem;
-
 }
 
 .post-content h4 {
@@ -618,14 +621,31 @@ a {
   border-bottom: 1px solid #ccc;
 }
 
-.index-comment-details .comment-body {
+.index-comment2 {
+  position: relative;
+  margin-bottom: 0;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  width: 95%;
+  height: 20% !important;
+}
+
+.index-comment-body {
+  width: 85%;
+  height: 100% !important;
+  background-color: inherit;
+  font-size: 0.8rem;
+  position: relative;
+  outline: none;
   border: none;
 }
 
-.index-comment-details .btn-sm {
+.index-comment2 .btn {
   font-size: 0.8rem;
-  padding: 0 0.5rem;
-  margin-top: 0.3rem;
+  right: 0;
+  top: -1;
+  color: #7b8a8b;
+  position: absolute;
 }
 
 /* Profile */

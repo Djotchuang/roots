@@ -119,26 +119,6 @@
 				$(this).data('iteration', iteration)
 			});
 		});
-<<<<<<< HEAD
-||||||| merged common ancestors
-	});
-=======
-     
-		$('#people_nearby_text').on('click', function peopleNearby(){
-			 var url = '<?=base_url()?>/users/people_nearby';
-				 $.ajax({
-                   url: url,
-				   type: 'GET',
-				   dataType: 'json',
-				   success: function(response) {
-					var html= response.avatar;
-				    html+= response.username;
-					   $('#people_nearby').append(html);
-				   }
-				 });
-		});
-	});
->>>>>>> c694a145287a5016be119e2c39f428cb160a5878
 
 		// Handles likes
 		function likes() {
@@ -169,7 +149,8 @@
 
 		likes();
 
-
+		checkMultipleAvatar('.view-content');
+		checkMultipleAvatar('.profile');
 		checkMultipleAvatar('.post-content');
 		checkMultipleAvatar('.nearby-sidebar');
 		checkAvatar('.sidebar1');
@@ -290,4 +271,3 @@
 	});
 </script>
 </body>
-
