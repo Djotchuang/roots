@@ -38,18 +38,54 @@
 		</div>
 	</div>
 
+	<?php if ($this->session->userdata('logged_in')) : ?>
+		<div class="sidebar-chats">
+			<div class="chats-title">
+				<h6 class="mb-0">Chats</h6>
+				<p>200 online</p>
+			</div>
+			<div class="chat-data">
+				<h6>CONTACTS</h6>
+				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
+					<img src="" class="image avatar-image" alt="user profile image">
+					<p class="first-child"><?php echo ellipsize('Karl Djotchuang Tamo', 18); ?></p>
+					<span class="circle ml-auto"></span>
+				</a>
+				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
+					<img src="" class="image avatar-image" alt="user profile image">
+					<p class="first-child"><?php echo ellipsize('Djotchuang Tamo', 18); ?></p>
+					<span class="circle ml-auto"></span>
+				</a>
+				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
+					<img src="" class="image avatar-image" alt="user profile image">
+					<p class="first-child"><?php echo ellipsize('username', 18); ?></p>
+					<span class="circle ml-auto"></span>
+				</a>
+			</div>
+		</div>
+	<?php endif; ?>
+
 	<div class="col-lg-7 col-md-12  view-content">
 		<div class="post-div2">
 			<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 			<h4 class="post-title"><?php echo ucfirst($post['title']); ?></h4>
 			<hr class="separator">
 			<div class="meta-data">
-				<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-					<span>
-						<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
-						<p><?php echo ucfirst($post['username']); ?> </p>
-					</span>
-				</a>
+				<?php if ($this->session->userdata('logged_in')) : ?>
+					<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
+						<span>
+							<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
+							<p><?php echo ucfirst($post['username']); ?> </p>
+						</span>
+					</a>
+				<?php else : ?>
+					<a href="<?= base_url(); ?>users/login">
+						<span>
+							<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
+							<p><?php echo ucfirst($post['username']); ?> </p>
+						</span>
+					</a>
+				<?php endif; ?>
 				<span>
 					<ion-icon name="alarm-outline"></ion-icon>
 					<p><?php echo time_elapsed_string($post['created_at']); ?> </p>
@@ -129,16 +165,18 @@
 						</button>
 					</form>
 				</section>
-				<section class="people-nearby">
-					<h5>People Nearby</h5>
-					<div class="nearby-meta-data">
-						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
-						<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-							<?php echo ucfirst($post['username']); ?>
-						</a>
-					</div>
-					<hr class="separator">
-				</section> <br>
+				<?php if ($this->session->userdata('logged_in')) : ?>
+					<section class="people-nearby">
+						<h5>People Nearby</h5>
+						<div class="nearby-meta-data">
+							<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
+								<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
+								<?php echo ucfirst($post['username']); ?>
+							</a>
+						</div>
+						<hr class="separator">
+					</section> <br>
+				<?php endif; ?>
 				<section class="latest-post">
 					<h5>Recent Posts</h5>
 					<div class="post-data">

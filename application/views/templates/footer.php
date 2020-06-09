@@ -65,7 +65,6 @@
 
 		$(".search-input").keypress(function() {
 			$(".search-button").attr('disabled', false);
-
 		});
 
 		// Hide comment and show when comment-heading is clicked
@@ -92,32 +91,59 @@
 		});
 
 		// Hide comment and show when comment div is clicked on index page
-		$('.post-content').each(function() {
-			let index_comment_details = $(this).find(".index-comment-details");
-			index_comment_details.hide();
+		function showComments() {
+			$('.post-content').each(function() {
+				let index_comment_details = $(this).find(".index-comment-details");
+				index_comment_details.hide();
 
-			let index_comment = $(this).find(".index-comment");
+				let index_comment = $(this).find(".index-comment");
 
-			index_comment.click(function() {
+				index_comment.click(function() {
 
-				var iteration = $(this).data('iteration') || 1
+					var iteration = $(this).data('iteration') || 1
 
-				switch (iteration) {
-					case 1:
-						index_comment_details.show();
-						index_comment_details.scrollTop($('.index-comment-details')[0].scrollHeight);
-						break;
+					switch (iteration) {
+						case 1:
+							index_comment_details.show();
+							index_comment_details.scrollTop($('.index-comment-details')[0].scrollHeight);
+							break;
 
-					case 2:
-						index_comment_details.hide();
-						break;
-				}
+						case 2:
+							index_comment_details.hide();
+							break;
+					}
 
-				iteration++;
+					iteration++;
 
-				if (iteration > 2) iteration = 1
-				$(this).data('iteration', iteration)
+					if (iteration > 2) iteration = 1
+					$(this).data('iteration', iteration)
+				});
 			});
+		}
+
+		showComments();
+
+		// Show comments on click
+		$('.chat-data').hide();
+
+		$('.chats-title').click(function() {
+			var iteration = $(this).data('iteration') || 1
+
+			switch (iteration) {
+				case 1:
+					$('.chat-data').show();
+					$('.chat-data').css('{padding: 0}');
+					break;
+
+				case 2:
+					$('.chat-data').hide();
+					break;
+			}
+
+			iteration++;
+
+			if (iteration > 2) iteration = 1
+			$(this).data('iteration', iteration)
 		});
 
 		// Handles likes
@@ -149,11 +175,7 @@
 
 		likes();
 
-		checkMultipleAvatar('.view-content');
-		checkMultipleAvatar('.profile');
-		checkMultipleAvatar('.post-content');
-		checkMultipleAvatar('.nearby-sidebar');
-		checkAvatar('.sidebar1');
+		// Check Avatars
 
 		function checkAvatar($parentDiv) {
 			var avatar_image = $($parentDiv).find('.avatar-image')
@@ -177,6 +199,13 @@
 				// console.log(attrib);
 			});
 		}
+
+		checkMultipleAvatar('.view-content');
+		checkMultipleAvatar('.profile');
+		checkMultipleAvatar('.post-content');
+		checkMultipleAvatar('.nearby-sidebar');
+		checkAvatar('.sidebar1');
+		checkAvatar('.sidebar-chats');
 
 		$image_crop = $('#image_demo').croppie({
 			enableExif: true,

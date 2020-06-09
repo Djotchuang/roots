@@ -315,27 +315,10 @@ textarea {
 
 /* Posts */
 
-/* .sidebar1 {
-  background-color: #fdfdfd;
-} */
+/* Sidebar 1 */
 
 .post-div1 {
   margin-right: 2%;
-  /* background-color: #fdfdfd; */
-  border-radius: 5px;
-}
-
-.post-div2 {
-  margin-right: 2%;
-  background-color: #fdfdfd;
-  padding: 2rem;
-  border-radius: 5px;
-}
-
-.post-div3 {
-  margin-right: 0;
-  background-color: #fdfdfd;
-  padding: 0 2rem 1rem 2rem;
   border-radius: 5px;
 }
 
@@ -344,6 +327,7 @@ textarea {
 }
 
 .post-div1 .avatar-image {
+  border: 1px solid #ccc;
   border-radius: 50%;
   width: 1rem;
   height: 1rem;
@@ -363,6 +347,86 @@ textarea {
 .post-div1 .image {
   margin-top: 1rem;
   margin-left: 1rem;
+}
+
+/* Chats Bar */
+
+.sidebar-chats {
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  margin: 0;
+  font-size: 0.8rem;
+  position: fixed;
+  bottom: 0;
+  left: 1rem;
+  z-index: 2000;
+  width: 10.5rem;
+}
+
+.chats-title {
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
+.chats-title:hover {
+  background-color: #ccc;
+}
+
+.chats-title p {
+  margin-bottom: 0.5rem;
+}
+
+.chat-data {
+  padding: 0.5rem;
+}
+
+.chat-data h6 {
+  font-size: 0.8rem;
+}
+
+.chat-data a .avatar-image {
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+}
+
+.chat-data a p {
+  margin-top: -2px;
+  color: #212529;
+}
+
+.chat-data a p:hover {
+  color: rgb(7, 110, 90);
+}
+
+.chat-data a .circle {
+  margin-top: 0.4rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50px;
+  background-color: #18bc9c;
+  outline: none;
+  border-radius: none;
+}
+
+/* Posts Column */
+
+.post-div2 {
+  margin-right: 2%;
+  background-color: #fdfdfd;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.post-div3 {
+  margin-right: 0;
+  background-color: #fdfdfd;
+  padding: 0 2rem 1rem 2rem;
+  border-radius: 5px;
 }
 
 .post-content {
@@ -436,6 +500,7 @@ textarea {
 }
 
 .post-content .post-avatar {
+  border: 1px solid #ccc;
   border-radius: 50%;
   width: 20px;
 }
@@ -503,6 +568,7 @@ textarea {
 }
 
 .nearby-meta-data .nearby-avatar {
+  border: 1px solid #ccc;
   border-radius: 50%;
   width: 30px;
   margin-right: 0.5rem;
@@ -581,6 +647,7 @@ textarea {
 }
 
 .view-content .post-avatar {
+  border: 1px solid #ccc;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -620,6 +687,7 @@ textarea {
 } */
 
 .comment-info .comment-avatar {
+  border: 1px solid #ccc;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -824,12 +892,13 @@ td {
   }
 
   .nav1 .nav-item a ion-icon {
-    margin-top: 8px;
+    margin-top: 6px;
+    margin-left: 0;
   }
 
-  .nav1 .nav-item a * {
+  /* .nav1 .nav-item a * {
     margin-left: 4px;
-  }
+  } */
 
   /* #search-form {
     margin: 0 auto;

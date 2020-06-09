@@ -114,13 +114,4 @@ class User_model extends CI_Model
 			echo 'No Result';
 		}
 	}
-
-
-	public function get_people_nearby($id){
-		$this->db->where('id', $id);
-		$query_data = $this->db->get_compiled_select('users.country');
-		$this->db->where('country', $query_data);
-		$query = $this->db->limit(10)->get('users');
-		return $query->result_array();
-	}
 }
