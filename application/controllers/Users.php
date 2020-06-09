@@ -271,6 +271,22 @@ class Users extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
+    //people nearby start-----------------=============================
+    function people_nearby(){
+        $user_id = $this->session->userdata('user_id');
+        $data = $this->user_model->get_people_nearby($user_id);
+        foreach($data as $row){
+            $output['username'] = '<a href="'.base_url().'users/fetch_user/'.$row['id'].'">'.ucfirst($row['username']).'</a>'; 
+            if($row->avatar != ''){
+            $output['avatar'] = '<img src="'.$row['avatar'].'" class="nearby-avatar" alt="user profile image">';
+            }
+            else {
+            $output['avatar'] = '<img src="'.base_url().'/avatar/noimage.jpg" class="nearby-avatar" alt="user profile image">';
+            }
+        }
+        echo json_encode($output);
+    }
+
     function recent_activities(){
         $data['posts'] = $this->post_model->get_activities();
     }

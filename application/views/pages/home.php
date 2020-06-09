@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-md-12">
           <a class="hero-brand" href="index.html" title="Home">
-            <img class="hero-logo" alt="Logo" src="<?= base_url(); ?>assets/images/logo.png"></a>
+            <img class="hero-logo" alt="Logo" src="<?= base_url(); ?>assets/images/logo-roots.png"></a>
         </div>
       </div>
 

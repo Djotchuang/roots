@@ -15,6 +15,14 @@
   <textarea id="editor1" class="form-control" name="body" placeholder="Add Body"></textarea>
 </div>
 <div class="form-group">
+  <label>Categories</label>
+  <select name="category" class="form-control">
+    <option value="Sports">Sports</option>
+    <option value="Football">Football</option>
+    <option value="News">News</option>
+  </select>
+</div>
+<div class="form-group">
   <label>Country</label>
   <select name="country_id" class="form-control">
     <?php foreach ($countries as $country) : ?>

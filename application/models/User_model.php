@@ -115,6 +115,7 @@ class User_model extends CI_Model
 		}
 	}
 
+
     public function get_country($id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get('users');

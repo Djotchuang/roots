@@ -54,7 +54,10 @@
 </div>
 <script>
 	CKEDITOR.replace('editor1');
-</script> 
+
+</script>
+
+
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
@@ -76,13 +79,6 @@
 		});
 		}
 		getCommentsCount();
-		function checkAvatar() {
-		var attrib = $('.avatar-image');
-		if ($('.avatar-image').attr('src') === '') {
-			attrib.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
-		}
-	}
-		checkAvatar();
 		// Disable search button and enable on keydown
 		$(".search-button").attr('disabled', true);
 
@@ -112,58 +108,150 @@
 
 			if (iteration > 2) iteration = 1
 			$(this).data('iteration', iteration)
-		})
-	});
+		});
 
-	$image_crop = $('#image_demo').croppie({
-		enableExif: true,
-		viewport: {
-			width: 250,
-			height: 250,
-			type: 'square'
-		},
-		boundary: {
-			width: 300,
-			height: 300
-		}
-	});
-	myUrl = 'users/upload/';
-	$('#insert_image').on('change', function() {
-		var reader = new FileReader();
-		reader.onload = function(event) {
-			$image_crop.croppie('bind', {
-				url: event.target.result
-			}).then(function() {
-				console.log('jQuery bind complete');
-			});
-		}
-		reader.readAsDataURL(this.files[0]);
-		$('#insertimageModal').modal('show');
-	});
-	$('.crop_image').on('click', function(event) {
-		$image_crop.croppie('result', {
-			type: 'canvas',
-			size: 'viewport'
-		}).then(function(response) {
-			$.ajax({
-				url: '<?= base_url() ?>users/upload',
-				type: 'POST',
-				data: {
-					"image": response
-				},
+		// Hide comment and show when comment div is clicked on index page
+    function showComments() {
+		$('.post-content').each(function() {
+			let index_comment_details = $(this).find(".index-comment-details");
+			index_comment_details.hide();
 
-				error: function() {
-					alert('Error Uploading Image. This may be due to a fault in your internet connection. Please try again later. Thanks');
-				},
+			let index_comment = $(this).find(".index-comment");
 
-				success: function(data) {
-					$('#insertimageModal').modal('hide');
-					$('#insert_image').empty();
-					alert('Thank you for Updating your Profile. Now Reload Web Page.');
+			index_comment.click(function() {
+
+				var iteration = $(this).data('iteration') || 1
+
+				switch (iteration) {
+					case 1:
+						index_comment_details.show();
+						index_comment_details.scrollTop($('.index-comment-details')[0].scrollHeight);
+						break;
+
+					case 2:
+						index_comment_details.hide();
+						break;
 				}
+
+				iteration++;
+
+				if (iteration > 2) iteration = 1
+				$(this).data('iteration', iteration)
 			});
 		});
-     
+    }
+   showComments();
+
+
+		// Handles likes
+		function likes() {
+			let nlikes = 1;
+			likeText = " Like"
+
+			$('.post-content').each(function() {
+				let like = $(this).find('.like');
+				let like_text_p = like.find('p');
+				let nclicks = 0;
+
+				if (nlikes > 1) likeText = " Likes";
+				like_text_p.text(nlikes + likeText);
+
+				like.click(function() {
+					nclicks++;
+
+					if (nclicks % 2 == 0) nlikes--;
+					else if (nclicks % 2 == 1) nlikes++;
+
+					like_text_p.text(nlikes + likeText);
+					like.css({
+						'color': '#18bc9c'
+					});
+				});
+			});
+		}
+
+		likes();
+		function checkAvatar($parentDiv) {
+			var avatar_image = $($parentDiv).find('.avatar-image')
+			var attrib = avatar_image.attr('src');
+			console.log(attrib);
+			if (attrib == '') {
+				avatar_image.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
+			}
+			console.log(attrib);
+		}
+
+		function checkMultipleAvatar($parentDiv) {
+
+			$($parentDiv).each(function() {
+				var avatar_image = $(this).find('.avatar-image')
+				var attrib = avatar_image.attr('src');
+				console.log(attrib);
+				if (attrib == '') {
+					avatar_image.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
+				}
+				// console.log(attrib);
+			});
+		}
+    checkMultipleAvatar('.view-content');
+		checkMultipleAvatar('.profile');
+		checkMultipleAvatar('.post-content');
+		checkMultipleAvatar('.nearby-sidebar');
+		checkAvatar('.sidebar1');
+
+		$image_crop = $('#image_demo').croppie({
+			enableExif: true,
+			viewport: {
+				width: 250,
+				height: 250,
+				type: 'square'
+			},
+			boundary: {
+				width: 300,
+				height: 300
+			}
+		});
+
+		myUrl = 'users/upload/';
+		$('#insert_image').on('change', function() {
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				$image_crop.croppie('bind', {
+					url: event.target.result
+				}).then(function() {
+					console.log('jQuery bind complete');
+				});
+			}
+			reader.readAsDataURL(this.files[0]);
+			$('#insertimageModal').modal('show');
+		});
+		$('.crop_image').on('click', function(event) {
+			$image_crop.croppie('result', {
+				type: 'canvas',
+				size: 'viewport'
+			}).then(function(response) {
+				$.ajax({
+					url: '<?= base_url() ?>users/upload',
+					type: 'POST',
+					data: {
+						"image": response
+					},
+
+					error: function() {
+						alert('Error Uploading Image. This may be due to a fault in your internet connection. Please try again later. Thanks');
+					},
+
+					success: function(data) {
+						$('#insertimageModal').modal('hide');
+						$('#insert_image').empty();
+						alert('Thank you for Updating your Profile. Now Reload Web Page.');
+					}
+				});
+			});
+		});
+	});
+
+
 	$('#input-form').on('click', function() {
 		$('#search-submit').attr('disabled', false);
 	});

@@ -8,7 +8,7 @@ class Pages extends CI_Controller
 		}
 
 		$data['title'] = ucfirst($page);
-
+		$this->load->helper('timeelapsed_helper');
 		$this->load->view('pages/' . $page, $data);
 	}
 }
