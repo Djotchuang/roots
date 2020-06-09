@@ -116,10 +116,14 @@ class User_model extends CI_Model
 	}
 
 
-	public function get_people_nearby($id){
+    public function get_country($id) {
 		$this->db->where('id', $id);
-		$query_data = $this->db->get_compiled_select('users.country');
-		$this->db->where('country', $query_data);
+		$query = $this->db->get('users');
+		return $query->result_array();
+	}
+	public function get_people_nearby($country){
+		$this->db->join('posts', 'posts.pid = users.id', 'left');
+		$this->db->where('country', $country);
 		$query = $this->db->limit(10)->get('users');
 		return $query->result_array();
 	}

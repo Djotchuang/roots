@@ -43,6 +43,7 @@
 						<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
 							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 						</a>
+
 					</div>
 					<div class="col-md-7 post-content">
 						<div class="post-top mb-2 d-flex justify-content-between">
@@ -156,33 +157,40 @@
 				</section>
 				<section class="people-nearby">
 					<h5>People Nearby</h5>
-					<div class="nearby-meta-data">
-						<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
-						<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-							<?php echo ucfirst($post['username']); ?>
+					<?php foreach($peoples as $people) : ?>
+					<div id="people_nearby" class="nearby-meta-data">
+						<img src="<?php echo $people['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
+						<a href="<?= base_url(); ?>users/fetch_user/<?= $people['id']; ?>">
+							<?php echo ucfirst($people['username']); ?>
 						</a>
 					</div>
+					<?php endforeach ?>
 					<hr class="separator">
 				</section> <br>
 				<section class="latest-post">
 					<h5>Recent Posts</h5>
+					<?php foreach($latests as $latest) : ?>
 					<div class="post-data">
 						<div class="post-info">
-							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
-							<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
-								<h6 class="post-title"><?php echo ucfirst($post['title']); ?></h6>
+							<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
+							<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+								<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
 							</a>
 						</div>
 						<div class="meta-data d-flex justify-content-between">
 							<p class="ml-auto">
+
 								<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
+
 							</p>
-							<p>/ 0 Comments</p>
+							<input value="<?=$post['pid']?>" type="hidden" class="count_input">
+						<p><span class="count"></span></p>
 						</div>
 						<hr class="separator">
 					</div>
 				</section>
 			</aside>
 		</div>
+
 	</div>
 </div>

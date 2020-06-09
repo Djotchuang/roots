@@ -54,12 +54,31 @@
 </div>
 <script>
 	CKEDITOR.replace('editor1');
+
 </script>
+
+
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
 	$(document).ready(function() {
-
+		function getCommentsCount() {
+		$('.post-content').each(function() {
+			var post_id = $(this).find('.count_input').val();
+			$.ajax({
+				url: '<?=base_url()?>/comments/get_comments_count',
+				method: 'POST',
+				data: {post_id:post_id},
+				error: function(){
+					alert('hey');
+				},
+				success: function(data){
+					$('.count').html(data);
+				}
+			});
+		});
+		}
+		getCommentsCount();
 		// Disable search button and enable on keydown
 		$(".search-button").attr('disabled', true);
 
@@ -92,6 +111,7 @@
 		});
 
 		// Hide comment and show when comment div is clicked on index page
+    function showComments() {
 		$('.post-content').each(function() {
 			let index_comment_details = $(this).find(".index-comment-details");
 			index_comment_details.hide();
@@ -119,6 +139,9 @@
 				$(this).data('iteration', iteration)
 			});
 		});
+    }
+   showComments();
+
 
 		// Handles likes
 		function likes() {
@@ -148,13 +171,6 @@
 		}
 
 		likes();
-
-		checkMultipleAvatar('.view-content');
-		checkMultipleAvatar('.profile');
-		checkMultipleAvatar('.post-content');
-		checkMultipleAvatar('.nearby-sidebar');
-		checkAvatar('.sidebar1');
-
 		function checkAvatar($parentDiv) {
 			var avatar_image = $($parentDiv).find('.avatar-image')
 			var attrib = avatar_image.attr('src');
@@ -177,6 +193,11 @@
 				// console.log(attrib);
 			});
 		}
+    checkMultipleAvatar('.view-content');
+		checkMultipleAvatar('.profile');
+		checkMultipleAvatar('.post-content');
+		checkMultipleAvatar('.nearby-sidebar');
+		checkAvatar('.sidebar1');
 
 		$image_crop = $('#image_demo').croppie({
 			enableExif: true,
@@ -230,6 +251,7 @@
 		});
 	});
 
+
 	$('#input-form').on('click', function() {
 		$('#search-submit').attr('disabled', false);
 	});
@@ -256,18 +278,13 @@
 					alert(chat_msg);
 				},
 				success: function(data) {
-					$('#button-addon2').attr('disabled', false);
-					var html = '<div class="bg-light rounded py-2 px-3 mb-2">';
-					html += '<p class="text-small mb-0 text-white">' + chat_msg + '</p>';
-					html += '</div>';
-					$('#chat_area').append(html);
-					$('#chat_box').scrollTop($('#chat_box')[0].scrollHeight);
-					$('#chat_msg_area').val('');
+					
 				}
 			});
 		} else {
 			alert('Chat is empty, Please Type Something in Chat box.');
 		}
 	});
+});
 </script>
 </body>
