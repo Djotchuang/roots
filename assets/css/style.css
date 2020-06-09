@@ -360,18 +360,19 @@ textarea {
   bottom: 0;
   left: 1rem;
   z-index: 2000;
-  width: 10.5rem;
+  width: 14rem;
 }
 
 .chats-title {
   border-bottom: 2px solid #ccc;
-  margin-bottom: 0.5rem;
   padding: 0 0.5rem;
   cursor: pointer;
 }
 
 .chats-title:hover {
   background-color: #ccc;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .chats-title p {
@@ -438,7 +439,6 @@ textarea {
   height: 17rem;
   object-fit: cover;
   margin-bottom: 2rem;
-
 }
 
 .post-content h4 {

@@ -41,24 +41,25 @@
 	<?php if ($this->session->userdata('logged_in')) : ?>
 		<div class="sidebar-chats">
 			<div class="chats-title">
-				<h6 class="mb-0">Chats</h6>
+				<h6 class="mt-0 pt-2 d-flex"><strong></p></strong>
+				</h6>
 				<p>200 online</p>
 			</div>
 			<div class="chat-data">
 				<h6>CONTACTS</h6>
 				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
 					<img src="" class="image avatar-image" alt="user profile image">
-					<p class="first-child"><?php echo ellipsize('Karl Djotchuang Tamo', 18); ?></p>
+					<p class="first-child"><?php echo ellipsize('Karl Djotchuang Tamo', 20); ?></p>
 					<span class="circle ml-auto"></span>
 				</a>
 				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
 					<img src="" class="image avatar-image" alt="user profile image">
-					<p class="first-child"><?php echo ellipsize('Djotchuang Tamo', 18); ?></p>
+					<p class="first-child"><?php echo ellipsize('Djotchuang Tamo', 20); ?></p>
 					<span class="circle ml-auto"></span>
 				</a>
 				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
 					<img src="" class="image avatar-image" alt="user profile image">
-					<p class="first-child"><?php echo ellipsize('username', 18); ?></p>
+					<p class="first-child"><?php echo ellipsize('username', 20); ?></p>
 					<span class="circle ml-auto"></span>
 				</a>
 			</div>
@@ -178,23 +179,23 @@
 					</section> <br>
 				<?php endif; ?>
 				<section class="latest-post">
-				<h5>Recent Posts</h5>
-					<?php foreach($latests as $latest) : ?>
-					<div class="post-data">
-						<div class="post-info">
-							<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
-							<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
-								<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
-							</a>
-						</div>
-						<div class="meta-data d-flex justify-content-between">
-							<p class="ml-auto">
-								<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
+					<h5>Recent Posts</h5>
+					<?php foreach ($latests as $latest) : ?>
+						<div class="post-data">
+							<div class="post-info">
+								<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
+								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+									<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
+								</a>
+							</div>
+							<div class="meta-data d-flex justify-content-between">
+								<p class="ml-auto">
+									<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
 
-							</p>
-							<p>/ <?=$counts?></p>
+								</p>
+								<p>/ <?= $counts ?></p>
+							</div>
 						</div>
-					</div>
 					<?php endforeach ?>
 					<hr class="separator">
 				</section>

@@ -16,13 +16,13 @@ class Posts extends CI_Controller
         $data['title'] = 'Latest Posts';
 
         $data['posts'] = $this->post_model->get_posts(false, $config['per_page'], $offset);
-        $post = $this->post_model->get_posts(false, $config['per_page'], $offset); 
+        $post = $this->post_model->get_posts(false, $config['per_page'], $offset);
         $data['latests'] = $this->post_model->get_recent_post();
         $results = $this->user_model->get_country($user_id);
-        foreach($results as $result) {
+        foreach ($results as $result) {
             $country = $result['country'];
         }
-        $data['peoples'] = $this->user_model->get_people_nearby($country);
+        // $data['peoples'] = $this->user_model->get_people_nearby($country);
 
         $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');

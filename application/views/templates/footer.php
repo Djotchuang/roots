@@ -1,4 +1,4 @@
-<div class="modal" id="chat_modal">
+<!-- <div class="modal" id="chat_modal">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<?php foreach ($profiles as $profile) : ?>
@@ -8,46 +8,46 @@
 			<?php endforeach; ?>
 			<div class="modal-body">
 				<!-- Chat Box-->
-				<div class="col-12 px-0">
-					<div id="chat_box" class="px-4 py-5 chat-box bg-white">
-						<!-- Sender Message-->
-						<div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
-							<div id="chat_area" class="media-body ml-3">
-								<div class="bg-light rounded py-2 px-3 mb-2">
-									<p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
-								</div>
-								<p class="small text-muted">12:00 PM | Aug 13</p>
-							</div>
-						</div>
-						<!-- Reciever Message-->
-						<div class="media w-50 ml-auto mb-3">
-							<div class="media-body">
-								<div class="bg-primary rounded py-2 px-3 mb-2">
-									<p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
-								</div>
-								<p class="small text-muted">12:00 PM | Aug 13</p>
-							</div>
-						</div>
-						<!-- Typing area -->
-						<form id="chat_form" class="bg-light">
-							<div class="input-group">
-								<input id="chat_msg_area" type="text" style="color:black;" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
-
-								<div class="input-group-append">
-									<button id="button-addon2" type="submit" class="btn btn-primary">
-										<ion-icon style="color:white !important; font-size:1.5em;" name="send-outline"></ion-icon>
-									</button>
-								</div>
-							</div>
-						</form>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-						</div>
-					</div>
+<div class="col-12 px-0">
+	<div id="chat_box" class="px-4 py-5 chat-box bg-white">
+		<!-- Sender Message-->
+		<div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+			<div id="chat_area" class="media-body ml-3">
+				<div class="bg-light rounded py-2 px-3 mb-2">
+					<p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
 				</div>
+				<p class="small text-muted">12:00 PM | Aug 13</p>
 			</div>
 		</div>
+		<!-- Reciever Message-->
+		<div class="media w-50 ml-auto mb-3">
+			<div class="media-body">
+				<div class="bg-primary rounded py-2 px-3 mb-2">
+					<p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+				</div>
+				<p class="small text-muted">12:00 PM | Aug 13</p>
+			</div>
+		</div>
+		<!-- Typing area -->
+		<form id="chat_form" class="bg-light">
+			<div class="input-group">
+				<input id="chat_msg_area" type="text" style="color:black;" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+
+				<div class="input-group-append">
+					<button id="button-addon2" type="submit" class="btn btn-primary">
+						<ion-icon style="color:white !important; font-size:1.5em;" name="send-outline"></ion-icon>
+					</button>
+				</div>
+			</div>
+		</form>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		</div>
 	</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -123,28 +123,41 @@
 
 		showComments();
 
-		// Show comments on click
-		$('.chat-data').hide();
+		// Show chats on click
 
-		$('.chats-title').click(function() {
-			var iteration = $(this).data('iteration') || 1
+		function showChats() {
+			let nchats = 200;
+			$('.chats-title h6 strong').text('Chats (' + nchats + ')');
+			$('.chats-title p').hide();
+			$('.chat-data').hide();
 
-			switch (iteration) {
-				case 1:
-					$('.chat-data').show();
-					$('.chat-data').css('{padding: 0}');
-					break;
+			$('.chats-title').click(function() {
+				var iteration = $(this).data('iteration') || 1
 
-				case 2:
-					$('.chat-data').hide();
-					break;
-			}
+				switch (iteration) {
+					case 1:
+						$('.chats-title h6 strong').text('Chats');
+						$('.chats-title p').show();
+						$('.chat-data').show();
+						$('.chat-data').css('{padding: 0}');
+						$('.chats-title').css('{margin-bottom: 0.5rem}');
+						break;
 
-			iteration++;
+					case 2:
+						$('.chats-title h6 strong').text('Chats (' + nchats + ')');
+						$('.chats-title p').hide();
+						$('.chat-data').hide();
+						break;
+				}
 
-			if (iteration > 2) iteration = 1
-			$(this).data('iteration', iteration)
-		});
+				iteration++;
+
+				if (iteration > 2) iteration = 1
+				$(this).data('iteration', iteration)
+			});
+		}
+
+		showChats();
 
 		// Handles likes
 		function likes() {
