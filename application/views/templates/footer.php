@@ -54,12 +54,35 @@
 </div>
 <script>
 	CKEDITOR.replace('editor1');
-</script>
+</script> 
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
 	$(document).ready(function() {
-
+		function getCommentsCount() {
+		$('.post-content').each(function() {
+			var post_id = $(this).find('.count_input').val();
+			$.ajax({
+				url: '<?=base_url()?>/comments/get_comments_count',
+				method: 'POST',
+				data: {post_id:post_id},
+				error: function(){
+					alert('hey');
+				},
+				success: function(data){
+					$('.count').html(data);
+				}
+			});
+		});
+		}
+		getCommentsCount();
+		function checkAvatar() {
+		var attrib = $('.avatar-image');
+		if ($('.avatar-image').attr('src') === '') {
+			attrib.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
+		}
+	}
+		checkAvatar();
 		// Disable search button and enable on keydown
 		$(".search-button").attr('disabled', true);
 
@@ -92,7 +115,6 @@
 		})
 	});
 
-	checkAvatar();
 	$image_crop = $('#image_demo').croppie({
 		enableExif: true,
 		viewport: {
@@ -142,36 +164,6 @@
 			});
 		});
      
-		$('#people_nearby_text').on('click', function peopleNearby(){
-			 var url = '<?=base_url()?>/users/people_nearby';
-				 $.ajax({
-                   url: url,
-				   type: 'GET',
-				   dataType: 'json',
-				   success: function(response) {
-					var html= response.avatar;
-				    html+= response.username;
-					   $('#people_nearby').append(html);
-				   }
-				 });
-		});
-	});
-
-	function checkAvatar() {
-		var avatar_image = $('.avatar-image').attr('src');
-		// var avatar_two = $('#avatar2').attr('src');
-		// var avatar_three = $('#avatar3').attr('src');
-		// var attrib = $('#avatar1');
-		// var attrib_two = $('#avatar2');
-		var attrib = $('.avatar-image');
-
-		if (avatar_image == '') {
-			attrib.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
-		}
-
-
-	}
-
 	$('#input-form').on('click', function() {
 		$('#search-submit').attr('disabled', false);
 	});
@@ -198,19 +190,13 @@
 					alert(chat_msg);
 				},
 				success: function(data) {
-					$('#button-addon2').attr('disabled', false);
-					var html = '<div class="bg-light rounded py-2 px-3 mb-2">';
-					html += '<p class="text-small mb-0 text-white">' + chat_msg + '</p>';
-					html += '</div>';
-					$('#chat_area').append(html);
-					$('#chat_box').scrollTop($('#chat_box')[0].scrollHeight);
-					$('#chat_msg_area').val('');
+					
 				}
 			});
 		} else {
 			alert('Chat is empty, Please Type Something in Chat box.');
 		}
 	});
+});
 </script>
 </body>
-

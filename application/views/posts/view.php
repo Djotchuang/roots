@@ -8,7 +8,7 @@
 
 <div class="row">
 	<div class="col-lg-9 col-md-12 post view-content">
-		<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
+		<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $post['post_image']; ?>">
 		<h4 class="post-title"><?php echo ucfirst($post['title']); ?></h4>
 		<hr class="separator">
 		<div class="meta-data">
@@ -28,7 +28,7 @@
 			</span>
 			<span>
 				<ion-icon name="chatbubbles-outline"></ion-icon>
-				<p>0 Comments </p>
+				<p><?=$counts?> </p>
 			</span>
 		</div>
 		<p><?php echo ucfirst($post['body']); ?></p>
@@ -104,21 +104,23 @@
 					<hr class="separator">
 				</section> <br>
 				<section class="latest-post">
-					<h5>Recent Posts</h5>
+				<h5>Recent Posts</h5>
+					<?php foreach($latests as $latest) : ?>
 					<div class="post-data">
 						<div class="post-info">
-							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
-							<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
-								<h6 class="post-title"><?php echo ucfirst($post['title']); ?></h6>
+							<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
+							<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+								<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
 							</a>
 						</div>
 						<div class="meta-data d-flex justify-content-between">
 							<p class="ml-auto">
-								<?php echo date("M d, Y", strtotime($post['created_at'])) . '&nbsp;'; ?>
+								<?php echo date("M d, Y", strtotime($latest['created_at'])) . '&nbsp;'; ?>
 							</p>
-							<p>/ 0 Comments</p>
+							<p>/ <?=$counts?></p>
 						</div>
 					</div>
+					<?php endforeach ?>
 					<hr class="separator">
 				</section>
 			</aside>

@@ -12,10 +12,17 @@ class Posts extends CI_Controller
 
         // Init Pagination
         $this->pagination->initialize($config);
-
+        $user_id = $this->session->userdata('user_id');
         $data['title'] = 'Latest Posts';
 
         $data['posts'] = $this->post_model->get_posts(false, $config['per_page'], $offset);
+        $post = $this->post_model->get_posts(false, $config['per_page'], $offset); 
+        $data['latests'] = $this->post_model->get_recent_post();
+        $results = $this->user_model->get_country($user_id);
+        foreach($results as $result) {
+            $country = $result['country'];
+        }
+        $data['peoples'] = $this->user_model->get_people_nearby($country);
 
         $this->load->view('templates/header');
         $this->load->view('posts/index', $data);
@@ -27,6 +34,8 @@ class Posts extends CI_Controller
         $data['post'] = $this->post_model->get_posts($slug);
         $post_id = $data['post']['pid'];
         $data['comments'] = $this->comment_model->get_comments($post_id);
+        $data['counts'] = $this->comment_model->get_single_comments_count($post_id);
+        $data['latests'] = $this->post_model->get_recent_post();
 
         if (empty($data['post'])) {
             show_404();
@@ -59,7 +68,7 @@ class Posts extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             // Upload Image
-            $config['upload_path'] = './assets/images/posts';
+            $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg|mp4';
             $config['max_size'] = '2048';
             $config['max_width'] = '2000';
@@ -69,7 +78,7 @@ class Posts extends CI_Controller
 
             if (!$this->upload->do_upload()) {
                 $errors = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('upload_error', 'Failed to upload. This may be an internet error or your file size and/or dimensions');
+                $this->session->set_flashdata('upload_error', 'Failed to upload. This may be an internet error or your file size and/or dimensions. Please choose another file and try again.');
                 redirect('posts/create');
             } else {
 
@@ -92,13 +101,13 @@ class Posts extends CI_Controller
 
             $this->post_model->create_post($post_image);
 
+            $this->session->set_flashdata('post_created', 'Created a post at');
             // Set message
             $this->session->set_flashdata('post_created', 'Your post has been created');
 
             redirect('posts');
         }
     }
-
     public function delete($id)
     {
         // Check login

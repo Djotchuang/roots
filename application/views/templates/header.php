@@ -32,7 +32,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url(); ?>posts">
+                <a class="nav-link" href="<?php echo base_url(); ?>posts/">
                   <ion-icon name="duplicate-outline"></ion-icon>
                   <p>Newsfeed</p>
                 </a>

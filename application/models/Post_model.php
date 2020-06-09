@@ -25,6 +25,13 @@ class Post_model extends CI_Model
 		$query = $this->db->get_where('posts', array('slug' => $slug));
 		return $query->row_array();
 	}
+	
+	public function get_recent_post() {
+		$this->db->order_by('posts.pid', 'DESC');
+		$this->db->limit(5);
+		$query = $this->db->get('posts');
+		return $query->result_array();
+	}
 
 	public function create_post($post_image)
 	{

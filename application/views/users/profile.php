@@ -1,25 +1,25 @@
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-8 push-lg-4">
-            <?php foreach ($profiles as $profile) : ?>
+            <?php foreach ($profiles as $profile): ?>
                 <br>
-                <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
+                <?php if ($this->session->userdata('user_id') == $profile['id']): ?>
                     <h3 class="profile-heading"><strong>My Profile</strong></h3>
-                <?php else : ?>
-                    <h5 class="profile-heading"><strong><?= ucfirst($profile['username']); ?>'s Profile</strong></h5>
-                <?php endif; ?>
+                <?php else: ?>
+                    <h5 class="profile-heading"><strong><?=ucfirst($profile['username']);?>'s Profile</strong></h5>
+                <?php endif;?>
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a href="" data-target="#profile" data-toggle="tab" class="nav-link active" id="nav-link">Profile</a>
                     </li>
-                    <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
+                    <?php if ($this->session->userdata('user_id') == $profile['id']): ?>
                         <li class="nav-item">
                             <a href="" data-target="#messages" data-toggle="tab" class="nav-link" id="nav-link">Messages</a>
                         </li>
                         <li class="nav-item">
                             <a href="" data-target="#edit" data-toggle="tab" class="nav-link" id="nav-link">Edit</a>
                         </li>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </ul>
                 <div class="tab-content p-b-3">
                     <div class="tab-pane active" id="profile">
@@ -27,49 +27,26 @@
                             <div class="col-md-12">
                                 <h5>About</h5>
                                 <p>
-                                    <?= $profile['aboutme']; ?>
+                                    <?=$profile['aboutme'];?>
                                 </p>
                                 <h5>Hobbies</h5>
                                 <p>
-                                    <?= $profile['hobbies']; ?>
+                                    <?=$profile['hobbies'];?>
                                 </p>
-                                <table class="table table-hover table-striped">
                                     <h5>Recent Activity</h5>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    <?php if ($this->session->flashdata('post_created')): ?>
+                                    <div class="alert alert-danger fade show" role="alert">
+                                    <?php echo $this->session->flashdata('post_created'); ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <?php endif;?>
                             </div>
                         </div>
                         <!--/row-->
                     </div>
-                    <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
+                    <?php if ($this->session->userdata('user_id') == $profile['id']): ?>
                         <div class="tab-pane" id="messages">
                             <h5>Recent Messages &amp; Notifications</h5>
                             <!-- <div class="alert alert-info alert-dismissable">
@@ -102,61 +79,61 @@
                         </div>
                         <div class="tab-pane" id="edit">
                             <h4 class="m-y-2">Edit Profile</h4>
-                            <?= form_open('users/update'); ?>
+                            <?=form_open('users/update');?>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Name</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="name" value="<?= $profile['name'] ?>">
+                                    <input class="form-control" type="text" name="name" value="<?=$profile['name']?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="email" name="email" value="<?= $profile['email'] ?>" required>
+                                    <input class="form-control" type="email" name="email" value="<?=$profile['email']?>" required>
                                     <div class="help-block"></div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Occupation</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="occupation" value="<?= $profile['occupation'] ?>">
+                                    <input class="form-control" type="text" name="occupation" value="<?=$profile['occupation']?>">
                                     <div class="help-block"></div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Address</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="address" value="<?= $profile['address'] ?>" placeholder="Street">
+                                    <input class="form-control" type="text" name="address" value="<?=$profile['address']?>" placeholder="Street">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label"></label>
                                 <div class="col-lg-3">
-                                    <input class="form-control" type="text" name="country" value="<?= $profile['country'] ?>" placeholder="Country">
+                                    <input class="form-control" type="text" name="country" value="<?=$profile['country']?>" placeholder="Country">
                                 </div>
                                 <div class="col-lg-3">
-                                    <input class="form-control" type="text" name="city" value="<?= $profile['city'] ?>" placeholder="City">
+                                    <input class="form-control" type="text" name="city" value="<?=$profile['city']?>" placeholder="City">
                                 </div>
                                 <div class="col-lg-3">
-                                    <input class="form-control" type="text" name="state" value="<?= $profile['state'] ?>" placeholder="State">
+                                    <input class="form-control" type="text" name="state" value="<?=$profile['state']?>" placeholder="State">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">About Me</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="aboutme" placeholder="Write something you want others to see." value="<?= $profile['aboutme'] ?>">
+                                    <input class="form-control" type="text" name="aboutme" placeholder="Write something you want others to see." value="<?=$profile['aboutme']?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Hobbies</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="hobbies" placeholder="Write something you want others to see." value="<?= $profile['hobbies'] ?>">
+                                    <input class="form-control" type="text" name="hobbies" placeholder="Write something you want others to see." value="<?=$profile['hobbies']?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
                                 <div class="col-lg-9">
-                                    <select id="user_time_zone" name="timezone" class="form-control" size="0" value="<?= $profile['timezone'] ?>">
+                                    <select id="user_time_zone" name="timezone" class="form-control" size="0" value="<?=$profile['timezone']?>">
                                         <option value="Hawaii">(GMT-10:00) Hawaii</option>
                                         <option value="Alaska">(GMT-09:00) Alaska</option>
                                         <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
@@ -171,7 +148,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Username</label>
                                 <div class="col-lg-9">
-                                    <input class="form-control" type="text" name="username" value="<?= $profile['username'] ?>">
+                                    <input class="form-control" type="text" name="username" value="<?=$profile['username']?>">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -189,25 +166,25 @@
                             </div>
                             </form>
                         </div>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </div>
         </div>
         <div class="col-lg-4 pull-lg-8 text-xs-center profile">
-            <img src="<?= $profile['avatar']; ?>" class="m-x-auto img-fluid img-thumbnail avatar avatar-image" alt="avatar">
-            <?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
-                <?= form_open_multipart('users/upload') ?>
+            <img src="<?=$profile['avatar'];?>" class="m-x-auto img-fluid img-thumbnail avatar avatar-image" alt="avatar">
+            <?php if ($this->session->userdata('user_id') == $profile['id']): ?>
+                <?=form_open_multipart('users/upload')?>
                 <label class="upload-file">
                     <input type="file" name="userfile" size="20" id="insert_image" class="form-group btn btn-primary">
                 </label>
                 </form>
-            <?php else : ?>
-                <button name="<?= $profile['username']; ?>" id="msg_btn" class="btn btn-primary">Send
-                    <span><?= $profile['username']; ?></span> a Message
+            <?php else: ?>
+                <button name="<?=$profile['username'];?>" id="msg_btn" class="btn btn-primary">Send
+                    <span><?=$profile['username'];?></span> a Message
                     <ion-icon name="mail-outline"></ion-icon>
                 </button>
-            <?php endif; ?>
+            <?php endif;?>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach;?>
 
     <div class="modal" id="insertimageModal">
         <div class="modal-dialog" role="document">
