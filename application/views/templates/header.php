@@ -70,27 +70,29 @@
                 </li>
               <?php endif; ?>
               <?php if ($this->session->userdata('logged_in')) : ?>
-                <li class="nav-item">
-                  <a class="nav-link" title="Create Post" href="<?php echo base_url(); ?>posts/create">
-                    <ion-icon name="create-outline"></ion-icon>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" title="Add a Country" href="<?php echo base_url(); ?>countries/create">
-                    <ion-icon name="notifications-outline"></ion-icon>
-                  </a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" title="Account" id="profile-icon" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="<?= base_url() ?>users/profile">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo base_url(); ?>users/logout">Logout</a>
-                  </div>
-                </li>
+                <div class="nav-icons">
+                  <li class="nav-item">
+                    <a class="nav-link" title="Create Post" href="<?php echo base_url(); ?>posts/create">
+                      <ion-icon name="create-outline"></ion-icon>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" title="Add a Country" href="<?php echo base_url(); ?>countries/create">
+                      <ion-icon name="notifications-outline"></ion-icon>
+                    </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" title="Account" id="profile-icon" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                    </a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="<?= base_url() ?>users/profile">Profile</a>
+                      <a class="dropdown-item" href="#">Settings</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="<?php echo base_url(); ?>users/logout">Logout</a>
+                    </div>
+                  </li>
+                </div>
               <?php endif; ?>
             </div>
           </ul>

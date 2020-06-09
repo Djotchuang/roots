@@ -23,6 +23,22 @@ body {
   background-color: #f9f9f9;
 }
 
+.btn:focus,
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+[type="text"].form-control:focus,
+[type="password"].form-control:focus,
+[type="email"].form-control:focus,
+[type="tel"].form-control:focus,
+[contenteditable].form-control:focus {
+  box-shadow: none;
+}
+
 a {
   text-decoration: none !important;
 }
@@ -106,6 +122,10 @@ textarea {
 }
 
 .nav-link {
+  display: inline-flex;
+}
+
+.nav-icons {
   display: inline-flex;
 }
 
@@ -276,6 +296,10 @@ textarea {
   margin-bottom: 1rem;
 }
 
+.reset_password small {
+  color: tomato;
+}
+
 /* Country */
 
 .country-index {
@@ -355,7 +379,7 @@ textarea {
 .post-content h4 {
   color: #212529;
   margin-bottom: 2rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.5rem;
 }
 
@@ -533,7 +557,7 @@ textarea {
 
 .view-content h4 {
   color: #212529;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .view-content p {
@@ -638,6 +662,7 @@ textarea {
   position: relative;
   outline: none;
   border: none;
+  border-radius: 50px;
 }
 
 .index-comment2 .btn {
@@ -646,6 +671,10 @@ textarea {
   top: -1;
   color: #7b8a8b;
   position: absolute;
+}
+
+.index-comment2 .btn:hover {
+  color: #212529;
 }
 
 /* Profile */
@@ -661,6 +690,11 @@ textarea {
 .tab-pane .profile-heading,
 .tab-pane h5 {
   margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+td {
+  font-size: 1rem;
 }
 
 .avatar {
@@ -764,22 +798,42 @@ textarea {
     margin-top: 0 !important;
   }
 
-  .nav2 .nav-link ion-icon {
+  /* .nav2 .nav-link ion-icon {
     margin-top: auto;
   }
 
   .navdiv {
     margin: 0 auto;
-  }
+  } */
 
   .nav1 .nav-item,
   .nav2 .nav-item {
     margin-right: 1rem;
   }
 
-  #search-form {
-    margin: 0 auto;
+  .nav1 {
+    margin-bottom: 0.5rem;
   }
+
+  .nav2 {
+    margin-top: -0.5rem;
+  }
+
+  .nav1 .nav-item a * {
+    margin: 4px;
+  }
+
+  .nav1 .nav-item a ion-icon {
+    margin-top: 8px;
+  }
+
+  .nav1 .nav-item a * {
+    margin-left: 4px;
+  }
+
+  /* #search-form {
+    margin: 0 auto;
+  } */
 
   #search-form input {
     border-radius: 1px;
@@ -837,9 +891,8 @@ textarea {
     display: block;
   }
 
-  .nav1 li,
-  .nav2 li {
-    display: inline-flex;
+  .nav1 .nav-link {
+    padding-bottom: 0;
   }
 
   #search-form input {
