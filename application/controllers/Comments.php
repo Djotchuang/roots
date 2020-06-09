@@ -17,5 +17,10 @@ class Comments extends CI_Controller
 			$this->load->helper('timeelapsed_helper');
 			redirect('posts/' . $slug);
 		}
+
+		public function get_comments_count(){
+			$id = $_POST["post_id"];
+			$data = $this->comment_model->get_comments_count($id);
+			echo $data;
+		}
 	}
-}

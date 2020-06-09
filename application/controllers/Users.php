@@ -286,6 +286,7 @@ class Users extends CI_Controller
         }
         echo json_encode($output);
     }
+
     function recent_activities(){
         $data['posts'] = $this->post_model->get_activities();
     }

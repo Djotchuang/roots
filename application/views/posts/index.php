@@ -72,6 +72,7 @@
 						<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
 							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 						</a>
+
 					</div>
 					<div class="col-md-7 post-content">
 						<div class="post-top mb-2 d-flex justify-content-between">
@@ -204,21 +205,26 @@
 				<?php endif; ?>
 				<section class="latest-post">
 					<h5>Recent Posts</h5>
-					<div class="post-data">
-						<div class="post-info">
-							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
-							<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
-								<h6 class="post-title"><?php echo ucfirst($post['title']); ?></h6>
-							</a>
+					<?php foreach ($latests as $latest) : ?>
+						<div class="post-data">
+							<div class="post-info">
+								<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
+								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+									<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
+								</a>
+							</div>
+							<div class="meta-data d-flex justify-content-between">
+								<p class="ml-auto">
+
+									<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
+
+								</p>
+								<input value="<?= $post['pid'] ?>" type="hidden" class="count_input">
+								<p><span class="count"></span></p>
+							</div>
+							<hr class="separator">
 						</div>
-						<div class="meta-data d-flex justify-content-between">
-							<p class="ml-auto">
-								<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
-							</p>
-							<p>/ 0 Comments</p>
-						</div>
-						<hr class="separator">
-					</div>
+					<?php endforeach; ?>
 				</section>
 			</aside>
 		</div>

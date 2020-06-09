@@ -178,21 +178,24 @@
 					</section> <br>
 				<?php endif; ?>
 				<section class="latest-post">
-					<h5>Recent Posts</h5>
+				<h5>Recent Posts</h5>
+					<?php foreach($latests as $latest) : ?>
 					<div class="post-data">
 						<div class="post-info">
-							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
-							<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
-								<h6 class="post-title"><?php echo ucfirst($post['title']); ?></h6>
+							<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
+							<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+								<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
 							</a>
 						</div>
 						<div class="meta-data d-flex justify-content-between">
 							<p class="ml-auto">
 								<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
+
 							</p>
-							<p>/ 0 Comments</p>
+							<p>/ <?=$counts?></p>
 						</div>
 					</div>
+					<?php endforeach ?>
 					<hr class="separator">
 				</section>
 			</aside>

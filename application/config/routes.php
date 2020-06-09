@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+$route['users/people_nearby'] = 'users/people_nearby';
+$route['comments/get_comments_count'] = 'comments/get_comments_count';
 $route['default_controller'] = 'pages/view';
 $route['posts/index'] = 'posts/index';
 $route['posts/create'] = 'posts/create';
