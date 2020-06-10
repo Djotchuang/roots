@@ -4,6 +4,8 @@
 	</div>
 </div>
 <div class="row">
+
+	<!-- Sidebar -->
 	<div class="col-lg-2 col-md-12 sidebar1">
 		<div class="sticky-top">
 			<div class="post-div1">
@@ -37,6 +39,7 @@
 		</div>
 	</div>
 
+	<!-- Chats -->
 	<?php if ($this->session->userdata('logged_in')) : ?>
 		<div class="sidebar-chats">
 			<div class="chats-title">
@@ -46,25 +49,125 @@
 			</div>
 			<div class="chat-data">
 				<h6><strong>CONTACTS</strong></h6>
-				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
-					<img src="" class="image avatar-image" alt="user profile image">
-					<p><?php echo ellipsize('Karl Djotchuang Tamo', 20); ?></p>
+				<div class="d-flex my-0" href="#">
+					<span class="d-flex">
+						<img src="" class="image avatar-image" alt="user profile image">
+						<p><?php echo ellipsize('Karl Djotchuang Tamo', 20); ?></p>
+					</span>
 					<span class="circle ml-auto"></span>
-				</a>
-				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
-					<img src="" class="image avatar-image" alt="user profile image">
-					<p><?php echo ellipsize('Djotchuang Tamo', 20); ?></p>
+				</div>
+				<div class="d-flex my-0" href="#">
+					<span class="d-flex">
+						<img src="" class="image avatar-image" alt="user profile image">
+						<p><?php echo ellipsize('Djotchuang Tamo', 20); ?></p>
+					</span>
 					<span class="circle ml-auto"></span>
-				</a>
-				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
-					<img src="" class="image avatar-image" alt="user profile image">
-					<p><?php echo ellipsize('username', 20); ?></p>
+				</div>
+				<div class="d-flex my-0" href="#">
+					<span class="d-flex">
+						<img src="" class="image avatar-image" alt="user profile image">
+						<p><?php echo ellipsize('username', 20); ?></p>
+					</span>
 					<span class="circle ml-auto"></span>
-				</a>
+				</div>
 			</div>
 		</div>
 	<?php endif; ?>
 
+	<!-- Chat Box -->
+	<div class="page-content page-container" id="page-content">
+		<div class="padding">
+			<div class="row container d-flex justify-content-center">
+				<div class="">
+					<div class="card card-bordered">
+						<div class="card-header">
+							<a href="<?= base_url() ?>users/profile" class="d-flex">
+								<h4 class="card-title"><strong><?php echo ellipsize(ucwords('karl djotchuang tamo'), 20); ?></strong></h4>
+								<span class="rounded"></span>
+							</a>
+							<small class="close">X</small>
+						</div>
+						<div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
+							<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+								<div class="media-body">
+									<p>Hi</p>
+									<p>How are you ...???</p>
+									<p>What are you doing tomorrow?<br> Can we come up a bar?</p>
+									<p class="meta"><time datetime="2018">23:58</time></p>
+								</div>
+							</div>
+							<div class="media media-meta-day">Today</div>
+							<div class="media media-chat media-chat-reverse">
+								<div class="media-body">
+									<p>Hiii, I'm good.</p>
+									<p>How are you doing?</p>
+									<p>Long time no see! Tomorrow office. will be free on sunday.</p>
+									<p class="meta"><time datetime="2018">00:06</time></p>
+								</div>
+							</div>
+							<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+								<div class="media-body">
+									<p>Okay</p>
+									<p>We will go on sunday? </p>
+									<p class="meta"><time datetime="2018">00:07</time></p>
+								</div>
+							</div>
+							<div class="media media-chat media-chat-reverse">
+								<div class="media-body">
+									<p>That's awesome!</p>
+									<p>I will meet you Sandon Square sharp at 10 AM</p>
+									<p>Is that okay?</p>
+									<p class="meta"><time datetime="2018">00:09</time></p>
+								</div>
+							</div>
+							<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+								<div class="media-body">
+									<p>Okay i will meet you on Sandon Square </p>
+									<p class="meta"><time datetime="2018">00:10</time></p>
+								</div>
+							</div>
+							<div class="media media-chat media-chat-reverse">
+								<div class="media-body">
+									<p>Do you have pictures of Matley Marriage?</p>
+									<p class="meta"><time datetime="2018">00:10</time></p>
+								</div>
+							</div>
+							<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+								<div class="media-body">
+									<p>Sorry I don't have. i changed my phone.</p>
+									<p class="meta"><time datetime="2018">00:12</time></p>
+								</div>
+							</div>
+							<div class="media media-chat media-chat-reverse">
+								<div class="media-body">
+									<p>Okay then see you on sunday!!</p>
+									<p class="meta"><time datetime="2018">00:12</time></p>
+								</div>
+							</div>
+							<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+								<div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+							</div>
+							<div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;">
+								<div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
+							</div>
+							<div id="write" class="publisher bt-1 border-light">
+								<img class="chatbox-avatar avatar-xs" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+								<input class="publisher-input" type="text" placeholder="Write something">
+								<span class="publisher-btn file-group text-info">
+									<i class="fa fa-paperclip file-browser"></i> <input type="file">
+								</span>
+								<a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
+								<a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-paper-plane"></i></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Posts Section -->
 	<div class="col-lg-7 col-md-12">
 		<div class="post-div2">
 			<?php foreach ($posts as $post) : ?>
@@ -218,7 +321,7 @@
 								<p class="ml-auto">
 									<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
 								</p>
-								<input value="<?= $post['pid'] ?>" type="hidden" class="count_input">
+								<input value="<?= $post['pid']; ?>" type="hidden" class="count_input">
 								<p><span class="count"></span></p>
 							</div>
 							<hr class="separator">

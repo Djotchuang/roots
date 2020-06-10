@@ -124,7 +124,6 @@
 		showComments();
 
 		// Show chats on click
-
 		function showChats() {
 			let nchats = 200;
 			$('.chats-title h6 strong').text('Chats (' + nchats + ')');
@@ -158,6 +157,57 @@
 		}
 
 		showChats();
+
+		// Show chats on click
+		function showChatBox() {
+			$('#page-content').hide();
+			$('.chat-data span.d-flex').click(function() {
+				$('#page-content').show();
+				// $('.close').hide();
+				$('#page-content').scrollTop($('#page-content')[0].scrollHeight);
+			});
+		}
+
+		showChatBox();
+
+		// Show specific chat on click
+		function showSpecificChat() {
+			// Close button to close chat session
+			$('.close').click(function() {
+				$('#page-content').hide();
+			});
+
+			$('.card-header').click(function() {
+				var iteration = $(this).data('iteration') || 1
+
+				switch (iteration) {
+					case 1:
+						$('#chat-content').hide();
+						$('.card-header').css("padding", "0.35rem 1rem");
+						$('.card').css({
+							'border-top-left-radius': '8px',
+							'border-top-right-radius': '8px',
+							'width': '15rem'
+						});
+						break;
+
+					case 2:
+						$('#chat-content').show();
+						// $('#write').show();
+						$('.card').css({
+							'width': 'auto'
+						});
+						break;
+				}
+
+				iteration++;
+
+				if (iteration > 2) iteration = 1
+				$(this).data('iteration', iteration)
+			});
+		}
+
+		showSpecificChat();
 
 		// Handles likes
 		function likes() {
