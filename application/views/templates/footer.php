@@ -98,6 +98,13 @@
 
 				let index_comment = $(this).find(".index-comment");
 
+				// $(index_comment_details).scroll(function() {
+				// 	$(this).find(".index-comment2").css({
+				// 		'position': 'fixed',
+				// 		'top': '0'
+				// 	});
+				// });
+
 				index_comment.click(function() {
 
 					var iteration = $(this).data('iteration') || 1
@@ -105,7 +112,7 @@
 					switch (iteration) {
 						case 1:
 							index_comment_details.show();
-							index_comment_details.scrollTop($('.index-comment-details')[0].scrollHeight);
+							index_comment_details.scrollTop($(index_comment_details).height());
 							break;
 
 						case 2:
@@ -163,8 +170,13 @@
 			$('#page-content').hide();
 			$('.chat-data span.d-flex').click(function() {
 				$('#page-content').show();
-				// $('.close').hide();
-				$('#page-content').scrollTop($('#page-content')[0].scrollHeight);
+
+				var $container = $('#chat-content'),
+					$scrollTo = $('#write');
+
+				$container.scrollTop(
+					$scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+				);
 			});
 		}
 
@@ -173,7 +185,7 @@
 		// Show specific chat on click
 		function showSpecificChat() {
 			// Close button to close chat session
-			$('.close').click(function() {
+			$('.closeBtn').click(function() {
 				$('#page-content').hide();
 			});
 
@@ -183,6 +195,7 @@
 				switch (iteration) {
 					case 1:
 						$('#chat-content').hide();
+						$('#write').hide();
 						$('.card-header').css("padding", "0.35rem 1rem");
 						$('.card').css({
 							'border-top-left-radius': '8px',
@@ -193,7 +206,7 @@
 
 					case 2:
 						$('#chat-content').show();
-						// $('#write').show();
+						$('#write').show();
 						$('.card').css({
 							'width': 'auto'
 						});
