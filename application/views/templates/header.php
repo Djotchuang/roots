@@ -11,6 +11,7 @@
   <script src="<?= base_url() ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="<?= base_url() ?>assets/js/main.js" type="text/javascript"></script>
   <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+  <script src="https://kit.fontawesome.com/ea1c3344cf.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

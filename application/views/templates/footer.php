@@ -1,4 +1,4 @@
-<div class="modal" id="chat_modal">
+<!-- <div class="modal" id="chat_modal">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<?php foreach ($profiles as $profile) : ?>
@@ -8,60 +8,58 @@
 			<?php endforeach; ?>
 			<div class="modal-body">
 				<!-- Chat Box-->
-				<div class="col-12 px-0">
-					<div id="chat_box" class="px-4 py-5 chat-box bg-white">
-						<!-- Sender Message-->
-						<div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
-							<div id="chat_area" class="media-body ml-3">
-								<div class="bg-light rounded py-2 px-3 mb-2">
-									<p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
-								</div>
-								<p class="small text-muted">12:00 PM | Aug 13</p>
-							</div>
-						</div>
-						<!-- Reciever Message-->
-						<div class="media w-50 ml-auto mb-3">
-							<div class="media-body">
-								<div class="bg-primary rounded py-2 px-3 mb-2">
-									<p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
-								</div>
-								<p class="small text-muted">12:00 PM | Aug 13</p>
-							</div>
-						</div>
-						<!-- Typing area -->
-						<form id="chat_form" class="bg-light">
-							<div class="input-group">
-								<input id="chat_msg_area" type="text" style="color:black;" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
-
-								<div class="input-group-append">
-									<button id="button-addon2" type="submit" class="btn btn-primary">
-										<ion-icon style="color:white !important; font-size:1.5em;" name="send-outline"></ion-icon>
-									</button>
-								</div>
-							</div>
-						</form>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-						</div>
-					</div>
+<div class="col-12 px-0">
+	<div id="chat_box" class="px-4 py-5 chat-box bg-white">
+		<!-- Sender Message-->
+		<div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+			<div id="chat_area" class="media-body ml-3">
+				<div class="bg-light rounded py-2 px-3 mb-2">
+					<p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
 				</div>
+				<p class="small text-muted">12:00 PM | Aug 13</p>
 			</div>
 		</div>
+		<!-- Reciever Message-->
+		<div class="media w-50 ml-auto mb-3">
+			<div class="media-body">
+				<div class="bg-primary rounded py-2 px-3 mb-2">
+					<p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+				</div>
+				<p class="small text-muted">12:00 PM | Aug 13</p>
+			</div>
+		</div>
+		<!-- Typing area -->
+		<form id="chat_form" class="bg-light">
+			<div class="input-group">
+				<input id="chat_msg_area" type="text" style="color:black;" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+
+				<div class="input-group-append">
+					<button id="button-addon2" type="submit" class="btn btn-primary">
+						<ion-icon style="color:white !important; font-size:1.5em;" name="send-outline"></ion-icon>
+					</button>
+				</div>
+			</div>
+		</form>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		</div>
 	</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
 </div>
 <script>
 	CKEDITOR.replace('editor1');
-
 </script>
-
-
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
 	$(document).ready(function() {
+
 		// function getCommentsCount() {
 		// $('.post-content').each(function() {
 		// 	var post_id = $(this).find('.count_input').val();
@@ -84,7 +82,6 @@
 
 		$(".search-input").keypress(function() {
 			$(".search-button").attr('disabled', false);
-
 		});
 
 		// Hide comment and show when comment-heading is clicked
@@ -111,25 +108,68 @@
 		});
 
 		// Hide comment and show when comment div is clicked on index page
-    function showComments() {
-		$('.post-content').each(function() {
-			let index_comment_details = $(this).find(".index-comment-details");
-			index_comment_details.hide();
+		function showComments() {
+			$('.post-content').each(function() {
+				let index_comment_details = $(this).find(".index-comment-details");
+				index_comment_details.hide();
 
-			let index_comment = $(this).find(".index-comment");
+				let index_comment = $(this).find(".index-comment");
 
-			index_comment.click(function() {
+				// $(index_comment_details).scroll(function() {
+				// 	$(this).find(".index-comment2").css({
+				// 		'position': 'fixed',
+				// 		'top': '0'
+				// 	});
+				// });
 
+				index_comment.click(function() {
+
+					var iteration = $(this).data('iteration') || 1
+
+					switch (iteration) {
+						case 1:
+							index_comment_details.show();
+							index_comment_details.scrollTop($(index_comment_details).height());
+							break;
+
+						case 2:
+							index_comment_details.hide();
+							break;
+					}
+
+					iteration++;
+
+					if (iteration > 2) iteration = 1
+					$(this).data('iteration', iteration)
+				});
+			});
+		}
+
+		showComments();
+
+		// Show chats on click
+		function showChats() {
+			let nchats = 200;
+			$('.chats-title h6 strong').text('Chats (' + nchats + ')');
+			$('.chats-title p').hide();
+			$('.chat-data').hide();
+
+			$('.chats-title').click(function() {
 				var iteration = $(this).data('iteration') || 1
 
 				switch (iteration) {
 					case 1:
-						index_comment_details.show();
-						index_comment_details.scrollTop($('.index-comment-details')[0].scrollHeight);
+						$('.chats-title h6 strong').text('Chats');
+						$('.chats-title p').show();
+						$('.chat-data').show();
+						$('.chat-data').css('{padding: 0}');
+						$('.chats-title').css('{margin-bottom: 0.5rem}');
 						break;
 
 					case 2:
-						index_comment_details.hide();
+						$('.chats-title h6 strong').text('Chats (' + nchats + ')');
+						$('.chats-title p').hide();
+						$('.chat-data').hide();
 						break;
 				}
 
@@ -138,10 +178,66 @@
 				if (iteration > 2) iteration = 1
 				$(this).data('iteration', iteration)
 			});
-		});
-    }
-   showComments();
+		}
 
+		showChats();
+
+		// Show chats on click
+		function showChatBox() {
+			$('#page-content').hide();
+			$('.chat-data span.d-flex').click(function() {
+				$('#page-content').show();
+
+				var $container = $('#chat-content'),
+					$scrollTo = $('#write');
+
+				$container.scrollTop(
+					$scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+				);
+			});
+		}
+
+		showChatBox();
+
+		// Show specific chat on click
+		function showSpecificChat() {
+			// Close button to close chat session
+			$('.closeBtn').click(function() {
+				$('#page-content').hide();
+			});
+
+			$('.card-header').click(function() {
+				var iteration = $(this).data('iteration') || 1
+
+				switch (iteration) {
+					case 1:
+						$('#chat-content').hide();
+						$('#write').hide();
+						$('.card-header').css("padding", "0.35rem 1rem");
+						$('.card').css({
+							'border-top-left-radius': '8px',
+							'border-top-right-radius': '8px',
+							'width': '15rem'
+						});
+						break;
+
+					case 2:
+						$('#chat-content').show();
+						$('#write').show();
+						$('.card').css({
+							'width': 'auto'
+						});
+						break;
+				}
+
+				iteration++;
+
+				if (iteration > 2) iteration = 1
+				$(this).data('iteration', iteration)
+			});
+		}
+
+		showSpecificChat();
 
 		// Handles likes
 		function likes() {
@@ -171,6 +267,9 @@
 		}
 
 		likes();
+
+		// Check Avatars
+
 		function checkAvatar($parentDiv) {
 			var avatar_image = $($parentDiv).find('.avatar-image')
 			var attrib = avatar_image.attr('src');
@@ -193,11 +292,13 @@
 				// console.log(attrib);
 			});
 		}
-    checkMultipleAvatar('.view-content');
+
+		checkMultipleAvatar('.view-content');
 		checkMultipleAvatar('.profile');
 		checkMultipleAvatar('.post-content');
 		checkMultipleAvatar('.nearby-sidebar');
 		checkAvatar('.sidebar1');
+		checkAvatar('.sidebar-chats');
 
 		$image_crop = $('#image_demo').croppie({
 			enableExif: true,
@@ -251,7 +352,6 @@
 		});
 	});
 
-
 	$('#input-form').on('click', function() {
 		$('#search-submit').attr('disabled', false);
 	});
@@ -278,7 +378,13 @@
 					alert(chat_msg);
 				},
 				success: function(data) {
-					
+					$('#button-addon2').attr('disabled', false);
+					var html = '<div class="bg-light rounded py-2 px-3 mb-2">';
+					html += '<p class="text-small mb-0 text-white">' + chat_msg + '</p>';
+					html += '</div>';
+					$('#chat_area').append(html);
+					$('#chat_box').scrollTop($('#chat_box')[0].scrollHeight);
+					$('#chat_msg_area').val('');
 				}
 			});
 		} else {
