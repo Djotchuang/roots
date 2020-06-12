@@ -1,6 +1,6 @@
 <div class="page-title">
 	<div class="container">
-		<h2><?= $title ?></h2>
+		<h2><?=$title?></h2>
 	</div>
 </div>
 <div class="row">
@@ -36,6 +36,7 @@
 					<p>Countries</p>
 				</a>
 			</div>
+
 		</div>
 	</div>
 
@@ -163,7 +164,7 @@
 	<!-- Posts Section -->
 	<div class="col-lg-7 col-md-12">
 		<div class="post-div2">
-			<?php foreach ($posts as $post) : ?>
+			<?php foreach ($posts as $post): ?>
 				<div class="row">
 					<div class="col-md-5">
 						<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
@@ -241,12 +242,12 @@
 									<p>Karl is doing this just to test</p>
 								</span>
 							</div>
-							<?php if ($this->session->userdata('logged_in')) : ?>
+							<?php if ($this->session->userdata('logged_in')): ?>
 								<div class="form-group index-comment2">
 									<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="comment"></textarea>
 									<button class="btn float-right" type="submit">post</button>
 								</div>
-							<?php endif; ?>
+							<?php endif;?>
 						</div>
 						<hr class="separator">
 
@@ -268,7 +269,7 @@
 					</div>
 				</div>
 				<hr class="separator"><br>
-			<?php endforeach; ?>
+			<?php endforeach;?>
 			<div class="pagination-links">
 				<?php echo $this->pagination->create_links(); ?>
 			</div>
@@ -281,7 +282,7 @@
 			<br>
 			<aside class="sidebar">
 				<section class="search-bar">
-					<form action="<?= base_url(); ?>users/fetch" method="post" class="form-inline">
+					<form action="<?=base_url();?>users/fetch" method="post" class="form-inline">
 						<input name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search">
 						<button class="search-button" id="search-bar-btn" type="submit">
 							<ion-icon name="search-outline"></ion-icon>
@@ -320,6 +321,7 @@
 							<hr class="separator">
 						</div>
 					<?php endforeach; ?>
+
 				</section>
 			</aside>
 		</div>

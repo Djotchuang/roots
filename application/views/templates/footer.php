@@ -60,6 +60,23 @@
 <script>
 	$(document).ready(function() {
 
+		// function getCommentsCount() {
+		// $('.post-content').each(function() {
+		// 	var post_id = $(this).find('.count_input').val();
+		// 	$.ajax({
+		// 		url: '<?=base_url()?>/comments/get_comments_count',
+		// 		method: 'POST',
+		// 		data: {post_id:post_id},
+		// 		error: function(){
+		// 			alert('hey');
+		// 		},
+		// 		success: function(data){
+		// 			$('.count').html(data);
+		// 		}
+		// 	});
+		// });
+		// }
+		// getCommentsCount();
 		// Disable search button and enable on keydown
 		$(".search-button").attr('disabled', true);
 

@@ -71,13 +71,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | the query builder class.
 */
 $active_group = 'default';
-$query_builder = TRUE;
+$query_buil>>>>>>> aster
+83
+der = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'joa..',
 	'database' => 'roots',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
