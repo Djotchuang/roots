@@ -22,7 +22,7 @@ class Posts extends CI_Controller
         foreach($results as $result) {
             $country = $result['country'];
         }
-        $data['peoples'] = $this->user_model->get_people_nearby($country);
+        // $data['peoples'] = $this->user_model->get_people_nearby($country);
 
         $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');

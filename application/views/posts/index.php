@@ -1,17 +1,17 @@
 <div class="page-title">
 	<div class="container">
-		<h2><?= $title ?></h2>
+		<h2><?=$title?></h2>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-2 col-md-12 sidebar1">
 		<div class="post-div1 sticky-top">
-			<?php if ($this->session->userdata('logged_in')) : ?>
-				<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
+			<?php if ($this->session->userdata('logged_in')): ?>
+				<a class="d-flex my-0" href="<?=base_url()?>users/profile">
 					<img src="" class="image avatar-image" alt="user profile image">
 					<p class="first-child">username</p>
 				</a>
-			<?php endif; ?>
+			<?php endif;?>
 
 			<a class="d-flex" href="<?php echo base_url(); ?>">
 				<ion-icon name="home-outline" class="image"></ion-icon>
@@ -37,7 +37,7 @@
 
 	<div class="col-lg-7 col-md-12">
 		<div class="post-div2">
-			<?php foreach ($posts as $post) : ?>
+			<?php foreach ($posts as $post): ?>
 				<div class="row">
 					<div class="col-md-5">
 						<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
@@ -115,19 +115,19 @@
 									<p>Karl is doing this just to test</p>
 								</span>
 							</div>
-							<?php if ($this->session->userdata('logged_in')) : ?>
+							<?php if ($this->session->userdata('logged_in')): ?>
 								<div class="form-group index-comment2">
 									<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="comment"></textarea>
 									<button class="btn float-right" type="submit">post</button>
 								</div>
-							<?php endif; ?>
+							<?php endif;?>
 						</div>
 						<hr class="separator">
 
 						<div class="meta-data">
 							<small>Posted by
 								<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
-								<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
+								<a href="<?=base_url();?>users/fetch_user/<?=$post['id'];?>">
 									<?php echo ucfirst($post['username']); ?>
 								</a>
 							</small>
@@ -135,7 +135,7 @@
 					</div>
 				</div>
 				<hr class="separator"><br>
-			<?php endforeach; ?>
+			<?php endforeach;?>
 			<div class="pagination-links">
 				<?php echo $this->pagination->create_links(); ?>
 			</div>
@@ -148,7 +148,7 @@
 			<br>
 			<aside class="sidebar">
 				<section class="search-bar">
-					<form action="<?= base_url(); ?>users/fetch" method="post" class="form-inline">
+					<form action="<?=base_url();?>users/fetch" method="post" class="form-inline">
 						<input name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search">
 						<button class="search-button" id="search-bar-btn" type="submit">
 							<ion-icon name="search-outline"></ion-icon>
@@ -157,19 +157,19 @@
 				</section>
 				<section class="people-nearby">
 					<h5>People Nearby</h5>
-					<?php foreach($peoples as $people) : ?>
+					<?php foreach ($peoples as $people): ?>
 					<div id="people_nearby" class="nearby-meta-data">
 						<img src="<?php echo $people['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
-						<a href="<?= base_url(); ?>users/fetch_user/<?= $people['id']; ?>">
+						<a href="<?=base_url();?>users/fetch_user/<?=$people['id'];?>">
 							<?php echo ucfirst($people['username']); ?>
 						</a>
 					</div>
-					<?php endforeach ?>
+					<?php endforeach?>
 					<hr class="separator">
 				</section> <br>
 				<section class="latest-post">
 					<h5>Recent Posts</h5>
-					<?php foreach($latests as $latest) : ?>
+					<?php foreach ($latests as $latest): ?>
 					<div class="post-data">
 						<div class="post-info">
 							<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
@@ -188,9 +188,9 @@
 						</div>
 						<hr class="separator">
 					</div>
+                   <?php endforeach;?>
 				</section>
 			</aside>
 		</div>
-
 	</div>
 </div>
