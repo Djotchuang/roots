@@ -12,18 +12,20 @@ class Posts extends CI_Controller
 
         // Init Pagination
         $this->pagination->initialize($config);
+        
         $user_id = $this->session->userdata('user_id');
         $data['title'] = 'Latest Posts';
-
         $data['posts'] = $this->post_model->get_posts(false, $config['per_page'], $offset);
-        $post = $this->post_model->get_posts(false, $config['per_page'], $offset);
+        $data['profiles'] = $this->user_model->get_profile_data($user_id);
         $data['latests'] = $this->post_model->get_recent_post();
         $results = $this->user_model->get_country($user_id);
+        $data['pinposts'] = $this->post_model->get_pin_post_data($user_id);
         foreach ($results as $result) {
             $country = $result['country'];
         }
-        // $data['peoples'] = $this->user_model->get_people_nearby($country);
-
+        if($this->session->userdata('logged_in')){
+        $data['peoples'] = $this->user_model->get_people_nearby($country);
+        }
         $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');
         $this->load->view('posts/index', $data);
@@ -31,11 +33,20 @@ class Posts extends CI_Controller
     }
 
     public function view($slug = null)
-    {
+    { 
         $data['post'] = $this->post_model->get_posts($slug);
-        $post_id = $data['post']['pid'];
+        $results = $this->post_model->get_posts($slug);
+        $post_id = $results['pid'];
+        $user_id = $this->session->userdata('user_id');
+        $data['profiles'] = $this->user_model->get_profile_data($user_id);
+        $user_id = $this->session->userdata('user_id');
+        $results = $this->user_model->get_country($user_id);
+        foreach ($results as $result) {
+            $country = $result['country'];
+        }
+        $data['peoples'] = $this->user_model->get_people_nearby($country);
         $data['comments'] = $this->comment_model->get_comments($post_id);
-        $data['counts'] = $this->comment_model->get_single_comments_count($post_id);
+        $data['counts'] = $this->comment_model->get_comments_count($post_id);
         $data['latests'] = $this->post_model->get_recent_post();
 
         if (empty($data['post'])) {
@@ -44,7 +55,6 @@ class Posts extends CI_Controller
 
         $data['title'] = $data['post']['title'];
 
-        $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');
         $this->load->view('posts/view', $data);
         $this->load->view('templates/footer');
@@ -60,9 +70,13 @@ class Posts extends CI_Controller
         $data['title'] = 'Create Post';
 
         $data['countries'] = $this->post_model->get_countries();
+        $data['categories'] = $this->post_model->get_categories();
 
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('body', 'Body', 'required');
+        // $this->form_validation->set_rules('category', 'Category', 'required');
+        // $this->form_validation->set_rules('country', 'Country', 'required');
+
 
         if ($this->form_validation->run() === false) {
             $this->load->view('templates/header');
@@ -78,9 +92,10 @@ class Posts extends CI_Controller
 
             $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload()) {
-                $errors = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('upload_error', 'Failed to upload. This may be an internet error or your file size and/or dimensions. Please choose another file and try again.');
+            if ($_FILES['userfile']['name'] != '' && !$this->upload->do_upload()) {
+                // $errors = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('upload_error', 'Failed to upload! 
+                This may be an internet error or your file size and/or dimensions. Please choose another file and try again.');
                 redirect('posts/create');
             } else {
 
@@ -100,11 +115,13 @@ class Posts extends CI_Controller
 
                 $this->image_lib->resize();
             }
+           
 
             $this->post_model->create_post($post_image);
-
-            $this->session->set_flashdata('post_created', 'Created a post at');
-            // Set message
+            $this->session->set_userdata('post_created', 'created a post');
+            $post_created = $this->session->userdata('post_created');
+            $this->user_model->insert_user_activity($post_created);
+            
             $this->session->set_flashdata('post_created', 'Your post has been created');
             $this->load->helper('timeelapsed_helper');
             redirect('posts');
@@ -118,6 +135,10 @@ class Posts extends CI_Controller
         }
 
         $this->post_model->delete_post($id);
+
+        $this->session->set_userdata('post_deleted', 'deleted a post');
+        $post_deleted = $this->session->userdata('post_deleted');
+        $this->user_model->insert_user_activity($post_deleted);
 
         // Set message
         $this->session->set_flashdata('post_deleted', 'Your post has been deleted');
@@ -162,20 +183,75 @@ class Posts extends CI_Controller
 
         $this->post_model->update_post();
 
+        $this->session->set_userdata('post_updated', 'updated a post');
+        $post_updated = $this->session->userdata('post_updated');
+        $this->user_model->insert_user_activity($post_updated);
+
         // Set message
         $this->session->set_flashdata('post_updated', 'Your post has been updated');
         $this->load->helper('timeelapsed_helper');
         redirect('posts');
     }
 
-    // public function categories()
-    // {
-    //     $data['title'] = 'Categories';
-
-    //     $data['categories'] = $this->country_model->get_countries();
-
-    //     $this->load->view('templates/header');
-    //     $this->load->view('posts/categories', $data);
-    //     $this->load->view('templates/footer');
-    // }
+    public function fetch()
+    {
+        $val = $this->input->post('post_search');
+        $result = $this->post_model->fetch_data($val);
+        foreach($result as $row) {
+            $id = $row['pid'];
+        }
+        $data['counts'] = $this->comment_model->get_comments_count($id);
+        $data['search'] = $this->post_model->fetch_data($val);
+        $data['title'] = 'Showing search results';
+        $this->load->view('templates/header');
+        $this->load->view('pages/post_search_result', $data);
+        $this->load->view('templates/footer');
+    }
+    public function likes ()
+    {
+        $post_id = $_POST['postId'];
+        $user_id = $_POST['userId'];
+        $this->post_model->likes($post_id, $user_id);
+        $likes = $this->post_model->get_likes($post_id);
+        echo $likes;
+    }
+    public function get_likes ($post_id)
+    {
+        $likes = $this->post_model->get_likes($post_id);
+        echo $likes;
+    }
+    public function dislikes ()
+    {
+        $post_id = $_POST['postId'];
+        $user_id = $_POST['userId'];
+        $this->post_model->dislikes($post_id, $user_id);
+        $dislikes = $this->post_model->get_dislikes($post_id);
+        echo $dislikes;
+    }
+    public function get_dislikes ($post_id)
+    {
+        $likes = $this->post_model->get_dislikes($post_id);
+        echo $likes;
+    }
+    public function get_pin_post ($post_id)
+    {
+        $slug = $_POST['postSlug'];
+        $title = $_POST['postTitle'];
+        $user_id = $this->session->userdata('user_id');
+        $this->post_model->pin_post($post_id, $user_id, $slug, $title);
+        $pinposts = $this->post_model->get_pin_post($slug);
+        foreach ($pinposts as $pinpost) 
+        {
+            $data['title'] = ucfirst($pinpost['title']);
+            $data['slug'] = site_url('/posts/' . $pinpost['slug']);
+            $data['id'] = $pinpost['pid'];
+            echo json_encode($data);
+        }
+    }
+    function delete_pin_post ($id) 
+    {
+        $this->post_model->delete_pin_post($id);
+        $this->db->where('id', $id);
+        $this->db->delete('pin_post');
+    }
 }

@@ -1,20 +1,26 @@
+
 <div class="page-title">
 	<div class="container">
 		<h2><?=$title?></h2>
 	</div>
 </div>
+<div class="loader"></div>
 <div class="row">
 
 	<!-- Sidebar -->
 	<div class="col-lg-2 col-md-12 sidebar1">
 		<div class="sticky-top">
 			<div class="post-div1">
-				<?php if ($this->session->userdata('logged_in')) : ?>
-					<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
-						<img src="" class="image avatar-image" alt="user profile image">
-						<p class="first-child">username</p>
+				<?php if ($this->session->userdata('logged_in')): ?>
+				<?php foreach ($profiles as $profile): ?>
+				<?php if ($this->session->userdata('user_id') == $profile['id']): ?>
+					<a class="d-flex my-0" href="<?=base_url()?>users/profile">
+						<img src="<?=$profile['avatar']?>" class="image avatar-image" alt="user profile image">
+						<p class="first-child"><?=$profile['username']?></p>
 					</a>
-				<?php endif; ?>
+				<?php endif;?>
+				<?php endforeach?>
+				<?php endif;?>
 
 				<a class="d-flex" href="<?php echo base_url(); ?>">
 					<ion-icon name="home-outline" class="image"></ion-icon>
@@ -36,125 +42,72 @@
 					<p>Countries</p>
 				</a>
 			</div>
-
+			<p style="margin-top: 6rem"> Pinned Post </p>
+			<div class="post-data" id="pin_post">
+			<?php foreach($pinposts as $pinpost) : ?>
+							<div class="post-info">
+								<a href="<?php echo site_url('/posts/' . $pinpost['pin_slug']); ?>">
+									<h6 class="post-title"><?php echo ucfirst($pinpost['pin_title']); ?></h6>
+								</a>
+							</div>
+							<div class="meta-data d-flex justify-content-between">
+							    <button class="ml-auto unpin-post" data-id="<?=$pinpost['id']?>">unpin</button>
+								<p class="ml-auto">
+									<?php echo time_elapsed_string($pinpost['pin_time']) . '&nbsp;'; ?>
+								</p>
+							</div>
+							<hr class="separator">
+							<?php endforeach ?>
+		    </div>
 		</div>
 	</div>
 
 	<!-- Chats -->
-	<?php if ($this->session->userdata('logged_in')) : ?>
+	<?php if ($this->session->userdata('logged_in')): ?>
 		<div class="sidebar-chats">
 			<div class="chats-title">
 				<h6 class="mt-0 pt-2 d-flex"><strong></p></strong>
 				</h6>
-				<p>200 online</p>
+				<p>people contacted</p>
 			</div>
 			<div class="chat-data">
-				<h6><strong>CONTACTS</strong></h6>
-				<div class="d-flex my-0" href="#">
-					<span class="d-flex">
-						<img src="" class="image avatar-image" alt="user profile image">
-						<p><?php echo ellipsize('Karl Djotchuang Tamo', 20); ?></p>
-					</span>
-					<span class="circle ml-auto"></span>
-				</div>
-				<div class="d-flex my-0" href="#">
-					<span class="d-flex">
-						<img src="" class="image avatar-image" alt="user profile image">
-						<p><?php echo ellipsize('Djotchuang Tamo', 20); ?></p>
-					</span>
-					<span class="circle ml-auto"></span>
-				</div>
-				<div class="d-flex my-0" href="#">
-					<span class="d-flex">
-						<img src="" class="image avatar-image" alt="user profile image">
-						<p><?php echo ellipsize('username', 20); ?></p>
-					</span>
-					<span class="circle ml-auto"></span>
-				</div>
+			<h6><strong>CONTACTS</strong></h6>
+			<div class="chat-data-items"></div>
 			</div>
 		</div>
-	<?php endif; ?>
+	<?php endif;?>
 
 	<!-- Chat Box -->
 	<div class="page-content page-container" id="page-content">
 		<div class="padding">
 			<div class="row container d-flex justify-content-center">
-				<div class="card card-bordered">
+				<div class="card card-bordered" id="chat-card" data-id="<?=$profile['id']?>">
 					<div class="card-header">
-						<a href="<?= base_url() ?>users/profile" class="d-flex">
-							<h4 class="card-title"><strong><?php echo ellipsize(ucwords('karl djotchuang tamo'), 20); ?></strong></h4>
+						<div id="chat-avatar"></div>
+						<div id="chat-id"></div>
+						<a href="<?=base_url()?>users/profile" class="d-flex">
+							<h4 class="card-title"><strong class="chat-box-title"></strong></h4>
 							<span class="rounded"></span>
 						</a>
-						<small class="closeBtn">X</small>
+						<button class="closeBtn">close</button>
 					</div>
-					<div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
-						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
-							<div class="media-body">
-								<p>Hi</p>
-								<p>How are you ...???</p>
-								<p>What are you doing tomorrow?<br> Can we come up a bar?</p>
-								<p class="meta"><time datetime="2018">23:58</time></p>
-							</div>
-						</div>
-						<div class="media media-meta-day">Today</div>
+					<div class="ps-container ps-theme-default ps-active-y" id="chat-content-<?=$profile['id']?>" style="overflow-y: scroll !important; height:400px !important;">
+						<!-- <div class="media media-meta-day">Today</div>
 						<div class="media media-chat media-chat-reverse">
 							<div class="media-body">
-								<p>Hiii, I'm good.</p>
-								<p>How are you doing?</p>
 								<p>Long time no see! Tomorrow office. will be free on sunday.</p>
 								<p class="meta"><time datetime="2018">00:06</time></p>
 							</div>
-						</div>
-						<div class="media media-chat">
-							<img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
-							<div class="media-body">
-								<p>Okay</p>
-								<p>We will go on sunday? </p>
-								<p class="meta"><time datetime="2018">00:07</time></p>
-							</div>
-						</div>
-						<div class="media media-chat media-chat-reverse">
-							<div class="media-body">
-								<p>That's awesome!</p>
-								<p>I will meet you Sandon Square sharp at 10 AM</p>
-								<p>Is that okay?</p>
-								<p class="meta"><time datetime="2018">00:09</time></p>
-							</div>
-						</div>
-						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
-							<div class="media-body">
-								<p>Okay i will meet you on Sandon Square </p>
-								<p class="meta"><time datetime="2018">00:10</time></p>
-							</div>
-						</div>
-						<div class="media media-chat media-chat-reverse">
-							<div class="media-body">
-								<p>Do you have pictures of Matley Marriage?</p>
-								<p class="meta"><time datetime="2018">00:10</time></p>
-							</div>
-						</div>
-						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
-							<div class="media-body">
-								<p>Sorry I don't have. i changed my phone.</p>
-								<p class="meta"><time datetime="2018">00:12</time></p>
-							</div>
-						</div>
-						<div class="media media-chat media-chat-reverse">
-							<div class="media-body">
-								<p>Okay then see you on sunday!!</p>
-								<p class="meta"><time datetime="2018">00:12</time></p>
-							</div>
-						</div>
-
+						</div> -->
 					</div>
 					<div id="write" class="publisher bt-1 border-light">
-						<img class="chatbox-avatar avatar-xs" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
-						<input class="publisher-input" type="text" placeholder="Write something">
+						<img class="chatbox-avatar avatar-xs" src="<?=$profile['avatar']?>" alt="...">
+						<input class="publisher-input" id="chat_msg_area" type="text" placeholder="Write something">
 						<span class="publisher-btn file-group text-info">
 							<i class="fa fa-paperclip file-browser"></i> <input type="file">
 						</span>
 						<a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
-						<a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-paper-plane"></i></a>
+						<button class="publisher-btn text-info" data-abc="true" id="chat-submit"><i class="fa fa-paper-plane"></i></button>
 					</div>
 				</div>
 			</div>
@@ -165,14 +118,14 @@
 	<div class="col-lg-7 col-md-12">
 		<div class="post-div2">
 			<?php foreach ($posts as $post): ?>
-				<div class="row">
+				<div class="row post">
 					<div class="col-md-5">
-						<a href="<?php echo site_url('posts/' . $post['slug']); ?>?>">
+						<a href="<?php echo site_url('posts/' . $post['slug']); ?>">
 							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
 						</a>
-
 					</div>
-					<div class="col-md-7 post-content">
+
+					<div class="col-md-7 post-content" id="post-<?=$post['pid']?>">
 						<div class="post-top mb-2 d-flex justify-content-between">
 							<h5>
 								<a class="btn btn-full post-btn" href="<?php echo site_url('/countries/posts/' . $post['country_id']); ?>">
@@ -180,22 +133,30 @@
 								</a>
 							</h5>
 							<h5 class="ml-auto">
-								<a class="btn btn-full post-btn" href="#">category</a>
+								<a class="btn btn-full post-btn" href="<?php echo site_url('/categories/posts/' . $post['category_id']); ?>"> <?=$post['ca_name'];?> </a>
 							</h5>
 						</div>
-						<a href="<?php echo site_url('/posts/' . $post['slug']); ?>?>">
+						<a href="<?php echo site_url('/posts/' . $post['slug']); ?>">
 							<h4 class="post-title"><?php echo ucfirst($post['title']); ?></h4>
 						</a>
 						<p><?php echo word_limiter($post['body'], 20); ?></p>
 						<hr class="separator">
-						<div class="meta-data d-flex justify-content-between">
-							<div class="like">
+						<div class="meta-data d-flex justify-content-between check">
+							<button class="like" id="lik-<?=$post['pid']?>" data-pid="<?=$post['pid']?>" data-id="<?=$post['id']?>" >
 								<ion-icon name="thumbs-up-outline"></ion-icon>
-								<p class="mr-auto"></p>
-							</div>
-							<div class="index-comment">
+								<p class="mr-auto upvotes" id="upvotes-<?=$post['pid']?>"></p>
+							</button>
+							<button class="dislike" id="dis-<?=$post['pid']?>" data-pid="<?=$post['pid']?>" data-id="<?=$post['id']?>">
+								<ion-icon name="thumbs-down-outline"></ion-icon>
+								<p class="mr-auto downvotes" id="downvotes-<?=$post['pid']?>"></p>
+							</button>
+							<button class="pin-post" id="pin-<?=$post['pid']?>" data-pid="<?=$post['pid']?>" data-id="<?=$post['id']?>" data-title="<?=$post['title']?>" data-slug="<?=$post['slug']?>">
+							<ion-icon name="eyedrop-outline"></ion-icon><p>Pin post</p>							
+							</button>
+							<div class="index-comment" data-id="<?=$post['pid'];?>">
 								<ion-icon name="chatbubbles-outline"></ion-icon>
-								<p class="mr-auto"> 0 Comments </p>
+								<p class="mr-auto" id="count-<?=$post['pid']?>"></p>
+								<!-- <input type="hidden" value="<" class="comment_id"> -->
 							</div>
 							<div>
 								<p class="pull-right"><?php echo time_elapsed_string($post['created_at']); ?></p>
@@ -203,68 +164,41 @@
 						</div>
 
 						<div class="comment-details index-comment-details">
-							<div class="comment-info">
-								<img src="" class="comment-avatar avatar-image" alt="user profile image">
-								<span>
-									<h6>Joachim &nbsp;</h6>
-									<p>Karl is doing this just to test</p>
-								</span>
-							</div>
-
-							<div class="comment-info">
-								<img src="" class="comment-avatar avatar-image" alt="user profile image">
-								<span>
-									<h6>Joachim &nbsp;</h6>
-									<p>Karl is doing this just to test</p>
-								</span>
-							</div>
-
-							<div class="comment-info">
-								<img src="" class="comment-avatar avatar-image" alt="user profile image">
-								<span>
-									<h6>Joachim &nbsp;</h6>
-									<p>Karl is doing this just to test</p>
-								</span>
-							</div>
-
-							<div class="comment-info">
-								<img src="" class="comment-avatar avatar-image" alt="user profile image">
-								<span>
-									<h6>Joachim &nbsp;</h6>
-									<p>Karl is doing this just to test</p>
-								</span>
-							</div>
-
-							<div class="comment-info">
-								<img src="" class="comment-avatar avatar-image" alt="user profile image">
-								<span>
-									<h6>Joachim &nbsp;</h6>
-									<p>Karl is doing this just to test</p>
-								</span>
+							<div class="all-comments" id="comments-<?=$post['pid'];?>">
 							</div>
 							<?php if ($this->session->userdata('logged_in')): ?>
+							<?=form_open('comments/index_create/' . $post['pid'])?>
 								<div class="form-group index-comment2">
 									<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="comment"></textarea>
 									<button class="btn float-right" type="submit">post</button>
 								</div>
+								</form>
 							<?php endif;?>
 						</div>
 						<hr class="separator">
-
-						<div class="meta-data">
+						<div class="meta-data d-flex">
 							<small>Posted by
-								<?php if ($this->session->userdata('logged_in')) : ?>
-									<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
+								<?php if ($this->session->userdata('logged_in')): ?>
+									<a href="<?=base_url();?>users/fetch_user/<?=$post['id'];?>">
 										<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
 										<?php echo ucfirst($post['username']); ?>
 									</a>
-								<?php else : ?>
-									<a href="<?= base_url(); ?>users/login">
+								<?php else: ?>
+									<a href="<?=base_url();?>users/login">
 										<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
 										<?php echo ucfirst($post['username']); ?>
 									</a>
-								<?php endif; ?>
+								<?php endif;?>
 							</small>
+							<?php if ($this->session->userdata('user_id') == $post['id']): ?>
+							<div class="chat-btn ">
+							</div>
+							<?php else: ?>
+							<div class="ml-auto user-trigger" data-id="<?=$post['id']?>" data-name="<?=$post['username']?>" data-avatar="<?=$post['avatar']?>">
+							    <ion-icon name="mail-outline"></ion-icon>
+								<p>Chat with <strong class="chat-btn-txt"><?=$post['username']?></strong></p>
+							</div>
+							<?php endif;?>
 						</div>
 					</div>
 				</div>
@@ -282,45 +216,46 @@
 			<br>
 			<aside class="sidebar">
 				<section class="search-bar">
-					<form action="<?=base_url();?>users/fetch" method="post" class="form-inline">
-						<input name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search">
+					<form action="<?=base_url();?>posts/fetch" method="post" class="form-inline">
+						<input name="post_search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search post">
 						<button class="search-button" id="search-bar-btn" type="submit">
 							<ion-icon name="search-outline"></ion-icon>
 						</button>
 					</form>
 				</section>
-				<?php if ($this->session->userdata('logged_in')) : ?>
+				<?php if ($this->session->userdata('logged_in')): ?>
 					<section class="people-nearby">
 						<h5>People Nearby</h5>
+						<?php foreach ($peoples as $people): ?>
 						<div class="nearby-meta-data">
-							<img src="<?php echo $post['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
-							<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
-								<?php echo ucfirst($post['username']); ?>
+							<img src="<?php echo $people['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
+							<a href="<?=base_url();?>users/fetch_user/<?=$people['id'];?>">
+								<?php echo ucfirst($people['username']); ?>
 							</a>
 						</div>
-						<hr class="separator">
+						<?php endforeach;?>
 					</section> <br>
-				<?php endif; ?>
+				<?php endif;?>
 				<section class="latest-post">
 					<h5>Recent Posts</h5>
-					<?php foreach ($latests as $latest) : ?>
+					<?php foreach ($latests as $latest): ?>
 						<div class="post-data">
 							<div class="post-info">
 								<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
-								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>">
 									<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
 								</a>
 							</div>
 							<div class="meta-data d-flex justify-content-between">
 								<p class="ml-auto">
-									<?php echo time_elapsed_string($post['created_at']) . '&nbsp;'; ?>
+									<?php echo time_elapsed_string($latest['created_at']) . '&nbsp;'; ?>
 								</p>
-								<input value="<?= $post['pid']; ?>" type="hidden" class="count_input">
+								<input value="<?=$latest['pid'];?>" type="hidden" class="count_input">
 								<p><span class="count"></span></p>
 							</div>
 							<hr class="separator">
 						</div>
-					<?php endforeach; ?>
+					<?php endforeach;?>
 
 				</section>
 			</aside>

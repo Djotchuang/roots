@@ -1,55 +1,14 @@
 <!-- <div class="modal" id="chat_modal">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<?php foreach ($profiles as $profile) : ?>
+			<?php foreach ($profiles as $profile): ?>
 				<div class="modal-header">
-					<h4 class="modal-title" id="dynamic-title"> Chatting with <?= $profile['username']; ?></h4>
+					<h4 class="modal-title" id="dynamic-title"> Chatting with <?=$profile['username'];?></h4>
 				</div>
-			<?php endforeach; ?>
+			<?php endforeach;?>
 			<div class="modal-body">
 				<!-- Chat Box-->
-<div class="col-12 px-0">
-	<div id="chat_box" class="px-4 py-5 chat-box bg-white">
-		<!-- Sender Message-->
-		<div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
-			<div id="chat_area" class="media-body ml-3">
-				<div class="bg-light rounded py-2 px-3 mb-2">
-					<p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
-				</div>
-				<p class="small text-muted">12:00 PM | Aug 13</p>
-			</div>
-		</div>
-		<!-- Reciever Message-->
-		<div class="media w-50 ml-auto mb-3">
-			<div class="media-body">
-				<div class="bg-primary rounded py-2 px-3 mb-2">
-					<p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
-				</div>
-				<p class="small text-muted">12:00 PM | Aug 13</p>
-			</div>
-		</div>
-		<!-- Typing area -->
-		<form id="chat_form" class="bg-light">
-			<div class="input-group">
-				<input id="chat_msg_area" type="text" style="color:black;" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
 
-				<div class="input-group-append">
-					<button id="button-addon2" type="submit" class="btn btn-primary">
-						<ion-icon style="color:white !important; font-size:1.5em;" name="send-outline"></ion-icon>
-					</button>
-				</div>
-			</div>
-		</form>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
 </div>
 <script>
@@ -58,26 +17,218 @@
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
-	$(document).ready(function() {
 
-		// function getCommentsCount() {
-		// $('.post-content').each(function() {
-		// 	var post_id = $(this).find('.count_input').val();
-		// 	$.ajax({
-		// 		url: '<?=base_url()?>/comments/get_comments_count',
-		// 		method: 'POST',
-		// 		data: {post_id:post_id},
-		// 		error: function(){
-		// 			alert('hey');
-		// 		},
-		// 		success: function(data){
-		// 			$('.count').html(data);
-		// 		}
-		// 	});
-		// });
-		// }
-		// getCommentsCount();
-		// Disable search button and enable on keydown
+</script>
+<script>
+	$(document).ready(function() {
+		var chatInterval;
+		var indexChatInterval;
+
+		$('.delete-not').on('click', function ()
+		{
+			var notId = $(this).data('id');
+			$.ajax({
+				url: '<?=base_url()?>messages/delete_notification/' + notId,
+				type: 'post',
+				success: function (data)
+				{
+					window.location.reload(true);
+				},
+				error: function ()
+				{
+					console.log('error');
+				}
+			});
+		});
+		$('.show-chat-box').on('click', function ()
+		{
+				$('#page-content').show();
+				var id = $(this).data('id');
+				var name = $(this).data('name');
+				$('.chat-box-title').html('Chatting with ' + name);
+				chatInterval = setInterval(function ()
+			    {
+				$.ajax({
+					url: '<?=base_url()?>/messages/get_messages/' + id,
+					type: 'post',
+					success: function (response)
+					{
+						$('#msg-content').html(response);
+						console.log('success');
+					},
+					error: function () {
+						console.log('error');
+					}
+				});
+			}, 2000);
+		});
+		$('.close-Btn').on('click', function ()
+			{
+			    clearInterval(chatInterval);
+			});
+		$('#chat-sub').on('click', function ()
+		{
+		        var recieverId = $('.show-chat-box').data('id');
+				var avatar = $('#reciever-avatar').val();
+				var message = $('#chat_area').val();
+				if (message != '') {
+					$.ajax({
+						url: '<?=base_url();?>messages/send_message',
+						method: 'POST',
+						data: {
+							'message': message,
+							'recieverId': recieverId
+						},
+						beforeSend: function() {
+							$('#chat-submit').attr('disabled', 'disabled');
+						},
+						error: function() {
+							console.log(recieverId + message)
+						},
+						success: function(data) {
+							console.log('sucess');
+							$('#chat-subm').attr('disabled', false);
+								var output = '<div class="media media-chat media-chat-reverse">';
+								output += '<div class="media-body">';
+								output += '<p>'+ message + '</p>';
+								output += '<p class="meta">' + new Date($.now()) + '</p>';
+								output += '</div>';
+								output += '</div>';
+							$('#msg-content').append(output);
+							$('#chat_area').val('');
+						}
+					});
+				} else {
+					alert('Chat is empty, Please Type Something in Chat box.');
+				}
+			});
+		});
+
+		function loading () {
+			var output = '<div align="center"><br /><br /><br />';
+			output += '<img src="<?=base_url();?>assets/images/loading.gif" /> Please wait...</div>';
+			return output;
+		}
+		$('#page-content').hide();
+			$('.user-trigger').on('click', function()
+			{
+
+				var id = $(this).data('id');
+				console.log(id);
+				var avatar = $(this).data('avatar');
+				var name = $(this).data('name');
+				var data = '<input type="hidden" id="reciever-id" value="' + id + '">';
+				var image = '<input type="hidden" id="reciever-avatar" value="' + avatar + '">';
+				$('.card-header .chat-box-title').html(name);
+				$('#chat-id').html(data);
+				$('#chat-avatar').html(image);
+				$('#page-content').show();
+				$.ajax({
+					url: '<?=base_url()?>users/ajax_fetch_user/' + id,
+					type: 'post',
+					success: function (response) {
+						$('.chat-data-items').append(response);
+					},
+					error: function () {
+						console.log('error');
+					}
+				});
+				var tid = $('#chat-card').data('id');
+				indexChatInterval = setInterval(function ()
+			    {
+				$.ajax({
+					url: '<?=base_url()?>/messages/get_messages/' + id,
+					type: 'post',
+					success: function (response)
+					{
+						$('#chat-content-' + tid).html(response);
+						console.log('success');
+					},
+					error: function () {
+						console.log('error');
+					}
+				});
+			}, 2000);
+			});
+			$('.closeBtn').on('click', function ()
+			{
+			    clearInterval(indexChatInterval);
+			});
+
+		function getLikes () {
+			$('.check').each(function() {
+			var id = $(this).find($('.index-comment')).data('id');
+			$.ajax({
+				url: '<?=base_url()?>posts/get_likes/' + id,
+				type: 'post',
+				success: function (response)
+				{
+					$('#upvotes-' + id).text(response);
+					console.log(response)
+				},
+				error: function ()
+				{
+					console.log('error');
+				}
+			});
+		  });
+		}
+		getLikes();
+		function getDisikes () {
+			$('.check').each(function() {
+			var id = $(this).find($('.index-comment')).data('id');
+			$.ajax({
+				url: '<?=base_url()?>posts/get_dislikes/' + id,
+				type: 'post',
+				success: function (response)
+				{
+					$('#downvotes-' + id).text(response);
+				},
+				error: function ()
+				{
+					console.log('error');
+				}
+			});
+		  });
+		}
+		getDisikes();
+
+		function getCommentCount () {
+			$('.check').each(function() {
+			var id = $(this).find($('.index-comment')).data('id');
+			$.ajax({
+				url: '<?=base_url()?>comments/get_comments_count/' + id,
+				type: 'post',
+				success: function (response) {
+				  $('.index-comment').each(function(){
+					$(this).find($('#count-' + id)).html(response);
+			      });
+				},
+				error: function(){
+		          console.log('error');
+		        }
+			});
+		});
+		}
+		getCommentCount();
+		$('.index-comment').on('click', function () {
+			var id = $(this).data('id');
+            $.ajax({
+	        	url: '<?=base_url()?>comments/get_comments',
+	        	type: 'post',
+				data: {id:id},
+				beforeSend: function () {
+					$('#comments-' + id).html(loading());
+				},
+	         	success: function(response) {
+					 $('#comments-' +id).html(response);
+					 checkMultipleAvatar('.comment-info');
+	         	},
+	          	error: function(){
+		          console.log('error');
+		        }
+	             });
+		});
 		$(".search-button").attr('disabled', true);
 
 		$(".search-input").keypress(function() {
@@ -115,13 +266,6 @@
 
 				let index_comment = $(this).find(".index-comment");
 
-				// $(index_comment_details).scroll(function() {
-				// 	$(this).find(".index-comment2").css({
-				// 		'position': 'fixed',
-				// 		'top': '0'
-				// 	});
-				// });
-
 				index_comment.click(function() {
 
 					var iteration = $(this).data('iteration') || 1
@@ -149,8 +293,8 @@
 
 		// Show chats on click
 		function showChats() {
-			let nchats = 200;
-			$('.chats-title h6 strong').text('Chats (' + nchats + ')');
+			let nchats = 'Chats';
+			$('.chats-title h6 strong').text('Your ' + nchats );
 			$('.chats-title p').hide();
 			$('.chat-data').hide();
 
@@ -167,7 +311,7 @@
 						break;
 
 					case 2:
-						$('.chats-title h6 strong').text('Chats (' + nchats + ')');
+						$('.chats-title h6 strong').text('Your ' + nchats);
 						$('.chats-title p').hide();
 						$('.chat-data').hide();
 						break;
@@ -184,16 +328,8 @@
 
 		// Show chats on click
 		function showChatBox() {
-			$('#page-content').hide();
-			$('.chat-data span.d-flex').click(function() {
+			$('.chat-data-items').click(function() {
 				$('#page-content').show();
-
-				var $container = $('#chat-content'),
-					$scrollTo = $('#write');
-
-				$container.scrollTop(
-					$scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-				);
 			});
 		}
 
@@ -208,10 +344,12 @@
 
 			$('.card-header').click(function() {
 				var iteration = $(this).data('iteration') || 1
+				var id = $('#chat-card').data('id');
+
 
 				switch (iteration) {
 					case 1:
-						$('#chat-content').hide();
+						$('#chat-content-' + id).hide();
 						$('#write').hide();
 						$('.card-header').css("padding", "0.35rem 1rem");
 						$('.card').css({
@@ -222,7 +360,7 @@
 						break;
 
 					case 2:
-						$('#chat-content').show();
+						$('#chat-content-' + id).show();
 						$('#write').show();
 						$('.card').css({
 							'width': 'auto'
@@ -239,45 +377,132 @@
 
 		showSpecificChat();
 
-		// Handles likes
-		function likes() {
-			let nlikes = 1;
-			likeText = " Like"
+		// Handle Posts without Image
+		function post() {
+			$('.post').each(function() {
+				let postImage = $(this).find('.post-thumbnail');
+				let imageDiv = $(this).find('.col-md-5');
+				let postContent = $(this).find('.post-content');
 
-			$('.post-content').each(function() {
-				let like = $(this).find('.like');
-				let like_text_p = like.find('p');
-				let nclicks = 0;
+				if(postImage.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
+					console.log(postImage.attr('src'));
+					imageDiv.remove();
+					postContent.removeClass("col-md-7").addClass("col-md-12" );
+				}
+			});
 
-				if (nlikes > 1) likeText = " Likes";
-				like_text_p.text(nlikes + likeText);
+			$('.post-data').each(function() {
+				let postImage = $(this).find('.post-thumbnail');
 
-				like.click(function() {
-					nclicks++;
-
-					if (nclicks % 2 == 0) nlikes--;
-					else if (nclicks % 2 == 1) nlikes++;
-
-					like_text_p.text(nlikes + likeText);
-					like.css({
-						'color': '#18bc9c'
-					});
-				});
+				if(postImage.attr('src') == '<?php echo site_url(); ?>uploads/') {
+					console.log(postImage.attr('src'));
+					postImage.remove();
+				}
 			});
 		}
 
-		likes();
+		function view() {
+			let postImage = $('.post-thumbnail');
 
+			if(postImage.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
+				postImage.remove();
+			}
+		}
+
+		post();
+		view();
+
+		// Handles likes
+		$('.like').on('click', function ()
+		{
+			var postId = $(this).data('pid');
+			var userId = $(this).data('id');
+			$(this).attr('disabled', true);
+			$.ajax({
+				url: '<?=base_url()?>posts/likes',
+				type: 'post',
+				data: {postId:postId, userId:userId},
+				success: function (response)
+				{
+					$('#upvotes-' + postId).text(response);
+				},
+				error: function ()
+				{
+					console.log('error');
+				}
+			});
+		});
+		$('.dislike').on('click', function ()
+		{
+			var postId = $(this).data('pid');
+			var userId = $(this).data('id');
+			$(this).attr('disabled', true);
+			$.ajax({
+				url: '<?=base_url()?>posts/dislikes',
+				type: 'post',
+				data: {postId:postId, userId:userId},
+				success: function (response)
+				{
+					$('#downvotes-' + postId).text(response);
+					console.log(likes);
+				},
+				error: function ()
+				{
+					console.log('error');
+				}
+			});
+		});
+		$('.pin-post').on('click', function ()
+		{
+			var postId = $(this).data('pid');
+			var postTitle = $(this).data('title');
+			var postSlug = $(this).data('slug');
+			$.ajax({
+				url: '<?=base_url()?>posts/get_pin_post/' + postId,
+				type: 'post',
+				data: {
+					postTitle:postTitle, postSlug:postSlug
+				},
+				dataType: 'json',
+				success: function (response)
+				{
+					$output = '<div class="post-info">';
+					$output += '<a href="' + response.slug + '">';
+					$output += '<h6 class="post-title">' + response.title + '</h6>';
+					$output += '</a></div>';
+					$output += '<div class="meta-data d-flex justify-content-between">'
+					$output += ' <button class="ml-auto unpin-post" data-id="' + id + '">unpin</button>';
+					$output += '<p class="ml-auto">' + new Date($.now()) + '&nbsp </p>';
+					$output += '</div><hr class="separator">';
+					$('#pin_post').prepend($output);
+					console.log(response);
+				},
+				error: function ()
+				{
+					console.log('error');
+				}
+			});
+		});
+		$('.unpin-post').on('click', function ()
+		{
+			var id = $(this).data('id');
+			$.ajax({
+				url: '<?=base_url()?>posts/delete_pin_post/' + id,
+				type: 'post',
+				success:function (data)
+				{
+					window.location.reload(true);
+				}
+			});
+		});
 		// Check Avatars
 
 		function checkAvatar($parentDiv) {
 			var avatar_image = $($parentDiv).find('.avatar-image')
 			var attrib = avatar_image.attr('src');
-			console.log(attrib);
 			if (attrib == '') {
-				avatar_image.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
+				avatar_image.attr('src', '<?=base_url()?>assets/images/avatar/noimage.jpg');
 			}
-			console.log(attrib);
 		}
 
 		function checkMultipleAvatar($parentDiv) {
@@ -285,20 +510,21 @@
 			$($parentDiv).each(function() {
 				var avatar_image = $(this).find('.avatar-image')
 				var attrib = avatar_image.attr('src');
-				console.log(attrib);
 				if (attrib == '') {
-					avatar_image.attr('src', '<?= base_url() ?>assets/images/avatar/noimage.jpg');
+					avatar_image.attr('src', '<?=base_url()?>assets/images/avatar/noimage.jpg');
 				}
-				// console.log(attrib);
 			});
-		}
 
-		checkMultipleAvatar('.view-content');
+		}
+		var id = $('.index-comment').data('id');
+
+
+		checkAvatar('.view-content .meta-data');
 		checkMultipleAvatar('.profile');
-		checkMultipleAvatar('.post-content');
-		checkMultipleAvatar('.nearby-sidebar');
-		checkAvatar('.sidebar1');
-		checkAvatar('.sidebar-chats');
+		checkMultipleAvatar('.meta-data');
+		checkMultipleAvatar('.nearby-meta-data');
+		checkMultipleAvatar('.comment-info');
+		checkAvatar('.chat-data-info');
 
 		$image_crop = $('#image_demo').croppie({
 			enableExif: true,
@@ -332,7 +558,7 @@
 				size: 'viewport'
 			}).then(function(response) {
 				$.ajax({
-					url: '<?= base_url() ?>users/upload',
+					url: '<?=base_url()?>users/upload',
 					type: 'POST',
 					data: {
 						"image": response
@@ -345,45 +571,46 @@
 					success: function(data) {
 						$('#insertimageModal').modal('hide');
 						$('#insert_image').empty();
-						alert('Thank you for Updating your Profile. Now Reload Web Page.');
+						window.location.reload(true);
 					}
 				});
 			});
 		});
-	});
 
 	$('#input-form').on('click', function() {
 		$('#search-submit').attr('disabled', false);
 	});
 
-	$('#msg_btn').on('click', function() {
-		$('#chat_modal').modal('show');
-		$('#button-addon2').attr('disabled', false);
-	});
-	$('#chat_form').on('submit', function() {
-		var chat_msg = $('#chat_msg_area').val();
-		if (chat_msg != '') {
-			var reciever_name = $("#msg_btn").attr('name');
+	$('#chat-submit').on('click', function() {
+		var id = $('#chat-card').data('id');
+		var recieverId = $('#reciever-id').val();
+		var avatar = $('#reciever-avatar').val();
+		var message = $('#chat_msg_area').val();
+		console.log(recieverId);
+		if (message != '') {
 			$.ajax({
-				url: "<?= base_url(); ?>" + "messages/send_message",
-				type: 'post',
+				url: '<?=base_url();?>messages/send_message',
+				method: 'POST',
 				data: {
-					'message': chat_msg,
-					'reciever_name': reciever_name
+					'message': message,
+					'recieverId': recieverId
 				},
 				beforeSend: function() {
-					$('#button-addon2').attr('disabled', 'disabled');
+					$('#chat-submit').attr('disabled', 'disabled');
 				},
 				error: function() {
-					alert(chat_msg);
+					console.log(recieverId + message)
 				},
 				success: function(data) {
-					$('#button-addon2').attr('disabled', false);
-					var html = '<div class="bg-light rounded py-2 px-3 mb-2">';
-					html += '<p class="text-small mb-0 text-white">' + chat_msg + '</p>';
-					html += '</div>';
-					$('#chat_area').append(html);
-					$('#chat_box').scrollTop($('#chat_box')[0].scrollHeight);
+					console.log('sucess');
+					$('#chat-submit').attr('disabled', false);
+					var output = '<div class="media media-chat media-chat-reverse">';
+						output += '<div class="media-body">';
+						output += '<p>'+ message + '</p>';
+						output += '<p class="meta">' + new Date($.now()) + '</p>';
+						output += '</div>';
+						output += '</div>';
+					$('#chat-content-' + id).append(output);
 					$('#chat_msg_area').val('');
 				}
 			});
@@ -393,3 +620,4 @@
 	});
 </script>
 </body>
+</html>

@@ -175,7 +175,10 @@ class Users extends CI_Controller
     public function profile()
     {
         $id = $this->session->userdata('user_id');
+        $data['activities'] = $this->user_model->get_recent_activity($id);
+        $data['notifications'] = $this->message_model->get_notification();
         $data['profiles'] = $this->user_model->get_profile_data($id);
+        $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');
         $this->load->view('users/profile', $data);
         $this->load->view('templates/footer');
@@ -198,6 +201,10 @@ class Users extends CI_Controller
             $id = $this->session->userdata('user_id');
             $this->user_model->update($enc_password, $id);
 
+            $this->session->set_userdata('updated_profile', 'updated your password');
+            $profile_update = $this->session->userdata('updated_profile');
+            $this->user_model->insert_user_activity($profile_update);
+
             $this->session->set_flashdata('profile_updated', 'Your profile has been successfully updated');
             redirect('users/profile');
         }
@@ -213,12 +220,48 @@ class Users extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function search_user()
+    {
+        $val = $this->input->post('search');
+        $data['search'] = $this->user_model->fetch_data($val);
+        $data['title'] = 'Showing search results';
+        $this->load->view('templates/header');
+        $this->load->view('pages/search_result', $data);
+        $this->load->view('templates/footer');
+    }
+
+
     public function fetch_user($id)
     {
         $data['profiles'] = $this->user_model->get_profile_data($id);
         $this->load->view('templates/header');
         $this->load->view('users/profile', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function ajax_fetch_user($id)
+    {
+        $profiles = $this->user_model->get_profile_data($id);
+        foreach($profiles as $row) {
+            $avatar = $row['avatar'];
+            $name = $row['username'];
+            $this->session->set_userdata('avatar', $avatar);
+            $this->session->set_userdata('name', $name);
+
+            $a = $this->session->userdata('avatar');
+            $n= $this->session->userdata('name');
+
+            $output = '<div class="d-flex my-0" href="#">';
+            $output.= '	<span class="d-flex chat-data-info">';
+            $output.= '<img src="' . $a . '" class="image avatar-image" alt="user profile image">';
+            $output.= '<p>' . ellipsize($n, 20) . '</p>';
+            $output.= '</span>';
+            $output.= '<span class="circle ml-auto">';
+            $output.= '</span>';
+            $output.= '</div>';				
+            
+            echo $output;
+        }
     }
 
     public function upload()
@@ -234,6 +277,11 @@ class Users extends CI_Controller
         $id = $this->session->userdata('user_id');
         if ($this->user_model->avatar($id, $image)) {
             $this->session->set_flashdata('avatar', 'Image Uploaded successfully');
+
+            $this->session->session->set_userdata('image_upload', 'changed your profile picture');
+            $image_uploaded = $this->session->session->userdata('image_upload');
+            $this->user_model->insert_user_activity($image_uploaded);
+
         } else {
             $this->session->set_flashdata('avatar_error', 'Error uploading Image');
             redirect('users/profile');
@@ -284,10 +332,6 @@ class Users extends CI_Controller
             $output['avatar'] = '<img src="'.base_url().'/avatar/noimage.jpg" class="nearby-avatar" alt="user profile image">';
             }
         }
-        echo json_encode($output);
-    }
-
-    function recent_activities(){
-        $data['posts'] = $this->post_model->get_activities();
+        echo json_encode($output);                                                                                    
     }
 }

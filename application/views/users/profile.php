@@ -1,4 +1,38 @@
 <div class="container">
+<?php foreach ($profiles as $profile): ?>
+<div class="page-contents page-container" id="page-content">
+		<div class="padding">
+			<div class="row container d-flex justify-content-center">
+				<div class="card card-bordered" id="chat-card" data-id="<?=$profile['id']?>">
+					<div class="card-header" class="d-flex">
+						<div id="chat-avatar"></div>
+						<div id="chat-id"></div>
+						<h4 class="mr-auto card-title"><strong class="chat-box-title"></strong></h4>
+						<button class="close-Btn">close</button>
+					</div>
+					<div class="ps-container ps-theme-default ps-active-y" id="msg-content" style="overflow-y: scroll !important; height:400px !important;">
+						<!-- <div class="media media-meta-day">Today</div>
+						<div class="media media-chat media-chat-reverse">
+							<div class="media-body">
+								<p>Long time no see! Tomorrow office. will be free on sunday.</p>
+								<p class="meta"><time datetime="2018">00:06</time></p>
+							</div>
+						</div> -->
+					</div>
+					<div id="write" class="publisher bt-1 border-light">
+						<img class="chatbox-avatar avatar-xs" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+						<input class="publisher-input" id="chat_area" type="text" placeholder="Write something">
+						<span class="publisher-btn file-group text-info">
+							<i class="fa fa-paperclip file-browser"></i> <input type="file">
+						</span>
+						<a class="publisher-btn text-info" href="#" data-abc="true"><i class="fa fa-smile"></i></a>
+						<button class="publisher-btn text-info" data-abc="true" id="chat-sub"><i class="fa fa-paper-plane"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <?php endforeach ?>
     <div class="row my-2">
         <div class="col-lg-8 push-lg-4">
             <?php foreach ($profiles as $profile): ?>
@@ -34,14 +68,23 @@
                                     <?=$profile['hobbies'];?>
                                 </p>
                                     <h5>Recent Activity</h5>
-                                    <?php if ($this->session->flashdata('post_created')): ?>
-                                    <div class="alert alert-danger fade show" role="alert">
-                                    <?php echo $this->session->flashdata('post_created'); ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    <?php endif;?>
+                                    <?php foreach ($activities as $activity) : ?>
+                                      <tbody>
+                                      <table class="table table-hover table-striped">
+                                         <tr>
+                                          <td>
+                                          <?php if ($this->session->userdata('user_id') == $activity['id']): ?>
+                                           <span class="pull-xs-right font-weight-bold recent-activity">
+                                               <?= 'You ' .$activity['activity'] . ' ' .time_elapsed_string($activity['created_at'], true) ?></span>
+                                           <?php else: ?>
+                                           <span class="pull-xs-right font-weight-bold recent-activity">
+                                               <?=$activity['username'] . ' ' .$activity['activity'] . ' ' . time_elapsed_string($activity['created_at'])?></span>
+                                          </td>
+                                         </tr>
+                                         <?php endif ?>
+                                         <?endforeach?>
+                                      </tbody>
+                                    </table>
                             </div>
                         </div>
                         <!--/row-->
@@ -55,24 +98,15 @@
                             <table class="table table-hover table-striped">
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <span class="pull-xs-right font-weight-bold">3 hrs ago</span> Here is a link to the latest summary report from the..
+                                        <?php foreach($notifications as $notification) : ?>
+                                        <?php if($this->session->userdata('user_id') == $notification['reciever_id']) :?>
+                                        <td class="d-flex">
+                                            <span class="pull-xs-right font-weight-bold"><?=$notification['time']?></span> &nbsp; <?=$notification['message']?>&nbsp;<strong><?=$notification['sender_name']?></strong>
+                                            <button class="ml-auto show-chat-box" data-id="<?=$notification['sender_id']?>" data-name="<?=$notification['sender_name']?>">View</button>
+                                            <button class="pull-right delete-not" data-id="<?=$notification['n_id']?>">delete</button>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="pull-xs-right font-weight-bold">Yesterday</span> There has been a request on your account since..
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="pull-xs-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="pull-xs-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus.
-                                        </td>
+                                        <?php endif ?>
+                                        <?php endforeach ?>
                                     </tr>
                                 </tbody>
                             </table>

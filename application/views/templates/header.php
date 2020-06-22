@@ -39,7 +39,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url(); ?>posts/categories">
+                <a class="nav-link" href="<?php echo base_url(); ?>categories">
                   <ion-icon name="list-outline"></ion-icon>
                   <p>Categories</p>
                 </a>
