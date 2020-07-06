@@ -8,20 +8,20 @@
 
 <div class="row">
 
-<!-- Sidebar -->
-<div class="col-lg-2 col-md-12 sidebar1">
+	<!-- Sidebar -->
+	<div class="col-lg-2 col-md-12 sidebar1">
 		<div class="sticky-top">
 			<div class="post-div1">
-				<?php if ($this->session->userdata('logged_in')): ?>
-				<?php foreach ($profiles as $profile): ?>
-				<?php if ($this->session->userdata('user_id') == $profile['id']): ?>
-					<a class="d-flex my-0" href="<?=base_url()?>users/profile">
-						<img src="<?=$profile['avatar']?>" class="image avatar-image" alt="user profile image">
-						<p class="first-child"><?=$profile['username']?></p>
-					</a>
-				<?php endif;?>
-				<?php endforeach?>
-				<?php endif;?>
+				<?php if ($this->session->userdata('logged_in')) : ?>
+					<?php foreach ($profiles as $profile) : ?>
+						<?php if ($this->session->userdata('user_id') == $profile['id']) : ?>
+							<a class="d-flex my-0" href="<?= base_url() ?>users/profile">
+								<img src="<?= $profile['avatar'] ?>" class="image avatar-image" alt="user profile image">
+								<p class="first-child"><?= $profile['username'] ?></p>
+							</a>
+						<?php endif; ?>
+					<?php endforeach ?>
+				<?php endif; ?>
 
 				<a class="d-flex" href="<?php echo base_url(); ?>">
 					<ion-icon name="home-outline" class="image"></ion-icon>
@@ -33,7 +33,7 @@
 					<p>Newsfeed</p>
 				</a>
 
-				<a class="d-flex" href="<?php echo base_url(); ?>posts/categories">
+				<a class="d-flex" href="<?php echo base_url(); ?>categories">
 					<ion-icon name="list-outline" class="image"></ion-icon>
 					<p>Categories</p>
 				</a>
@@ -47,7 +47,8 @@
 	</div>
 
 	<!-- Chats -->
-	<?php if ($this->session->userdata('logged_in')): ?>
+	<!-- <?php //if ($this->session->userdata('logged_in')): 
+			?>
 		<div class="sidebar-chats">
 			<div class="chats-title">
 				<h6 class="mt-0 pt-2 d-flex"><strong></p></strong>
@@ -59,42 +60,49 @@
 				<div class="d-flex my-0 chat-data-info" href="#">
 					<span class="d-flex">
 						<img src="" class="image avatar-image" alt="user profile image">
-						<p><?php echo ellipsize('Karl Djotchuang Tamo', 20); ?></p>
+						<p><?php //echo ellipsize('Karl Djotchuang Tamo', 20); 
+							?></p>
 					</span>
 					<span class="circle ml-auto"></span>
 				</div>
 				<div class="d-flex my-0 chat-data-info" href="#">
 					<span class="d-flex">
 						<img src="" class="image avatar-image" alt="user profile image">
-						<p><?php echo ellipsize('Djotchuang Tamo', 20); ?></p>
+						<p><?php //echo ellipsize('Djotchuang Tamo', 20); 
+							?></p>
 					</span>
 					<span class="circle ml-auto"></span>
 				</div>
 				<div class="d-flex my-0 chat-data-info" href="#">
 					<span class="d-flex">
 						<img src="" class="image avatar-image" alt="user profile image">
-						<p><?php echo ellipsize('username', 20); ?></p>
+						<p><?php //echo ellipsize('username', 20); 
+							?></p>
 					</span>
 					<span class="circle ml-auto"></span>
 				</div>
 			</div>
 		</div>
-	<?php endif;?>
+	<?php //endif;
+	?> -->
 
 	<!-- Chat Box -->
-	<div class="page-content page-container" id="page-content">
+	<!-- <div class="page-content page-container" id="page-content">
 		<div class="padding">
 			<div class="row container d-flex justify-content-center">
 				<div class="card card-bordered">
 					<div class="card-header">
-						<a href="<?=base_url()?>users/profile" class="d-flex">
-							<h4 class="card-title"><strong><?php echo ellipsize(ucwords('karl djotchuang tamo'), 20); ?></strong></h4>
+						<a href="<?php //echo base_url()
+									?>users/profile" class="d-flex">
+							<h4 class="card-title"><strong><?php //echo ellipsize(ucwords('karl djotchuang tamo'), 20); 
+															?></strong></h4>
 							<span class="rounded"></span>
 						</a>
 						<small class="closeBtn">X</small>
 					</div>
 					<div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
-						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php //echo base_url('/assets/images/avatar/noimage.jpg'); 
+																						?>" alt="...">
 							<div class="media-body">
 								<p>Hi</p>
 								<p>How are you ...???</p>
@@ -112,7 +120,8 @@
 							</div>
 						</div>
 						<div class="media media-chat">
-							<img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+							<img class="chatbox-avatar" src="<?php //echo base_url('/assets/images/avatar/noimage.jpg'); 
+																?>" alt="...">
 							<div class="media-body">
 								<p>Okay</p>
 								<p>We will go on sunday? </p>
@@ -127,7 +136,8 @@
 								<p class="meta"><time datetime="2018">00:09</time></p>
 							</div>
 						</div>
-						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php //echo base_url('/assets/images/avatar/noimage.jpg'); 
+																						?>" alt="...">
 							<div class="media-body">
 								<p>Okay i will meet you on Sandon Square </p>
 								<p class="meta"><time datetime="2018">00:10</time></p>
@@ -139,7 +149,8 @@
 								<p class="meta"><time datetime="2018">00:10</time></p>
 							</div>
 						</div>
-						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+						<div class="media media-chat"> <img class="chatbox-avatar" src="<?php //echo base_url('/assets/images/avatar/noimage.jpg'); 
+																						?>" alt="...">
 							<div class="media-body">
 								<p>Sorry I don't have. i changed my phone.</p>
 								<p class="meta"><time datetime="2018">00:12</time></p>
@@ -154,7 +165,8 @@
 
 					</div>
 					<div id="write" class="publisher bt-1 border-light">
-						<img class="chatbox-avatar avatar-xs" src="<?php echo base_url('/assets/images/avatar/noimage.jpg'); ?>" alt="...">
+						<img class="chatbox-avatar avatar-xs" src="<?php //echo base_url('/assets/images/avatar/noimage.jpg'); 
+																	?>" alt="...">
 						<input class="publisher-input" type="text" placeholder="Write something">
 						<span class="publisher-btn file-group text-info">
 							<i class="fa fa-paperclip file-browser"></i> <input type="file">
@@ -165,7 +177,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Post Section -->
 
@@ -175,24 +187,24 @@
 			<h4 class="post-title"><?php echo ucfirst($post['title']); ?></h4>
 			<hr class="separator">
 			<div class="meta-data">
-				<?php if ($this->session->userdata('logged_in')): ?>
-					<a href="<?=base_url();?>users/fetch_user/<?=$post['id'];?>">
+				<?php if ($this->session->userdata('logged_in')) : ?>
+					<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
 						<span>
 							<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
 							<p><?php echo ucfirst($post['username']); ?> </p>
 						</span>
 					</a>
-				<?php else: ?>
-					<a href="<?=base_url();?>users/login">
+				<?php else : ?>
+					<a href="<?= base_url(); ?>users/login">
 						<span>
 							<img src="<?php echo $post['avatar']; ?>" class="post-avatar avatar-image" alt="user profile image">
 							<p><?php echo ucfirst($post['username']); ?> </p>
 						</span>
 					</a>
-				<?php endif;?>
+				<?php endif; ?>
 				<span>
 					<ion-icon name="alarm-outline"></ion-icon>
-					<p><?php echo time_elapsed_string($post['created_at']); ?> </p>
+					<p><?php echo time_elapsed_string(strtotime($post['created_at'])); ?> </p>
 				</span>
 				<a href="<?php echo site_url('/countries/posts/' . $post['country_id']); ?>">
 					<span>
@@ -209,7 +221,7 @@
 			</div>
 			<p><?php echo ucfirst($post['body']); ?></p>
 			<hr class="separator">
-			<?php if ($this->session->userdata('user_id') == $post['id']): ?>
+			<?php if ($this->session->userdata('user_id') == $post['id']) : ?>
 				<div class="buttons">
 					<a class="btn btn-primary pull-left edit" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit</a>
 					<?php echo form_open('/posts/delete/' . $post['pid']); ?>
@@ -217,13 +229,13 @@
 					</form>
 				</div>
 				<hr class="separator">
-			<?php endif;?>
+			<?php endif; ?>
 			<div id="comments" class="comment-heading">
-				<h5><strong> <?=$counts?> <ion-icon name="chevron-down-outline"></ion-icon></strong></h5>
+				<h5><strong> <?= $counts ?> <ion-icon name="chevron-down-outline"></ion-icon></strong></h5>
 			</div>
-			<?php if ($comments): ?>
+			<?php if ($comments) : ?>
 				<div id="comment-div">
-					<?php foreach ($comments as $comment): ?>
+					<?php foreach ($comments as $comment) : ?>
 						<div class="comment-details">
 							<div class="comment-info">
 								<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar avatar-image" alt="user profile image">
@@ -234,12 +246,12 @@
 							</div>
 						</div>
 						<hr class="separator">
-					<?php endforeach;?>
+					<?php endforeach; ?>
 				</div>
-			<?php else: ?>
+			<?php else : ?>
 				<p>There are no comments</p>
-			<?php endif;?>
-			<?php if ($this->session->userdata('logged_in')): ?>
+			<?php endif; ?>
+			<?php if ($this->session->userdata('logged_in')) : ?>
 				<div class="comment-heading">
 					<h6><strong> Add a Comment </strong></h6>
 				</div>
@@ -252,7 +264,7 @@
 				<button class="btn btn-primary submit-btn float-right" type="submit">Post Comment</button>
 				<br>
 				</form>
-			<?php endif;?>
+			<?php endif; ?>
 		</div>
 	</div>
 
@@ -262,30 +274,30 @@
 			<br>
 			<aside class="sidebar">
 				<section class="search-bar">
-					<form action="<?=base_url();?>users/fetch" method="post" class="form-inline">
+					<form action="<?= base_url(); ?>users/fetch" method="post" class="form-inline">
 						<input name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search">
 						<button class="search-button" id="search-bar-btn" type="submit">
 							<ion-icon name="search-outline"></ion-icon>
 						</button>
 					</form>
 				</section>
-				<?php if ($this->session->userdata('logged_in')): ?>
+				<?php if ($this->session->userdata('logged_in')) : ?>
 					<section class="people-nearby">
 						<h5>People Nearby</h5>
-						<?php foreach ($peoples as $people): ?>
-						<div class="nearby-meta-data">
-							<img src="<?php echo $people['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
-							<a href="<?=base_url();?>users/fetch_user/<?=$post['id'];?>">
-								<?php echo ucfirst($people['username']); ?>
-							</a>
-						</div>
-                        <?php endforeach;?>
+						<?php foreach ($peoples as $people) : ?>
+							<div class="nearby-meta-data">
+								<img src="<?php echo $people['avatar']; ?>" class="nearby-avatar avatar-image" alt="user profile image">
+								<a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">
+									<?php echo ucfirst($people['username']); ?>
+								</a>
+							</div>
+						<?php endforeach; ?>
 						<hr class="separator">
 					</section> <br>
-				<?php endif;?>
+				<?php endif; ?>
 				<section class="latest-post">
 					<h5>Recent Posts</h5>
-					<?php foreach ($latests as $latest): ?>
+					<?php foreach ($latests as $latest) : ?>
 						<div class="post-data">
 							<div class="post-info">
 								<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
@@ -295,11 +307,11 @@
 							</div>
 							<div class="meta-data d-flex justify-content-between">
 								<p class="ml-auto">
-									<?php echo time_elapsed_string($latest['created_at']) . '&nbsp;'; ?>
+									<?php echo time_elapsed_string(strtotime($latest['created_at'])) . '&nbsp;'; ?>
 								</p>
 							</div>
 						</div>
-					<?php endforeach?>
+					<?php endforeach ?>
 					<hr class="separator">
 				</section>
 			</aside>

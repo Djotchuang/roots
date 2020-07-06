@@ -2,7 +2,7 @@
 <div class="reset_password">
     <h2 class="text-center"><?php echo $title; ?></h2>
     <small><?php echo validation_errors(); ?></small>
-    <div class="form-group text-center">
+    <div class="form-group">
         <label for="email">Enter your email below and we'll send you a link to reset your password</label>
         <input type="text" name="email" class="form-control" placeholder="Enter Email" required autofocus>
     </div>

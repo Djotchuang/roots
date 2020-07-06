@@ -26,11 +26,11 @@
       <div class="col-md-12">
         <?php if (!$this->session->userdata('logged_in')) : ?>
           <h1 class="hero-caption">
-            What is roots all about?
+            Roots, your gist and news platform.
           </h1>
           <p class="tagline">
-            Want to know what's happening in your community? Here is an opportunity for you.<br>
-            Register and meet your brethren around the world.
+            Are you searching for latest happenings around you? Good news! You're at the right place.<br>
+            Click the button below and find out.
           </p>
           <a class="btn btn-full" id="home_btn" href="<?= base_url(); ?>users/register">Get Started Now</a>
         <?php endif; ?>
@@ -39,7 +39,7 @@
             Are you tired?
           </h1>
           <p class="tagline">
-            Don't leave now! We got a lot more info for you, more users, more chats<br>
+            Don't leave now! We got a lot more info for you, more users, more chats.<br>
             Click the button below and continue exploring. Have fun!
           </p>
           <a class="btn btn-full" id="home_btn" href="<?= base_url(); ?>posts">Continue Exploring</a>

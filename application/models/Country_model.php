@@ -25,7 +25,7 @@ class country_model extends CI_Model
 
 	public function get_country($id)
 	{
-		$query = $this->db->get_where('countries', array('id' => $id));
+		$query = $this->db->get_where('countries', array('c_id' => $id));
 		return $query->row();
 	}
 

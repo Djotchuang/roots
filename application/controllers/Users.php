@@ -242,24 +242,24 @@ class Users extends CI_Controller
     public function ajax_fetch_user($id)
     {
         $profiles = $this->user_model->get_profile_data($id);
-        foreach($profiles as $row) {
+        foreach ($profiles as $row) {
             $avatar = $row['avatar'];
             $name = $row['username'];
             $this->session->set_userdata('avatar', $avatar);
             $this->session->set_userdata('name', $name);
 
             $a = $this->session->userdata('avatar');
-            $n= $this->session->userdata('name');
+            $n = $this->session->userdata('name');
 
             $output = '<div class="d-flex my-0" href="#">';
-            $output.= '	<span class="d-flex chat-data-info">';
-            $output.= '<img src="' . $a . '" class="image avatar-image" alt="user profile image">';
-            $output.= '<p>' . ellipsize($n, 20) . '</p>';
-            $output.= '</span>';
-            $output.= '<span class="circle ml-auto">';
-            $output.= '</span>';
-            $output.= '</div>';				
-            
+            $output .= '	<span class="d-flex chat-data-info">';
+            $output .= '<img src="' . $a . '" class="image avatar-image" alt="user profile image">';
+            $output .= '<p>' . ellipsize($n, 20) . '</p>';
+            $output .= '</span>';
+            $output .= '<span class="circle ml-auto">';
+            $output .= '</span>';
+            $output .= '</div>';
+
             echo $output;
         }
     }
@@ -268,12 +268,6 @@ class Users extends CI_Controller
     {
         $image = $_POST['image'];
 
-        /* list($type, $data) = explode(';', $data);
-        list(, $data) = explode(',', $data);
-        $data = base64_decode($data);
-        $imageName = time().'.png';
-        file_put_contents('upload/'.$imageName, $data);
-        $image_file = addslashes(file_get_contents($imageName)); */
         $id = $this->session->userdata('user_id');
         if ($this->user_model->avatar($id, $image)) {
             $this->session->set_flashdata('avatar', 'Image Uploaded successfully');
@@ -281,7 +275,6 @@ class Users extends CI_Controller
             $this->session->session->set_userdata('image_upload', 'changed your profile picture');
             $image_uploaded = $this->session->session->userdata('image_upload');
             $this->user_model->insert_user_activity($image_uploaded);
-
         } else {
             $this->session->set_flashdata('avatar_error', 'Error uploading Image');
             redirect('users/profile');
@@ -320,18 +313,18 @@ class Users extends CI_Controller
         }
     }
     //people nearby start-----------------=============================
-    function people_nearby(){
+    function people_nearby()
+    {
         $user_id = $this->session->userdata('user_id');
         $data = $this->user_model->get_people_nearby($user_id);
-        foreach($data as $row){
-            $output['username'] = '<a href="'.base_url().'users/fetch_user/'.$row['id'].'">'.ucfirst($row['username']).'</a>'; 
-            if($row->avatar != ''){
-            $output['avatar'] = '<img src="'.$row['avatar'].'" class="nearby-avatar" alt="user profile image">';
-            }
-            else {
-            $output['avatar'] = '<img src="'.base_url().'/avatar/noimage.jpg" class="nearby-avatar" alt="user profile image">';
+        foreach ($data as $row) {
+            $output['username'] = '<a href="' . base_url() . 'users/fetch_user/' . $row['id'] . '">' . ucfirst($row['username']) . '</a>';
+            if ($row->avatar != '') {
+                $output['avatar'] = '<img src="' . $row['avatar'] . '" class="nearby-avatar" alt="user profile image">';
+            } else {
+                $output['avatar'] = '<img src="' . base_url() . '/avatar/noimage.jpg" class="nearby-avatar" alt="user profile image">';
             }
         }
-        echo json_encode($output);                                                                                    
+        echo json_encode($output);
     }
 }

@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/fontawesome.min.css">
   <script src="<?= base_url() ?>assets/js/jquery-3.4.11.min.js" type="text/javascript"></script>
   <script src="<?= base_url() ?>assets/js/croppie.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="<?= base_url() ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="<?= base_url() ?>assets/js/main.js" type="text/javascript"></script>
   <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
   <script src="https://kit.fontawesome.com/ea1c3344cf.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -78,7 +80,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" title="Add a Country" href="<?php echo base_url(); ?>countries/create">
+                    <a class="nav-link" title="Notifications" href="<?= base_url() ?>users/profile/">
                       <ion-icon name="notifications-outline"></ion-icon>
                     </a>
                   </li>
@@ -88,8 +90,8 @@
                     </a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="<?= base_url() ?>users/profile">Profile</a>
-                      <a class="dropdown-item" href="#">Settings</a>
-                      <div class="dropdown-divider"></div>
+                      <!-- <a class="dropdown-item" href="#">Settings</a> -->
+                      <!-- <div class="dropdown-divider"></div> -->
                       <a class="dropdown-item" href="<?php echo base_url(); ?>users/logout">Logout</a>
                     </div>
                   </li>

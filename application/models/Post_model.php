@@ -38,7 +38,7 @@ class Post_model extends CI_Model
 
     public function create_post($post_image)
     {
-		$url = url_title($this->input->post('title'));
+        $url = url_title($this->input->post('title'));
 
         function generate_string($input, $strength = 16)
         {
@@ -50,8 +50,8 @@ class Post_model extends CI_Model
             }
 
             return $random_string;
-		}
-		
+        }
+
         $slug = generate_string($url, 100);
         $data = array(
             'title' => $this->input->post('title'),
@@ -133,19 +133,18 @@ class Post_model extends CI_Model
             $query = $this->db->get('posts');
             return $query->result_array();
         }
-
-	}
-	public function fetch_data($val)
-	{
-		if ($this->db->get('posts')) {
-			$this->db->like('title', $val);
-			$query = $this->db->get('posts');
-			return $query->result_array();
-		} else {
-			echo 'No Result';
-		}
     }
-    public function likes ($post_id, $user_id) 
+    public function fetch_data($val)
+    {
+        if ($this->db->get('posts')) {
+            $this->db->like('title', $val);
+            $query = $this->db->get('posts');
+            return $query->result_array();
+        } else {
+            echo 'No Result';
+        }
+    }
+    public function likes($post_id, $user_id)
     {
         $data = array(
             'likes' => 'yes',
@@ -154,7 +153,7 @@ class Post_model extends CI_Model
         );
         $this->db->insert('post_likes', $data);
     }
-    public function dislikes ($post_id, $user_id) 
+    public function dislikes($post_id, $user_id)
     {
         $data = array(
             'likes' => 'no',
@@ -165,12 +164,11 @@ class Post_model extends CI_Model
         );
         $this->db->where($array);
         $query = $this->db->get('post_likes');
-        if($query->num_rows() > 0) 
-        {
+        if ($query->num_rows() > 0) {
             $this->db->update('post_likes', $data);
         }
     }
-    public function get_likes ($post_id)
+    public function get_likes($post_id)
     {
         $data = array(
             'likes' => 'yes',
@@ -178,21 +176,10 @@ class Post_model extends CI_Model
         );
         $this->db->where($data);
         $query = $this->db->get('post_likes');
-        if($query->num_rows() < 1)
-        {
-            return '0 upvotes';
-        }
-        if($query->num_rows() == 1)
-        {
-            return '1 upvote';
-        }
-        else 
-        {
-          echo $query->num_rows() . ' upvotes';
-        }
-        
+
+        return $query->num_rows();
     }
-    public function get_dislikes ($post_id)
+    public function get_dislikes($post_id)
     {
         $data = array(
             'likes' => 'no',
@@ -200,20 +187,10 @@ class Post_model extends CI_Model
         );
         $this->db->where($data);
         $query = $this->db->get('post_likes');
-        if($query->num_rows() == '')
-        {
-            return '0 downvotes';
-        }
-        if($query->num_rows() == 1)
-        {
-            return '1 downvote';
-        }
-        else 
-        {
-        echo $query->num_rows() . ' downvotes';
-        }
+
+        return $query->num_rows();
     }
-    public function pin_post ($post_id, $user_id, $slug, $title)
+    public function pin_post($post_id, $user_id, $slug, $title)
     {
         $data = array(
             'pin_post_id' => $post_id,
@@ -223,14 +200,14 @@ class Post_model extends CI_Model
         );
         $this->db->insert('pin_post', $data);
     }
-    public function get_pin_post($slug) 
+    public function get_pin_post($slug)
     {
         $query = $this->db->get_where('posts', array(
             'slug' => $slug
         ));
         return $query->result_array();
     }
-    public function get_pin_post_data ($user_id)
+    public function get_pin_post_data($user_id)
     {
         $this->db->order_by('id', 'DESC');
         $this->db->limit(10);
@@ -239,7 +216,8 @@ class Post_model extends CI_Model
         ));
         return $query->result_array();
     }
-    function delete_pin_post ($id) {
+    function delete_pin_post($id)
+    {
         $this->db->where('id', $id);
         $this->db->delete('pin_post');
     }

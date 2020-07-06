@@ -12,7 +12,7 @@ class Posts extends CI_Controller
 
         // Init Pagination
         $this->pagination->initialize($config);
-        
+
         $user_id = $this->session->userdata('user_id');
         $data['title'] = 'Latest Posts';
         $data['posts'] = $this->post_model->get_posts(false, $config['per_page'], $offset);
@@ -23,8 +23,8 @@ class Posts extends CI_Controller
         foreach ($results as $result) {
             $country = $result['country'];
         }
-        if($this->session->userdata('logged_in')){
-        $data['peoples'] = $this->user_model->get_people_nearby($country);
+        if ($this->session->userdata('logged_in')) {
+            $data['peoples'] = $this->user_model->get_people_nearby($country);
         }
         $this->load->helper('timeelapsed_helper');
         $this->load->view('templates/header');
@@ -33,7 +33,7 @@ class Posts extends CI_Controller
     }
 
     public function view($slug = null)
-    { 
+    {
         $data['post'] = $this->post_model->get_posts($slug);
         $results = $this->post_model->get_posts($slug);
         $post_id = $results['pid'];
@@ -44,6 +44,7 @@ class Posts extends CI_Controller
         foreach ($results as $result) {
             $country = $result['country'];
         }
+
         $data['peoples'] = $this->user_model->get_people_nearby($country);
         $data['comments'] = $this->comment_model->get_comments($post_id);
         $data['counts'] = $this->comment_model->get_comments_count($post_id);
@@ -115,13 +116,13 @@ class Posts extends CI_Controller
 
                 $this->image_lib->resize();
             }
-           
+
 
             $this->post_model->create_post($post_image);
             $this->session->set_userdata('post_created', 'created a post');
             $post_created = $this->session->userdata('post_created');
             $this->user_model->insert_user_activity($post_created);
-            
+
             $this->session->set_flashdata('post_created', 'Your post has been created');
             $this->load->helper('timeelapsed_helper');
             redirect('posts');
@@ -197,17 +198,17 @@ class Posts extends CI_Controller
     {
         $val = $this->input->post('post_search');
         $result = $this->post_model->fetch_data($val);
-        foreach($result as $row) {
+        foreach ($result as $row) {
             $id = $row['pid'];
         }
         $data['counts'] = $this->comment_model->get_comments_count($id);
         $data['search'] = $this->post_model->fetch_data($val);
-        $data['title'] = 'Showing search results';
+        $data['title'] = 'Showing search results...';
         $this->load->view('templates/header');
         $this->load->view('pages/post_search_result', $data);
         $this->load->view('templates/footer');
     }
-    public function likes ()
+    public function likes()
     {
         $post_id = $_POST['postId'];
         $user_id = $_POST['userId'];
@@ -215,12 +216,12 @@ class Posts extends CI_Controller
         $likes = $this->post_model->get_likes($post_id);
         echo $likes;
     }
-    public function get_likes ($post_id)
+    public function get_likes($post_id)
     {
         $likes = $this->post_model->get_likes($post_id);
         echo $likes;
     }
-    public function dislikes ()
+    public function dislikes()
     {
         $post_id = $_POST['postId'];
         $user_id = $_POST['userId'];
@@ -228,27 +229,26 @@ class Posts extends CI_Controller
         $dislikes = $this->post_model->get_dislikes($post_id);
         echo $dislikes;
     }
-    public function get_dislikes ($post_id)
+    public function get_dislikes($post_id)
     {
         $likes = $this->post_model->get_dislikes($post_id);
         echo $likes;
     }
-    public function get_pin_post ($post_id)
+    public function get_pin_post($post_id)
     {
         $slug = $_POST['postSlug'];
         $title = $_POST['postTitle'];
         $user_id = $this->session->userdata('user_id');
         $this->post_model->pin_post($post_id, $user_id, $slug, $title);
         $pinposts = $this->post_model->get_pin_post($slug);
-        foreach ($pinposts as $pinpost) 
-        {
+        foreach ($pinposts as $pinpost) {
             $data['title'] = ucfirst($pinpost['title']);
             $data['slug'] = site_url('/posts/' . $pinpost['slug']);
             $data['id'] = $pinpost['pid'];
             echo json_encode($data);
         }
     }
-    function delete_pin_post ($id) 
+    function delete_pin_post($id)
     {
         $this->post_model->delete_pin_post($id);
         $this->db->where('id', $id);

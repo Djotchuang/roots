@@ -31,6 +31,10 @@
   </select>
 </div>
 <div class="form-group">
+  <label>Town</label>
+  <input type="text" class="form-control" name="town" placeholder="Add Town (e.g Buea)">
+</div>
+<div class="form-group">
   <label>Upload Image</label>
   <input class="btn btn-primary" type="file" name="userfile" size="20">
 </div>

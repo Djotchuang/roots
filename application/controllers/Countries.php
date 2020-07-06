@@ -40,16 +40,17 @@ class Countries extends CI_Controller
 	public function posts($id)
 	{
 		$data['title'] = $this->country_model->get_country($id)->cname;
-        $user_id = $this->session->userdata('user_id');
+		$user_id = $this->session->userdata('user_id');
 		$data['posts'] = $this->post_model->get_posts_by_country($id);
 		$data['profiles'] = $this->user_model->get_profile_data($user_id);
 		$data['latests'] = $this->post_model->get_recent_post();
 		$results = $this->user_model->get_country($user_id);
 		foreach ($results as $result) {
-            $country = $result['country'];
-        }
-        $data['peoples'] = $this->user_model->get_people_nearby($country);
+			$country = $result['country'];
+			$data['peoples'] = $this->user_model->get_people_nearby($country);
+		}
 
+		$data['pinposts'] = $this->post_model->get_pin_post($user_id);
 
 		$this->load->helper('timeelapsed_helper');
 		$this->load->view('templates/header');

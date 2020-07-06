@@ -122,33 +122,35 @@ class User_model extends CI_Model
 		$query = $this->db->get('users');
 		return $query->result_array();
 	}
-	 public function get_people_nearby($country)
+	public function get_people_nearby($country)
 	{
 		$this->db->join('posts', 'posts.pid = users.id', 'left');
 		$this->db->where('country', $country);
-		$query = $this->db->limit(10,1)->get('users');
+		$query = $this->db->limit(10, 1)->get('users');
 		return $query->result_array();
 	}
-	
-	public function insert_user_activity ($activity) {
+
+	public function insert_user_activity($activity)
+	{
 
 		$data = array(
-		   'user_id' => $this->session->userdata('user_id'),
-		   'ip_address' => $_SERVER['REMOTE_ADDR'],
-		   'user_agent' => $this->input->user_agent(),
-		   'activity' => $activity
+			'user_id' => $this->session->userdata('user_id'),
+			'ip_address' => $_SERVER['REMOTE_ADDR'],
+			'user_agent' => $this->input->user_agent(),
+			'activity' => $activity
 		);
 		$this->db->insert('activity', $data);
 	}
 
-	public function get_recent_activity($id) {
+	public function get_recent_activity($id)
+	{
 		$this->db->order_by('activity.a_id', 'DESC');
 		$this->db->join('users', 'users.id = activity.user_id');
 		$this->db->where('activity.user_id', $id);
 		$query = $this->db->get('activity');
 		return $query->result_array();
 	}
-	public function get_id ($id) 
+	public function get_id($id)
 	{
 		$data = array(
 			'id' => $id
