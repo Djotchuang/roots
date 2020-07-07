@@ -23,6 +23,11 @@ body {
   background-color: #f9f9f9;
 }
 
+.container-fluid {
+  padding-right: 5% !important;
+  padding-left: 5% !important;
+}
+
 .loader {
   border: 16px solid #f3f3f3 !important;
   border-radius: 50% !important;
@@ -54,6 +59,7 @@ body {
   }
 }
 
+.form-control,
 .btn:focus,
 select:focus,
 textarea:focus,
@@ -68,7 +74,7 @@ input[type="number"]:focus,
 [type="email"].form-control:focus,
 [type="tel"].form-control:focus,
 [contenteditable].form-control:focus {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 a {
@@ -117,6 +123,7 @@ textarea {
   background-color: #f5f5f5;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-left: 0.5rem;
   margin-left: calc(50% - 50vw);
   margin-bottom: 2rem;
   width: 100vw;
@@ -356,9 +363,15 @@ textarea {
 
 /* Country */
 
-.country-index {
-  font-size: 1rem;
+.country-index,
+.category-index {
+  font-size: 0.9rem;
   width: 80%;
+}
+
+.country-index li,
+.category-index li {
+  padding: 0.5rem 1rem;
 }
 
 .create-country {
@@ -370,6 +383,10 @@ textarea {
 /* Posts */
 
 /* Sidebar 1 */
+
+.sidebar1 {
+  margin-bottom: 2rem;
+}
 
 .post-div1 {
   margin-right: 2%;
@@ -1119,7 +1136,8 @@ textarea {
 }
 
 .view-content .meta-data ion-icon {
-  margin-top: 2px;
+  margin-top: 3px;
+  font-size: 1.1rem;
 }
 
 .buttons {
@@ -1140,6 +1158,11 @@ textarea {
 .comment-heading h5 {
   font-size: 0.8rem;
   margin-bottom: 2px !important;
+}
+
+.comment-heading ion-icon {
+  position: absolute;
+  margin: 3px;
 }
 
 .comment-info {
@@ -1291,7 +1314,7 @@ textarea {
 
 #msg_btn {
   margin-top: -1rem;
-  width: 15.5rem;
+  width: 100%;
 }
 
 #edit * {
@@ -1483,8 +1506,7 @@ textarea {
     font-size: 1.2rem;
   }
 
-  .view-content .meta-data p,
-  .view-content .meta-data ion-icon {
+  .view-content .meta-data p {
     font-size: 0.8rem;
   }
 }

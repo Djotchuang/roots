@@ -5,7 +5,7 @@
 		<input type="text" name="username" class="form-control" placeholder="Enter Username" required autofocus>
 	</div>
 	<div class="form-group">
-		<input type="password" name="password" class="form-control" placeholder="Enter Password" required autofocus>
+		<input type="password" name="password" class="form-control" placeholder="Enter Password" minlength="6" maxlength="32" required autofocus>
 	</div>
 	<div class="small">Forgot password? <a href="reset_password">Click Here</a></div><br>
 	<div class="form-group">

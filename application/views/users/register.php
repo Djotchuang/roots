@@ -5,15 +5,15 @@
     <h2 class="text-center"><?= $title; ?></h2>
     <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" name="name" placeholder="Name">
+        <input type="text" class="form-control" name="name" placeholder="Name" required>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <input type="email" class="form-control" name="email" placeholder="Email">
+        <input type="email" class="form-control" name="email" placeholder="Email" required>
     </div>
     <div class="form-group">
         <label for="country">Country</label>
-        <select id="country" name="country" class="form-control">
+        <select id="country" name="country" class="form-control" required>
             <option value="Cameroon">Cameroon</option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Åland Islands">Åland Islands</option>
@@ -262,16 +262,20 @@
         </select>
     </div>
     <div class="form-group">
+        <label>Town</label>
+        <input type="text" class="form-control" name="town" placeholder="Town">
+    </div>
+    <div class="form-group">
         <label>Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Username">
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" minlength="6" maxlength="32" required autofocus>
     </div>
     <div class="form-group">
         <label>Confirm Password</label>
-        <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+        <input type="password" class="form-control" name="password2" placeholder="Confirm Password" minlength="6" maxlength="32" required autofocus>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Register</button>

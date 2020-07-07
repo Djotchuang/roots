@@ -1,5 +1,5 @@
 <div class="page-title">
-	<div class="container">
+	<div class="container-fluid">
 		<h2><?= $title; ?></h2>
 	</div>
 </div>

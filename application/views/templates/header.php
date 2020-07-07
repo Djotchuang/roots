@@ -80,7 +80,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" title="Notifications" href="<?= base_url() ?>users/profile/">
+                    <a class="nav-link" title="Notifications" href="<?= base_url() ?>users/profile/#messages">
                       <ion-icon name="notifications-outline"></ion-icon>
                     </a>
                   </li>
@@ -106,7 +106,7 @@
 
 
 
-  <div class="container">
+  <div class="container-fluid">
     <!-- Flash messages -->
     <div class="flash-data">
 

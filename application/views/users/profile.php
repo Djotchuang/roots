@@ -276,7 +276,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label form-control-label">New Password</label>
                                 <div class="col-lg-10">
-                                    <input class="form-control" type="password" name="password" id="password">
+                                    <input class="form-control" type="password" name="password" id="password" minlength="6" maxlength="32" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group row">

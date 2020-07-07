@@ -41,6 +41,9 @@ class Posts extends CI_Controller
         $data['profiles'] = $this->user_model->get_profile_data($user_id);
         $user_id = $this->session->userdata('user_id');
         $results = $this->user_model->get_country($user_id);
+
+        $country = '';
+
         foreach ($results as $result) {
             $country = $result['country'];
         }

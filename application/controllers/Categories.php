@@ -48,9 +48,13 @@ class categories extends CI_Controller
 		$data['profiles'] = $this->user_model->get_profile_data($user_id);
 		$data['latests'] = $this->post_model->get_recent_post();
 		$results = $this->user_model->get_country($user_id);
+
+		$country = '';
+
 		foreach ($results as $result) {
 			$country = $result['country'];
 		}
+
 		$data['peoples'] = $this->user_model->get_people_nearby($country);
 		$this->load->helper('timeelapsed_helper');
 		$this->load->view('templates/header');
