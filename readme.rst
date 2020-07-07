@@ -5,13 +5,11 @@ Roots
 This is a social network application built on CodeIgniter 3.x.
 
 *******************
-To Do
+To Dos
 *******************
 
-#Do a proper test
-#Do general styling
-#do a loading animation on newsfeed page load
-#Add transitions to some buttons and general stylings
+a. Do a loading animation on newsfeed page load and any other place necessary
+b. Add transitions to some buttons and general stylings
 
 1. Edit and delete functionalities on comments
 2. Timeline on user's profile
@@ -25,7 +23,7 @@ To Do
 10. Number of posts view on index page
 11. Remove js/php display time on pinned posts
 12. Chat box display for multiple users
-13. Town input for posts
+13. Town input for posts and registration
 14. User edit profile options and interaction with the database
 15. Set notification bell to open messages and notifications tab in profile page
 16. Clear all values and insert fresh, well arranged articles, countries, categories, towns into the database
