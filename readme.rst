@@ -8,8 +8,8 @@ This is a social network application built on CodeIgniter 3.x.
 To Dos
 *******************
 
-a. Do a loading animation on newsfeed page load and any other place necessary
-b. Add transitions to some buttons and general stylings
+i. Do a loading animation on newsfeed page load and any other place necessary
+ii. Add transitions to some buttons and general stylings
 
 1. Edit and delete functionalities on comments
 2. Timeline on user's profile
