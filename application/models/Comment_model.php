@@ -16,9 +16,10 @@ class Comment_model extends CI_Model
 
 		return $this->db->insert('comments', $data);
 	}
+
 	public function get_comments($post_id)
 	{
-		$this->db->order_by('comments.id', 'DESC');
+		$this->db->order_by('comments.comment_id', 'DESC');
 		$this->db->join('users', 'users.id = comments.user_id', 'left');
 		$query = $this->db->get_where('comments', array('post_id' => $post_id));
 		return $query->result_array();

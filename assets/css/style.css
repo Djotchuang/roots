@@ -45,6 +45,7 @@ body {
   0% {
     -webkit-transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
   }
@@ -964,7 +965,7 @@ textarea {
 }
 
 .index-comment-details {
-  height: 5em;
+  height: 6em;
   overflow-y: scroll;
 }
 
@@ -1148,6 +1149,13 @@ textarea {
 .edit {
   height: max-content;
   margin-right: 1rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.delete-view {
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .comment-heading {
@@ -1186,6 +1194,15 @@ textarea {
   margin-bottom: -1px;
 }
 
+.comment-info ion-icon {
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.comment-info .dropdown-menu {
+  font-size: 0.75rem !important;
+}
+
 .comment-body {
   border: none;
   border-bottom: 1px solid #ccc;
@@ -1199,6 +1216,7 @@ textarea {
 
 .index-comment2 {
   position: relative;
+  margin-top: 1rem;
   margin-bottom: 0;
   border: 1px solid #ccc;
   border-radius: 50px;

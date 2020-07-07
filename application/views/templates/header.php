@@ -90,8 +90,6 @@
                     </a>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" href="<?= base_url() ?>users/profile">Profile</a>
-                      <!-- <a class="dropdown-item" href="#">Settings</a> -->
-                      <!-- <div class="dropdown-divider"></div> -->
                       <a class="dropdown-item" href="<?php echo base_url(); ?>users/logout">Logout</a>
                     </div>
                   </li>

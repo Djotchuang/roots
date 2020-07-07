@@ -191,6 +191,53 @@
 	}
 	getCommentCount();
 
+	// Show ellipsis on comment-info hover
+
+	function showCommentOptions() {
+		$('.comment-info').each(function() {
+			let icon = $(this).find("ion-icon");
+			icon.hide();
+
+			// let editBtn = $(this).find(".editBtn");
+			// let commentBody = $(this).find(".commentBody");
+			// let editComment = $(this).find(".editComment");
+			let commentInfo = $(this).find(".comment-info");
+
+			editComment.hide();
+
+			$(this).hover(function() {
+				icon.show();
+
+				var iteration = $(this).data('iteration') || 1
+
+				switch (iteration) {
+					case 1:
+						icon.show();
+						// $(editBtn).click(function() {
+						// 	commentBody.replaceWith(editComment);
+						// 	editComment.show();
+						// });
+						break;
+
+					case 2:
+						icon.hide();
+						break;
+				}
+
+				iteration++;
+
+				if (iteration > 2) iteration = 1
+				$(this).data('iteration', iteration)
+			});
+		});
+	}
+
+	showCommentOptions();
+
+	// Handle Edit, Reply btns on view comments
+
+
+
 	$('.index-comment').on('click', function() {
 		var id = $(this).data('id');
 		$.ajax({
@@ -205,12 +252,15 @@
 			success: function(response) {
 				$('#comments-' + id).html(response);
 				checkMultipleAvatar('.comment-info');
+
 			},
 			error: function() {
 				console.log('error');
 			}
 		});
 	});
+
+	$(".search-button").attr('disabled', true);
 
 	// Disable Search button and enable only when user starts typing
 	$(".search-button").attr('disabled', true);

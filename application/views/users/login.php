@@ -7,11 +7,11 @@
 	<div class="form-group">
 		<input type="password" name="password" class="form-control" placeholder="Enter Password" minlength="6" maxlength="32" required autofocus>
 	</div>
-	<div class="small">Forgot password? <a href="reset_password">Click Here</a></div><br>
+	<div>Forgot password? <a href="reset_password">Click Here</a></div><br>
 	<div class="form-group">
 		<button type="submit" class="btn btn-primary btn-block">Login</button>
 	</div>
-	<div class="text-center small" style="color: #67428b;">Don't have an account?
+	<div class="text-center" style="color: #67428b;">Don't have an account?
 		<a href="register">Register</a>
 	</div>
 </div>

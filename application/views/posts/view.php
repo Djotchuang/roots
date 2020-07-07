@@ -92,7 +92,7 @@
 				<div class="buttons">
 					<a class="btn btn-primary pull-left edit" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit</a>
 					<?php echo form_open('/posts/delete/' . $post['pid']); ?>
-					<input class="btn btn-danger pull-right" type="submit" value="Delete" class="btn btn-danger">
+					<input class="btn btn-danger pull-right delete-view" type="submit" value="Delete" class="btn btn-danger">
 					</form>
 				</div>
 				<hr class="separator">
@@ -106,10 +106,37 @@
 						<div class="comment-details">
 							<div class="comment-info">
 								<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar avatar-image" alt="user profile image">
-								<span>
+								<span class="w-100">
 									<h5><?php echo ucfirst($comment['username']); ?> &nbsp;</h5>
-									<p><?php echo $comment['body']; ?></p>
+									<p class="commentBody"><?php echo $comment['body']; ?></p>
+									<?php if ($this->session->userdata('logged_in')) : ?>
+										<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
+											<div class="form-group index-comment2 editComment">
+												<textarea name="body" class="md-textarea form-control index-comment-body"></textarea>
+												<button class=" index-comment-postbtn btn float-right" type="submit">update</button>
+											</div>
+										<?php else : ?>
+											<div class="form-group index-comment2">
+												<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="write your reply"></textarea>
+												<button class=" index-comment-postbtn btn float-right" type="submit">reply</button>
+											</div>
+										<?php endif; ?>
+									<?php endif; ?>
 								</span>
+								<?php if ($this->session->userdata('logged_in')) : ?>
+									<div class="dropdown">
+										<ion-icon name="ellipsis-horizontal-outline" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></ion-icon>
+										<div class="dropdown-menu">
+											<!-- If user session id equals comment id display edit/delete, else display reply -->
+											<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
+												<a class="dropdown-item editBtn" data-edit_id="<?= $comment['comment_id']; ?>" href="">Edit</a>
+												<a class="dropdown-item" href="">Delete</a>
+											<?php else : ?>
+												<a class="dropdown-item replyBtn" data-reply_id="<?= $comment['comment_id']; ?>" href="">Reply</a>
+											<?php endif; ?>
+										</div>
+									</div>
+								<?php endif; ?>
 							</div>
 						</div>
 						<hr class="separator">

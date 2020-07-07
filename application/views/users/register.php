@@ -280,7 +280,7 @@
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Register</button>
     </div>
-    <div class="text-center small" style="color: #67428b;">Already have an account?
+    <div class="text-center" style="color: #67428b;">Already have an account?
         <a href="login">Login</a>
     </div>
 </div>
