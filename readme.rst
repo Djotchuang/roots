@@ -14,8 +14,7 @@ To Dos
 5. Handle access to routes based on user logged in status
 6. Refactor the entire codebase; cleanup commented markup and unused code
 7. Set dynamic routes for categories and countries on the views page
-8. Filter posts by category/country. If there are no posts, display "There are no posts under this category/country". 
-Do same for user and post search pages 
+8. Filter posts by category/country. If there are no posts, display "There are no posts under this category/country". Do same for user and post search pages 
 9. Handle post search on views page and when there are no search results
 10. Number of posts view on index page
 11. Prevent pinning a post twice
