@@ -22,7 +22,7 @@
 					<?php endforeach ?>
 				<?php endif; ?>
 
-				<a class="d-flex" href="<?php echo base_url(); ?>">
+				<a class="d-flex homefeed" href="<?php echo base_url(); ?>">
 					<ion-icon name="home-outline" class="image"></ion-icon>
 					<p>Home</p>
 				</a>

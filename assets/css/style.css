@@ -249,6 +249,12 @@ textarea {
 
 .flash-data .alert {
   padding: 0.5rem 1rem !important;
+  /* -moz-transition: opacity 0.4s ease-in-out;
+  -o-transition: opacity 0.4s ease-in-out;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out; */
+  transition: top 300ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+  overflow: hidden;
 }
 
 .flash-data button {
@@ -535,11 +541,11 @@ textarea {
 
 /* Chat Box */
 
-.card-bordered {
+#page-content .card-bordered {
   border: 1px solid #ebebeb;
 }
 
-.card {
+#page-content .card {
   border: 0;
   border-radius: 0px;
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.03);
@@ -552,11 +558,11 @@ textarea {
   right: 0;
 }
 
-.card-header:first-child {
+#page-content .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
 
-.card-header {
+#page-content .card-header {
   display: -webkit-box;
   -webkit-box-pack: justify;
   justify-content: space-between;
@@ -568,28 +574,28 @@ textarea {
   cursor: pointer;
 }
 
-.card-header .card-title {
+#page-content .card-header .card-title {
   padding: 0;
   border: none;
 }
 
-h4.card-title {
+#page-content h4.card-title {
   font-size: 1rem;
   color: #7b8a8b;
 }
 
-h4.card-title:hover {
+#page-content h4.card-title:hover {
   font-size: 1rem;
   text-decoration: underline;
   color: #212529;
 }
 
-.card-header small {
+#page-content .card-header small {
   color: #6e6e6e;
   font-size: 0.8rem;
 }
 
-.card-header .rounded {
+#page-content .card-header .rounded {
   background-color: #18bc9c;
   width: 8px;
   height: 8px;
@@ -607,7 +613,7 @@ h4.card-title:hover {
   color: #fff !important;
 }
 
-.card-title {
+#page-content .card-title {
   font-family: Roboto, sans-serif;
   font-weight: 300;
   line-height: 1.5;
@@ -621,17 +627,6 @@ h4.card-title:hover {
   touch-action: auto;
   overflow: hidden !important;
   -ms-overflow-style: none;
-}
-
-.media-chat {
-  padding-right: 64px;
-  margin-bottom: 0;
-}
-
-.media {
-  padding: 16px 12px;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
 }
 
 .media .chatbox-avatar {
@@ -693,24 +688,11 @@ h4.card-title:hover {
   font-weight: 400;
 }
 
-.media {
-  padding: 16px 12px;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
-}
-
 .media-meta-day::before {
   margin-right: 16px;
 }
 
 .media-meta-day::before,
-.media-meta-day::after {
-  content: "";
-  -webkit-box-flex: 1;
-  flex: 1 1;
-  border-top: 1px solid #ebebeb;
-}
-
 .media-meta-day::after {
   content: "";
   -webkit-box-flex: 1;
@@ -1270,6 +1252,19 @@ textarea {
 
 .index-comment2 .btn:hover {
   color: #212529;
+}
+
+/* Post Search */
+
+.post-search .card {
+  margin: 1rem auto;
+  width: 90%;
+  color: #212529;
+}
+
+.post-search .search-post-img {
+  height: 13rem;
+  object-fit: cover;
 }
 
 /* Profile */

@@ -28,7 +28,7 @@
 					<p>Home</p>
 				</a>
 
-				<a class="d-flex" href="<?php echo base_url(); ?>posts">
+				<a class="d-flex homefeed" href="<?php echo base_url(); ?>posts">
 					<ion-icon name="duplicate-outline" class="image"></ion-icon>
 					<p>Newsfeed</p>
 				</a>

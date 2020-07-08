@@ -13,7 +13,15 @@
 		$('.newsfeed').show();
 	}, 600);
 
+	// $('.homefeed').click(function() {
+	// 	$('.newsfeed').hide();
+	// 	$(".loader").show();
 
+	// 	setTimeout(function() {
+	// 		$(".loader").hide();
+	// 		$('.newsfeed').show();
+	// 	}, 2000);
+	// });
 
 	$(document).ready(function() {
 
@@ -267,10 +275,6 @@
 
 	showCommentOptions();
 
-	// Handle Edit, Reply btns on view comments
-
-
-
 	$('.index-comment').on('click', function() {
 		var id = $(this).data('id');
 		$.ajax({
@@ -438,6 +442,14 @@
 			let postImage = $(this).find('.post-thumbnail');
 
 			if (postImage.attr('src') == '<?php echo site_url(); ?>uploads/') {
+				postImage.remove();
+			}
+		});
+
+		$('.post-search').each(function() {
+			let postImage = $(this).find('.search-post-img');
+
+			if (postImage.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
 				postImage.remove();
 			}
 		});
@@ -624,6 +636,7 @@
 	checkMultipleAvatar('.meta-data');
 	checkMultipleAvatar('.nearby-meta-data');
 	checkMultipleAvatar('.comment-info');
+	checkMultipleAvatar('.search-info');
 	checkMultipleAvatar('.chat-data-items .d-flex');
 	checkAvatar('.post-div1');
 	checkAvatar('.publisher');
