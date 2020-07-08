@@ -7,11 +7,7 @@ This is a social network application built on CodeIgniter 3.x.
 *******************
 To Dos
 *******************
-
-i. Do a loading animation on newsfeed page load and any other place necessary
-ii. Add transitions to some buttons and general stylings
-
-1. Edit and delete functionalities on comments
+1. Fix timeelapsedhelper function
 2. Timeline on user's profile
 3. Avatar image on header when user is logged in
 4. Handle HTTP errors
@@ -21,7 +17,7 @@ ii. Add transitions to some buttons and general stylings
 8. Filter posts by category/country. If there are no posts, display "There are no posts under this category/country"
 9. Handle post search on views page and when there are no search results
 10. Number of posts view on index page
-11. Remove js/php display time on pinned posts
+11. Prevent pinning a post twice
 12. Chat box display for multiple users
 13. Town input for posts and registration
 14. User edit profile options and interaction with the database

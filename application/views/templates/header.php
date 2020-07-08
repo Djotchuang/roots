@@ -13,7 +13,6 @@
   <script src="<?= base_url() ?>assets/js/main.js" type="text/javascript"></script>
   <script src="http://cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
   <script src="https://kit.fontawesome.com/ea1c3344cf.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -56,7 +55,7 @@
             <?php if ($this->session->userdata('logged_in')) : ?>
               <form action="<?= base_url(); ?>users/fetch" method="post" id="search-form" class="form-inline my-2 my-lg-0">
                 <input id="input-form" name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search People">
-                <button class="btn btn-secondary btn-sm search-button" type="submit">Search</button>
+                <button id="input-form-btn" class="btn btn-secondary btn-sm search-button" type="submit">Search</button>
               </form>
             <?php endif; ?>
             <div class="navdiv nav2">

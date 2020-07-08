@@ -5,7 +5,18 @@
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
+	$('.newsfeed').hide();
+	$(".loader").show();
+
+	setTimeout(function() {
+		$(".loader").hide();
+		$('.newsfeed').show();
+	}, 600);
+
+
+
 	$(document).ready(function() {
+
 		var chatInterval;
 		var indexChatInterval;
 
@@ -192,18 +203,23 @@
 	getCommentCount();
 
 	// Show ellipsis on comment-info hover
-
 	function showCommentOptions() {
 		$('.comment-info').each(function() {
 			let icon = $(this).find("ion-icon");
 			icon.hide();
 
-			// let editBtn = $(this).find(".editBtn");
-			// let commentBody = $(this).find(".commentBody");
-			// let editComment = $(this).find(".editComment");
+			let editBtn = $(this).find(".editBtn");
+			let commentBody = $(this).find(".commentBody");
+			let editComment = $(this).find(".editComment");
+			let cancelBtn = $(this).find(".cancelBtn");
 			let commentInfo = $(this).find(".comment-info");
 
+			let replyBtn = $(this).find(".replyBtn");
+			let replyComment = $(this).find(".replyComment");
+
 			editComment.hide();
+			replyComment.hide();
+			cancelBtn.hide();
 
 			$(this).hover(function() {
 				icon.show();
@@ -213,10 +229,27 @@
 				switch (iteration) {
 					case 1:
 						icon.show();
-						// $(editBtn).click(function() {
-						// 	commentBody.replaceWith(editComment);
-						// 	editComment.show();
-						// });
+						$(editBtn).click(function() {
+							commentBody.hide();
+							editComment.show();
+							editComment.addClass('added-margin');
+						});
+
+						$(cancelBtn).click(function() {
+							editComment.removeClass('added-margin');
+							editComment.hide();
+							replyComment.removeClass('added-margin');
+							replyComment.hide();
+							commentBody.show();
+						});
+
+						$(replyBtn).click(function() {
+							commentBody.hide();
+							replyComment.show();
+							replyComment.addClass('added-margin');
+						});
+
+
 						break;
 
 					case 2:
@@ -260,21 +293,23 @@
 		});
 	});
 
-	$(".search-button").attr('disabled', true);
+	// Disable button and enable when user input is not null
+	function enableDisableBtn(Btn, inputBox) {
+		$(Btn).attr('disabled', true);
 
-	// Disable Search button and enable only when user starts typing
-	$(".search-button").attr('disabled', true);
+		$(inputBox).keyup(function() {
+			if ($(inputBox).val()) {
+				$(Btn).attr('disabled', false);
+			} else {
+				$(Btn).attr('disabled', true);
+			}
+		});
+	}
 
-	$(".search-input").keypress(function() {
-		$(".search-button").attr('disabled', false);
-	});
+	enableDisableBtn("#input-form-btn", "#input-form");
+	enableDisableBtn("#search-bar-btn", "#postSearch");
+	enableDisableBtn(".index-comment-postbtn", ".index-comment-body");
 
-	// Disable post button and enable only when user starts typing
-	$(".index-comment-postbtn").attr('disabled', true);
-
-	$(".index-comment-body").keypress(function() {
-		$(".index-comment-postbtn").attr('disabled', false);
-	});
 
 	// Hide comment and show when comment-heading is clicked
 	$("#comment-div").hide();
@@ -461,6 +496,63 @@
 		});
 	});
 
+
+	// function time_ago(time) {
+
+	// 	switch (typeof time) {
+	// 		case 'number':
+	// 			break;
+	// 		case 'string':
+	// 			time = +new Date(time);
+	// 			break;
+	// 		case 'object':
+	// 			if (time.constructor === Date) time = time.getTime();
+	// 			break;
+	// 		default:
+	// 			time = +new Date();
+	// 	}
+
+	// 	let time_formats = [
+	// 		[60, 'seconds', 1], // 60
+	// 		[120, '1 minute ago', '1 minute from now'], // 60*2
+	// 		[3600, 'minutes', 60], // 60*60, 60
+	// 		[7200, '1 hour ago', '1 hour from now'], // 60*60*2
+	// 		[86400, 'hours', 3600], // 60*60*24, 60*60
+	// 		[172800, 'Yesterday', 'Tomorrow'], // 60*60*24*2
+	// 		[604800, 'days', 86400], // 60*60*24*7, 60*60*24
+	// 		[1209600, 'Last week', 'Next week'], // 60*60*24*7*4*2
+	// 		[2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
+	// 		[4838400, 'Last month', 'Next month'], // 60*60*24*7*4*2
+	// 		[29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
+	// 		[58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
+	// 		[2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
+	// 		[5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
+	// 		[58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+	// 	];
+	// 	let seconds = (+new Date() - time) / 1000,
+	// 		token = 'ago',
+	// 		list_choice = 1;
+
+	// 	if (seconds == 0) {
+	// 		return 'Just now'
+	// 	}
+	// 	if (seconds < 0) {
+	// 		seconds = Math.abs(seconds);
+	// 		token = 'from now';
+	// 		list_choice = 2;
+	// 	}
+	// 	let i = 0,
+	// 		format;
+	// 	while (format = time_formats[i++])
+	// 		if (seconds < format[0]) {
+	// 			if (typeof format[2] == 'string')
+	// 				return format[list_choice];
+	// 			else
+	// 				return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
+	// 		}
+	// 	return time;
+	// }
+
 	$('.pin-post').on('click', function() {
 		var postId = $(this).data('pid');
 		var postTitle = $(this).data('title');
@@ -478,10 +570,11 @@
 				$output += '<a href="' + response.slug + '">';
 				$output += '<h6 class="post-title">' + response.title + '</h6>';
 				$output += '</a></div>';
-				$output += '<div class="meta-data d-flex justify-content-between">'
-				$output += ' <button class="ml-auto unpin-post" data-id="' + id + '">unpin</button>';
-				$output += '<p class="ml-auto">' + new Date($.now()) + '&nbsp </p>';
+				$output += '<div class="pin-meta meta-data d-flex justify-content-between">'
+				// $output += ' <button class="mr-1 unpin-post" data-id="' + id + '">unpin</button>';
+				// $output += '<p class="ml-auto">' + time_ago(new Date($.now())) + '</p>';
 				$output += '</div><hr class="separator">';
+				// location.reload();
 				$('#pin_post').prepend($output);
 				$('#pin-' + postId).attr('disabled', true);
 				console.log(response);

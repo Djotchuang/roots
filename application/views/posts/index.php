@@ -1,10 +1,12 @@
 <div class="page-title">
-	<div class="container">
+	<div class="container-fluid">
 		<h2><?= $title ?></h2>
 	</div>
 </div>
+
 <div class="loader"></div>
-<div class="row">
+
+<div class="newsfeed row">
 	<!-- Sidebar -->
 	<div class="col-lg-2 col-md-12 sidebar1">
 		<div class="sticky-top">
@@ -53,9 +55,7 @@
 							<div class="pin-meta meta-data d-flex justify-content-between">
 								<button class="mr-1 unpin-post" data-id="<?= $pinpost['id'] ?>">unpin</button>
 								<p class="ml-auto">
-									<?php echo time_elapsed_string(strtotime($pinpost['pin_time'])) . '&nbsp;'; ?>
-									<?php //echo strtotime($pinpost['pin_time']); 
-									?>
+									<?php echo time_elapsed_string(strtotime($pinpost['pin_time'])); ?>
 								</p>
 							</div>
 							<hr class="separator">
@@ -183,7 +183,7 @@
 			<aside class="sidebar">
 				<section class="search-bar">
 					<form action="<?= base_url(); ?>posts/fetch" method="post" class="form-inline">
-						<input name="post_search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search post">
+						<input name="post_search" id="postSearch" class="form-control mr-2 text-black search-input" type="text" placeholder="Search post">
 						<button class="search-button" id="search-bar-btn" type="submit">
 							<ion-icon name="search-outline"></ion-icon>
 						</button>

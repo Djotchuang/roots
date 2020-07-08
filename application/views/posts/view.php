@@ -112,13 +112,16 @@
 									<?php if ($this->session->userdata('logged_in')) : ?>
 										<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
 											<div class="form-group index-comment2 editComment">
-												<textarea name="body" class="md-textarea form-control index-comment-body"></textarea>
+												<textarea name="body" class="md-textarea form-control index-comment-body"><?php echo $comment['body']; ?></textarea>
 												<button class=" index-comment-postbtn btn float-right" type="submit">update</button>
+												<button class="d-flex ml-auto cancelBtn">cancel</button>
 											</div>
+
 										<?php else : ?>
-											<div class="form-group index-comment2">
+											<div class="form-group index-comment2 replyComment">
 												<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="write your reply"></textarea>
 												<button class=" index-comment-postbtn btn float-right" type="submit">reply</button>
+												<button class="d-flex ml-auto cancelBtn">cancel</button>
 											</div>
 										<?php endif; ?>
 									<?php endif; ?>
@@ -129,10 +132,10 @@
 										<div class="dropdown-menu">
 											<!-- If user session id equals comment id display edit/delete, else display reply -->
 											<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
-												<a class="dropdown-item editBtn" data-edit_id="<?= $comment['comment_id']; ?>" href="">Edit</a>
-												<a class="dropdown-item" href="">Delete</a>
+												<button class="dropdown-item editBtn" data-edit_id="<?= $comment['comment_id']; ?>">Edit</button>
+												<button class="dropdown-item">Delete</button>
 											<?php else : ?>
-												<a class="dropdown-item replyBtn" data-reply_id="<?= $comment['comment_id']; ?>" href="">Reply</a>
+												<button class="dropdown-item replyBtn" data-reply_id="<?= $comment['comment_id']; ?>" href="">Reply</button>
 											<?php endif; ?>
 										</div>
 									</div>
@@ -168,8 +171,8 @@
 			<br>
 			<aside class="sidebar">
 				<section class="search-bar">
-					<form action="<?= base_url(); ?>users/fetch" method="post" class="form-inline">
-						<input name="search" class="form-control mr-2 text-black search-input" type="text" placeholder="Search post">
+					<form action="<?= base_url(); ?>posts/fetch" method="post" class="form-inline">
+						<input name="search" id="postSearch" class="form-control mr-2 text-black search-input" type="text" placeholder="Search post">
 						<button class="search-button" id="search-bar-btn" type="submit">
 							<ion-icon name="search-outline"></ion-icon>
 						</button>
@@ -194,7 +197,6 @@
 					<?php foreach ($latests as $latest) : ?>
 						<div class="post-data">
 							<div class="post-info">
-								<img class="post-thumbnail" src="<?php echo site_url(); ?>uploads/<?php echo $latest['post_image']; ?>">
 								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
 									<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
 								</a>

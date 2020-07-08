@@ -10,7 +10,7 @@
             <?php foreach ($search as $row) : ?>
                 <div class="post-data">
                     <div class="post-info">
-                        <a href="<?php echo site_url('/posts/' . $row['slug']); ?>?>">
+                        <a href="<?php echo site_url('/posts/' . $row['slug']); ?>">
                             <img class="post-thumbnail mr-3" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $row['post_image']; ?>">
                             <h6 class="post-title"><?php echo ucfirst($row['title']); ?></h6>
                         </a>
