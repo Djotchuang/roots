@@ -6,7 +6,7 @@
 
 <div class="loader"></div>
 
-<div class="newsfeed row">
+<div class="newsfeed d-none row">
 	<!-- Sidebar -->
 	<div class="col-lg-2 col-md-12 sidebar1">
 		<div class="sticky-top">
@@ -71,9 +71,25 @@
 		<div class="post-div2">
 			<?php foreach ($posts as $post) : ?>
 				<div class="row post">
-					<div class="col-md-5">
+					<div class="post-page-img col-md-5">
 						<a href="<?php echo site_url('posts/' . $post['slug']); ?>">
-							<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
+							<div class="imagePost">
+								<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
+							</div>
+							<div class="d-none">
+								<div class="imagePost">
+									<img class="img2 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Second slide">
+								</div>
+								<div class="imagePost">
+									<img class="img3 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Third slide">
+								</div>
+								<div class="imagePost">
+									<img class="img4 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Third slide">
+								</div>
+							</div>
+							<div class="view-more">
+								<button class="btn btn-primary title">See more pictures</button>
+							</div>
 						</a>
 					</div>
 
@@ -97,12 +113,10 @@
 							<button class="like" id="lik-<?= $post['pid'] ?>" data-pid="<?= $post['pid'] ?>" data-id="<?= $post['id'] ?>">
 								<ion-icon name="thumbs-up-outline"></ion-icon>
 								<p class="mr-auto upvotes" id="upvotes-<?= $post['pid'] ?>"></p>
-								<!-- <p>upvote(s)</p> -->
 							</button>
 							<button class="dislike" id="dis-<?= $post['pid'] ?>" data-pid="<?= $post['pid'] ?>" data-id="<?= $post['id'] ?>">
 								<ion-icon name="thumbs-down-outline"></ion-icon>
 								<p class="mr-auto downvotes" id="downvotes-<?= $post['pid'] ?>"></p>
-								<!-- <p>downvote(s)</p> -->
 							</button>
 							<?php if ($this->session->userdata('logged_in')) : ?>
 								<button class="pin-post" id="pin-<?= $post['pid'] ?>" data-pid="<?= $post['pid'] ?>" data-id="<?= $post['id'] ?>" data-title="<?= $post['title'] ?>" data-slug="<?= $post['slug'] ?>">

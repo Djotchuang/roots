@@ -5,24 +5,6 @@
 <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 <script>
-	$('.newsfeed').hide();
-	$(".loader").show();
-
-	setTimeout(function() {
-		$(".loader").hide();
-		$('.newsfeed').show();
-	}, 600);
-
-	// $('.homefeed').click(function() {
-	// 	$('.newsfeed').hide();
-	// 	$(".loader").show();
-
-	// 	setTimeout(function() {
-	// 		$(".loader").hide();
-	// 		$('.newsfeed').show();
-	// 	}, 2000);
-	// });
-
 	$(document).ready(function() {
 
 		var chatInterval;
@@ -433,16 +415,16 @@
 			let postContent = $(this).find('.post-content');
 
 			if (postImage.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
+
 				imageDiv.remove();
 				postContent.removeClass("col-md-7").addClass("col-md-12");
-			}
-		});
+				$(".loader").show();
 
-		$('.post-data').each(function() {
-			let postImage = $(this).find('.post-thumbnail');
+				setTimeout(function() {
+					$(".loader").hide();
+					$('.newsfeed').removeClass('d-none').css('{display: flex !important}');
+				}, 1000);
 
-			if (postImage.attr('src') == '<?php echo site_url(); ?>uploads/') {
-				postImage.remove();
 			}
 		});
 
@@ -451,20 +433,64 @@
 
 			if (postImage.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
 				postImage.remove();
+
+				$(".loader").show();
+
+				setTimeout(function() {
+					$(".loader").hide();
+					$('.post-search-result').removeClass('d-none').css('{display: flex !important}');
+				}, 1000);
 			}
 		});
 	}
 
 	function view() {
-		let postImage = $('.post-thumbnail');
-
-		if (postImage.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
-			postImage.remove();
-		}
+		$('.carousel-item').each(function() {
+			if ($(this).find('img').attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
+				$(this).remove();
+				// $('.carousel-item.active').remove();
+			}
+		});
 	}
 
 	post();
 	view();
+
+	// Show view more button on post image hover
+	$('.post').each(function() {
+		let postImage = $(this).find('.post-thumbnail');
+		let title = $(this).find('.title');
+		let img2 = $(this).find('.img2');
+		let img3 = $(this).find('.img3');
+		let img4 = $(this).find('.img4');
+		let imagePost = $(this).find('.imagePost');
+
+		$(this).find($('.title').hide());
+		$(this).find($('.post-page-img')).hover(function() {
+
+			var iteration = $(this).data('iteration') || 1
+
+			switch (iteration) {
+				case 1:
+					// Handle view more button on post image in newsfeed
+					if (img2.attr('src') == '<?php echo site_url(); ?>assets/images/posts/' && img3.attr('src') == '<?php echo site_url(); ?>assets/images/posts/' && img4.attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
+						$(imagePost).addClass('no-after');
+						$(title).css('{display: none !important}');
+					} else $(this).find($('.title')).show();
+					break;
+
+				case 2:
+					$(this).find($('.title')).hide();
+					break;
+			}
+
+			iteration++;
+
+			if (iteration > 2) iteration = 1
+			$(this).data('iteration', iteration)
+		});
+
+	});
 
 	// Handles likes
 	$('.like').on('click', function() {
@@ -507,63 +533,6 @@
 			}
 		});
 	});
-
-
-	// function time_ago(time) {
-
-	// 	switch (typeof time) {
-	// 		case 'number':
-	// 			break;
-	// 		case 'string':
-	// 			time = +new Date(time);
-	// 			break;
-	// 		case 'object':
-	// 			if (time.constructor === Date) time = time.getTime();
-	// 			break;
-	// 		default:
-	// 			time = +new Date();
-	// 	}
-
-	// 	let time_formats = [
-	// 		[60, 'seconds', 1], // 60
-	// 		[120, '1 minute ago', '1 minute from now'], // 60*2
-	// 		[3600, 'minutes', 60], // 60*60, 60
-	// 		[7200, '1 hour ago', '1 hour from now'], // 60*60*2
-	// 		[86400, 'hours', 3600], // 60*60*24, 60*60
-	// 		[172800, 'Yesterday', 'Tomorrow'], // 60*60*24*2
-	// 		[604800, 'days', 86400], // 60*60*24*7, 60*60*24
-	// 		[1209600, 'Last week', 'Next week'], // 60*60*24*7*4*2
-	// 		[2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
-	// 		[4838400, 'Last month', 'Next month'], // 60*60*24*7*4*2
-	// 		[29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
-	// 		[58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
-	// 		[2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
-	// 		[5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
-	// 		[58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
-	// 	];
-	// 	let seconds = (+new Date() - time) / 1000,
-	// 		token = 'ago',
-	// 		list_choice = 1;
-
-	// 	if (seconds == 0) {
-	// 		return 'Just now'
-	// 	}
-	// 	if (seconds < 0) {
-	// 		seconds = Math.abs(seconds);
-	// 		token = 'from now';
-	// 		list_choice = 2;
-	// 	}
-	// 	let i = 0,
-	// 		format;
-	// 	while (format = time_formats[i++])
-	// 		if (seconds < format[0]) {
-	// 			if (typeof format[2] == 'string')
-	// 				return format[list_choice];
-	// 			else
-	// 				return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
-	// 		}
-	// 	return time;
-	// }
 
 	$('.pin-post').on('click', function() {
 		var postId = $(this).data('pid');

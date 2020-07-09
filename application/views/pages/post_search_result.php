@@ -4,11 +4,13 @@
     </div>
 </div>
 
-<div class="post-search-result">
+<div class="loader"></div>
+
+<div class="post-search-result d-none">
     <div class="row">
         <?php foreach ($search as $row) : ?>
             <?php if ($row) : ?>
-                <div class="col-md-3 post-search">
+                <div class="col-md-4 post-search px-0">
                     <a href="<?php echo site_url('/posts/' . $row['slug']); ?>">
                         <div class="card w-90">
                             <img class="search-post-img card-img-top" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $row['post_image']; ?>" alt="Card image cap">

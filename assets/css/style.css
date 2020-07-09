@@ -464,6 +464,59 @@ textarea {
   color: rgb(7, 110, 90);
 }
 
+.imagePost {
+  position: relative;
+  height: 14rem;
+}
+
+.imagePost::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 1s ease;
+}
+
+.imagePost:hover::after {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.imagePost.no-after::after {
+  content: "";
+  background: none;
+}
+
+.imagePost.no-after:hover::after {
+  background: none;
+}
+
+.title {
+  margin: 0 auto;
+  display: block;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: #18bc9c;
+  border: none;
+  text-align: center;
+  z-index: 1;
+  position: absolute;
+  top: 40%;
+  right: 25%;
+}
+
+.title:hover {
+  background-color: #18bc9c;
+}
+
+@media (max-width: 768px) {
+  .title {
+    right: 38%;
+  }
+}
+
 .pin-meta {
   align-items: baseline;
   margin-bottom: -1rem;
@@ -899,12 +952,6 @@ textarea {
   margin-bottom: 1rem;
 }
 
-/* .nviews > small:hover {
-  background-color: #18bc9c;
-  color: #fff;
-  border: none;
-} */
-
 .nviews > small p {
   margin-bottom: -2px;
   font-size: 0.7rem;
@@ -1176,6 +1223,15 @@ textarea {
 
 .comment-info span * {
   font-size: 0.8rem;
+}
+
+.comment-info a {
+  color: #212529;
+}
+
+.comment-info a:hover,
+.replyComment a {
+  color: rgb(7, 110, 90);
 }
 
 .comment-info span p {

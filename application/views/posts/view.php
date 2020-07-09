@@ -1,6 +1,6 @@
 <div class="page-title">
 	<div class="container-fluid">
-		<a href="<?php echo base_url('posts/'); ?>?>">
+		<a href="<?php echo base_url('posts/'); ?>">
 			<h2>Posts</h2>
 		</a>
 	</div>
@@ -50,7 +50,30 @@
 
 	<div class="col-lg-7 col-md-12  view-content">
 		<div class="post-div2">
-			<img class="post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img id="img1" class="d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="First slide">
+					</div>
+					<div class="carousel-item">
+						<img id="img2" class="d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+						<img id="img3" class="d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Third slide">
+					</div>
+					<div class="carousel-item">
+						<img id="img4" class="d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Third slide">
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
 			<h4 class="post-title"><?php echo ucfirst($post['title']); ?></h4>
 			<hr class="separator">
 			<div class="meta-data">
@@ -107,7 +130,7 @@
 							<div class="comment-info">
 								<img src="<?php echo $comment['avatar']; ?>" class="comment-avatar avatar-image" alt="user profile image">
 								<span class="w-100">
-									<h5><?php echo ucfirst($comment['username']); ?> &nbsp;</h5>
+									<h5><a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>"><?php echo ucfirst($comment['username']); ?></a> &nbsp;</h5>
 									<p class="commentBody"><?php echo $comment['body']; ?></p>
 									<?php if ($this->session->userdata('logged_in')) : ?>
 										<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
@@ -116,10 +139,9 @@
 												<button class=" index-comment-postbtn btn float-right" type="submit">update</button>
 												<button class="d-flex ml-auto cancelBtn">cancel</button>
 											</div>
-
 										<?php else : ?>
 											<div class="form-group index-comment2 replyComment">
-												<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="write your reply"></textarea>
+												<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="write your reply">@<?php echo ucfirst($comment['username']); ?> &nbsp;</textarea>
 												<button class=" index-comment-postbtn btn float-right" type="submit">reply</button>
 												<button class="d-flex ml-auto cancelBtn">cancel</button>
 											</div>
@@ -130,7 +152,6 @@
 									<div class="dropdown">
 										<ion-icon name="ellipsis-horizontal-outline" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></ion-icon>
 										<div class="dropdown-menu">
-											<!-- If user session id equals comment id display edit/delete, else display reply -->
 											<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
 												<button class="dropdown-item editBtn" data-edit_id="<?= $comment['comment_id']; ?>">Edit</button>
 												<button class="dropdown-item">Delete</button>
@@ -197,7 +218,7 @@
 					<?php foreach ($latests as $latest) : ?>
 						<div class="post-data">
 							<div class="post-info">
-								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>?>">
+								<a href="<?php echo site_url('/posts/' . $latest['slug']); ?>">
 									<h6 class="post-title"><?php echo ucfirst($latest['title']); ?></h6>
 								</a>
 							</div>
