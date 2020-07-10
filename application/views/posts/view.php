@@ -132,6 +132,39 @@
 								<span class="w-100">
 									<h5><a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>"><?php echo ucfirst($comment['username']); ?></a> &nbsp;</h5>
 									<p class="commentBody"><?php echo $comment['body']; ?></p>
+									<div class="replies mt-3">
+										<p class="replyText">View all replies
+											<ion-icon name="chevron-down-outline"></ion-icon>
+										</p>
+										<div class="comment-replies">
+											<div class="replyinfo d-flex">
+												<img src="" class="comment-avatar avatar-image" alt="user profile image">
+												<span class="w-100 d-block">
+													<h5><a href="<?= base_url(); ?>users/fetch_user/<?= $post['id']; ?>">Karl</a> &nbsp;</h5>
+													<p class="replyBody">Cool mehn</p>
+													<div class="d-block w-100">
+														<div class="form-group index-comment2 editReply">
+															<textarea name="body" class="md-textarea form-control index-comment-body">Cool mehn</textarea>
+															<button class=" index-comment-postbtn btn float-right" type="submit">update</button>
+															<button class="d-flex ml-auto cancelReplyBtn">cancel</button>
+														</div>
+														<div class="form-group index-comment2 replyReply">
+															<textarea name="body" class="md-textarea form-control index-comment-body" placeholder="write your reply">@Karl &nbsp;</textarea>
+															<button class=" index-comment-postbtn btn float-right" type="submit">reply</button>
+															<button class="d-flex ml-auto cancelReplyBtn">cancel</button>
+														</div>
+													</div>
+												</span>
+												<!-- if user is logged in and user id equals reply id, display edit, reply, delete else display reply -->
+												<div class="btns d-flex">
+													<button class="editinfobtn btn ml-auto">Edit</button>
+													<button class="replyinfobtn btn ml-auto">Reply</button>
+													<button class="deleteinfobtn btn ml-auto">Delete</button>
+												</div>
+
+											</div>
+										</div>
+									</div>
 									<?php if ($this->session->userdata('logged_in')) : ?>
 										<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
 											<div class="form-group index-comment2 editComment">
@@ -150,11 +183,12 @@
 								</span>
 								<?php if ($this->session->userdata('logged_in')) : ?>
 									<div class="dropdown">
-										<ion-icon name="ellipsis-horizontal-outline" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></ion-icon>
+										<ion-icon id="ion-icon" name="ellipsis-horizontal-outline" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></ion-icon>
 										<div class="dropdown-menu">
 											<?php if ($this->session->userdata('user_id') == $comment['user_id']) : ?>
 												<button class="dropdown-item editBtn" data-edit_id="<?= $comment['comment_id']; ?>">Edit</button>
-												<button class="dropdown-item">Delete</button>
+												<button class="dropdown-item replyBtn" data-reply_id="<?= $comment['comment_id']; ?>" href="">Reply</button>
+												<button class="dropdown-item DeleteBtn">Delete</button>
 											<?php else : ?>
 												<button class="dropdown-item replyBtn" data-reply_id="<?= $comment['comment_id']; ?>" href="">Reply</button>
 											<?php endif; ?>

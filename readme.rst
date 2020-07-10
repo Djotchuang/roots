@@ -18,7 +18,6 @@ To Dos
 9. Handle post and user searches when there are no search results
 10. Number of posts view on index page
 11. Prevent pinning a post twice
-12. Chat box display for multiple users
 13. Handle town input for posts and registration
 14. User edit profile options and interaction with the database
 15. Set notification bell to open messages and notifications tab in profile page

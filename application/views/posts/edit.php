@@ -35,6 +35,21 @@
   <label>Town</label>
   <input type="text" class="form-control" name="town" placeholder="Add Town (e.g Buea)">
 </div>
-
+<div class="form-group">
+  <label>Image 1 </label>
+  <input class="btn btn-primary" type="file" name="userfile" size="20">
+</div>
+<div class="form-group">
+  <label>Image 2 </label>
+  <input class="btn btn-primary" type="file" name="userfile" size="20">
+</div>
+<div class="form-group">
+  <label>Image 3 </label>
+  <input class="btn btn-primary" type="file" name="userfile" size="20">
+</div>
+<div class="form-group">
+  <label>Image 4 </label>
+  <input class="btn btn-primary" type="file" name="userfile" size="20">
+</div>
 <button type="submit" class="btn btn-primary submit-btn">Submit</button>
 </form>

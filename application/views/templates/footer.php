@@ -94,6 +94,8 @@
 	$('#page-content').hide();
 	$('.user-trigger').on('click', function() {
 
+		$('.post-creator .meta-data button').attr('disabled', true);
+
 		var id = $(this).data('id');
 		console.log(id);
 		var avatar = $(this).data('avatar');
@@ -111,6 +113,9 @@
 			success: function(response) {
 				$('.chat-data-items').append(response);
 				checkMultipleAvatar('.chat-data-items .d-flex');
+				$('.closeBtn').click(function() {
+					$('.post-creator .meta-data button').attr('disabled', false);
+				});
 			},
 			error: function() {
 				console.log('error');
@@ -195,7 +200,7 @@
 	// Show ellipsis on comment-info hover
 	function showCommentOptions() {
 		$('.comment-info').each(function() {
-			let icon = $(this).find("ion-icon");
+			let icon = $(this).find("#ion-icon");
 			icon.hide();
 
 			let editBtn = $(this).find(".editBtn");
@@ -206,14 +211,13 @@
 
 			let replyBtn = $(this).find(".replyBtn");
 			let replyComment = $(this).find(".replyComment");
+			let replyInfo = $(this).find(".replyinfo");
 
 			editComment.hide();
 			replyComment.hide();
 			cancelBtn.hide();
 
 			$(this).hover(function() {
-				icon.show();
-
 				var iteration = $(this).data('iteration') || 1
 
 				switch (iteration) {
@@ -221,6 +225,7 @@
 						icon.show();
 						$(editBtn).click(function() {
 							commentBody.hide();
+							replyComment.hide();
 							editComment.show();
 							editComment.addClass('added-margin');
 						});
@@ -234,12 +239,10 @@
 						});
 
 						$(replyBtn).click(function() {
-							commentBody.hide();
+							editComment.hide();
 							replyComment.show();
 							replyComment.addClass('added-margin');
 						});
-
-
 						break;
 
 					case 2:
@@ -251,6 +254,67 @@
 
 				if (iteration > 2) iteration = 1
 				$(this).data('iteration', iteration)
+			});
+
+			$('.replies').each(function() {
+				let replyText = $(this).find('.replyText');
+				let commentReplies = $(this).find('.comment-replies');
+				$(commentReplies).hide()
+
+				$(replyText).click(function() {
+					var iteration = $(this).data('iteration') || 1
+
+					switch (iteration) {
+						case 1:
+							$(commentReplies).show()
+							break;
+
+						case 2:
+							$(commentReplies).hide()
+							break;
+					}
+
+					iteration++;
+
+					if (iteration > 2) iteration = 1
+					$(this).data('iteration', iteration)
+				});
+
+
+				$(replyInfo).each(function() {
+					let editReply = $(this).find(".editReply");
+					let replyReply = $(this).find(".replyReply");
+					let editInfoBtn = $(this).find(".editinfobtn");
+					let replyInfoBtn = $(this).find(".replyinfobtn");
+					let replyBody = $(this).find(".replyBody");
+					let cancelReplyBtn = $(this).find(".cancelReplyBtn");
+
+					editReply.hide();
+					replyReply.hide();
+					cancelReplyBtn.hide();
+
+					$(editInfoBtn).click(function() {
+						replyBody.hide();
+						replyReply.hide();
+						editReply.show()
+						editReply.addClass('added-margin');
+					});
+
+					$(replyInfoBtn).click(function() {
+						editReply.hide()
+						replyBody.show();
+						replyReply.show();
+						replyReply.addClass('added-margin');
+					});
+
+					$(cancelReplyBtn).click(function() {
+						editReply.removeClass('added-margin');
+						editReply.hide();
+						replyReply.removeClass('added-margin');
+						replyReply.hide();
+						ReplyBody.show();
+					});
+				});
 			});
 		});
 	}
@@ -448,7 +512,6 @@
 		$('.carousel-item').each(function() {
 			if ($(this).find('img').attr('src') == '<?php echo site_url(); ?>assets/images/posts/') {
 				$(this).remove();
-				// $('.carousel-item.active').remove();
 			}
 		});
 	}
@@ -606,6 +669,7 @@
 	checkMultipleAvatar('.nearby-meta-data');
 	checkMultipleAvatar('.comment-info');
 	checkMultipleAvatar('.search-info');
+	checkMultipleAvatar('.replyinfo');
 	checkMultipleAvatar('.chat-data-items .d-flex');
 	checkAvatar('.post-div1');
 	checkAvatar('.publisher');

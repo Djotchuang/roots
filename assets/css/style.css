@@ -79,6 +79,7 @@ input[type="number"]:focus,
 [type="tel"].form-control:focus,
 [contenteditable].form-control:focus {
   box-shadow: none !important;
+  outline: none !important;
 }
 
 a {
@@ -1016,6 +1017,15 @@ textarea {
   overflow: -moz-scrollbars-none;
 }
 
+.user-trigger,
+.user-trigger:focus {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin-bottom: 0.5rem;
+}
+
 .check button {
   background: none;
   border: none;
@@ -1230,7 +1240,8 @@ textarea {
 }
 
 .comment-info a:hover,
-.replyComment a {
+.replyComment a,
+.replyReply a {
   color: rgb(7, 110, 90);
 }
 
@@ -1251,7 +1262,8 @@ textarea {
   font-size: 0.75rem !important;
 }
 
-.comment-info .cancelBtn {
+.comment-info .cancelBtn,
+.cancelReplyBtn {
   background: none;
   border: none;
   outline: none;
@@ -1260,6 +1272,29 @@ textarea {
   font-size: 0.7rem;
   color: #190075;
   margin-top: 0.25rem;
+}
+
+.replyText {
+  color: rgb(7, 110, 90);
+  cursor: pointer;
+}
+
+.replyText ion-icon {
+  position: absolute;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.replyinfo {
+  margin: 0.7rem 1rem;
+}
+
+.replyinfo .btns button {
+  padding: 0 0.1rem;
+}
+
+.replyinfo .btns button:focus {
+  outline: none;
 }
 
 .added-margin {

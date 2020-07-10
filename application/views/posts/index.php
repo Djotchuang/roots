@@ -81,10 +81,10 @@
 									<img class="img2 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Second slide">
 								</div>
 								<div class="imagePost">
-									<img class="img3 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Third slide">
+									<img class="img3 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/" alt="Third slide">
 								</div>
 								<div class="imagePost">
-									<img class="img4 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>" alt="Third slide">
+									<img class="img4 d-block w-100 post-thumbnail" src="<?php echo site_url(); ?>assets/images/posts/" alt="Third slide">
 								</div>
 							</div>
 							<div class="view-more">
@@ -94,7 +94,7 @@
 					</div>
 
 					<div class="col-md-7 post-content" id="post-<?= $post['pid'] ?>">
-						<div class="post-top mb-2 d-flex justify-content-between">
+						<div class="post-top my-2 d-flex justify-content-between">
 							<h5>
 								<a class="btn btn-full post-btn" href="<?php echo site_url('/countries/posts/' . $post['country_id']); ?>">
 									<?php echo $post['cname']; ?>
@@ -174,10 +174,10 @@
 									<p>&nbsp;&nbsp;&nbsp;</p>
 								</div>
 							<?php else : ?>
-								<div class="ml-auto user-trigger" data-id="<?= $post['id'] ?>" data-name="<?= $post['username'] ?>" data-avatar="<?= $post['avatar'] ?>">
+								<button class="ml-auto d-flex user-trigger" data-id="<?= $post['id'] ?>" data-name="<?= $post['username'] ?>" data-avatar="<?= $post['avatar'] ?>">
 									<ion-icon class="m-1" name="mail-outline"></ion-icon>
 									<p>Chat with <strong class="chat-btn-txt"><?= ellipsize($post['username'], 10) ?></strong></p>
-								</div>
+								</button>
 							<?php endif; ?>
 						</div>
 					</div>
